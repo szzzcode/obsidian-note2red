@@ -28,6 +28,8 @@ export class RedView extends ItemView {
     private lockButton: HTMLButtonElement;
     private copyButton: HTMLButtonElement;
     private coverGenButton: HTMLButtonElement;
+    private headerToggleButton: HTMLButtonElement;
+    private footerToggleButton: HTMLButtonElement;
     private customTemplateSelect: HTMLElement;
     private customThemeSelect: HTMLElement;
     private customFontSelect: HTMLElement;
@@ -100,7 +102,7 @@ export class RedView extends ItemView {
         const controlsGroup = toolbar.createEl('div', { cls: 'red-controls-group' });
 
         await this.initializeLockButton(controlsGroup);
-        await this.initializeTemplateSelect(controlsGroup);
+        await this.initializeChromeToggles(controlsGroup);
         await this.initializeThemeSelect(controlsGroup);
         await this.initializeFontSelect(controlsGroup);
         await this.initializeFontSizeControls(controlsGroup);
@@ -236,6 +238,47 @@ export class RedView extends ItemView {
         });
         setIcon(this.lockButton, 'lock');
         this.lockButton.addEventListener('click', () => this.togglePreviewLock());
+    }
+
+    private async initializeChromeToggles(parent: HTMLElement) {
+        const group = parent.createEl('div', { cls: 'red-chrome-toggle-group' });
+        this.headerToggleButton = group.createEl('button', {
+            cls: 'red-chrome-toggle-button',
+            attr: {
+                'aria-label': '显示或隐藏页眉',
+                title: '页眉'
+            }
+        });
+        this.headerToggleButton.createEl('span', { cls: 'red-chrome-toggle-glyph', text: '眉' });
+
+        this.footerToggleButton = group.createEl('button', {
+            cls: 'red-chrome-toggle-button',
+            attr: {
+                'aria-label': '显示或隐藏页脚',
+                title: '页脚'
+            }
+        });
+        this.footerToggleButton.createEl('span', { cls: 'red-chrome-toggle-glyph', text: '脚' });
+
+        this.headerToggleButton.addEventListener('click', async () => {
+            const settings = this.settingsManager.getSettings();
+            const next = settings.showHeader !== true;
+            this.imgTemplateManager.setCurrentTemplate('default');
+            await this.settingsManager.updateSettings({ templateId: 'default', showHeader: next });
+            this.syncChromeToggleButtons();
+            await this.updatePreview();
+        });
+
+        this.footerToggleButton.addEventListener('click', async () => {
+            const settings = this.settingsManager.getSettings();
+            const next = settings.showFooter === false;
+            this.imgTemplateManager.setCurrentTemplate('default');
+            await this.settingsManager.updateSettings({ templateId: 'default', showFooter: next });
+            this.syncChromeToggleButtons();
+            await this.updatePreview();
+        });
+
+        this.syncChromeToggleButtons();
     }
 
     private async initializeTemplateSelect(parent: HTMLElement) {
@@ -513,11 +556,24 @@ export class RedView extends ItemView {
             this.fontSizeSelect.value = settings.fontSize.toString();
             this.themeManager.setFontSize(settings.fontSize);
         }
-        if (settings.templateId) { // 添加模板 ID 的恢复逻辑
-            await this.restoreTemplateSettings(settings.templateId);
-        }
+        this.imgTemplateManager.setCurrentTemplate('default');
+        this.syncChromeToggleButtons();
         if (settings.overflowStrategy) {
             this.restoreOverflowStrategy(settings.overflowStrategy);
+        }
+    }
+
+    syncChromeToggleButtons() {
+        const settings = this.settingsManager.getSettings();
+        const headerActive = settings.showHeader === true;
+        const footerActive = settings.showFooter !== false;
+        if (this.headerToggleButton) {
+            this.headerToggleButton.classList.toggle('is-active', headerActive);
+            this.headerToggleButton.setAttribute('aria-pressed', String(headerActive));
+        }
+        if (this.footerToggleButton) {
+            this.footerToggleButton.classList.toggle('is-active', footerActive);
+            this.footerToggleButton.setAttribute('aria-pressed', String(footerActive));
         }
     }
 
@@ -841,13 +897,10 @@ export class RedView extends ItemView {
     private updateControlsState(enabled: boolean) {
         this.lockButton.disabled = !enabled;
 
-        const templateSelect = this.customTemplateSelect.querySelector('.red-select');
         const themeSelect = this.customThemeSelect.querySelector('.red-select');
         const fontSelect = this.customFontSelect.querySelector('.red-select');
-        if (templateSelect) {
-            templateSelect.classList.toggle('disabled', !enabled);
-            templateSelect.setAttribute('style', `pointer-events: ${enabled ? 'auto' : 'none'}`);
-        }
+        if (this.headerToggleButton) this.headerToggleButton.disabled = !enabled;
+        if (this.footerToggleButton) this.footerToggleButton.disabled = !enabled;
         if (themeSelect) {
             themeSelect.classList.toggle('disabled', !enabled);
             themeSelect.setAttribute('style', `pointer-events: ${enabled ? 'auto' : 'none'}`);

@@ -81,6 +81,53 @@
     margin: 0 20px 0 10px;
     flex: none ;
 }
+
+.red-chrome-toggle-group {
+    display: inline-flex;
+    height: 36px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    overflow: hidden;
+    flex: none;
+    box-shadow: 0 1px 3px var(--background-modifier-box-shadow);
+}
+
+.red-controls-group .red-chrome-toggle-button {
+    width: 38px;
+    height: 34px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    flex: none;
+    color: var(--text-muted);
+    background: var(--background-primary);
+}
+
+.red-controls-group .red-chrome-toggle-button + .red-chrome-toggle-button {
+    border-left: 1px solid var(--background-modifier-border);
+}
+
+.red-controls-group .red-chrome-toggle-button:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.red-controls-group .red-chrome-toggle-button.is-active {
+    color: var(--text-on-accent);
+    background: var(--text-accent);
+}
+
+.red-chrome-toggle-glyph {
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 34px;
+    text-align: center;
+}
+
 .red-controls-group .red-like-button {
     flex: none;
 }

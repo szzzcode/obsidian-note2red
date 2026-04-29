@@ -65,6 +65,9 @@ export class RedSettingTab extends PluginSettingTab {
         for (const leaf of leaves) {
             const view = leaf.view as any;
             if (view && typeof view.updatePreview === 'function') {
+                if (typeof view.syncChromeToggleButtons === 'function') {
+                    view.syncChromeToggleButtons();
+                }
                 await view.updatePreview();
             }
         }
@@ -251,7 +254,7 @@ export class RedSettingTab extends PluginSettingTab {
         const typographyToggle = typographyHeader.createSpan('red-settings-subsection-toggle');
         setIcon(typographyToggle, 'chevron-right');
         
-        typographyHeader.createEl('h3', { text: '排版管理' });
+        typographyHeader.createEl('h3', { text: '维护说明' });
         
         const typographyContent = typographySection.createDiv('red-settings-subsection-content');
         
@@ -262,21 +265,10 @@ export class RedSettingTab extends PluginSettingTab {
             setIcon(typographyToggle, isExpanded ? 'chevron-down' : 'chevron-right');
         });
 
-        // 内容分割标题级别设置
-        new Setting(typographyContent)
-            .setName('内容分割标题级别')
-            .setDesc('选择用于分割内容生成图片的标题级别：')
-            .addDropdown(dropdown => dropdown
-                .addOption('h1', '一级标题(#) - 按大章节分割')
-                .addOption('h2', '二级标题(##) - 按小章节分割')
-                .setValue(this.plugin.settingsManager.getSettings().headingLevel)
-                .onChange(async (value: 'h1' | 'h2') => {
-                    await this.plugin.settingsManager.updateSettings({
-                        headingLevel: value
-                    });
-                    new Notice('标题级别设置已更新，请重启 Obsidian 或重新加载以使更改生效');
-                })
-            );
+        typographyContent.createEl('p', {
+            text: '当前版本按页面高度自动分页；如需手动换页，在正文中插入 --- 分隔线。',
+            cls: 'setting-item-description'
+        });
 
         // 字体管理区域
         const fontSection = containerEl.createDiv('red-settings-subsection');
@@ -380,6 +372,9 @@ export class RedSettingTab extends PluginSettingTab {
             for (const leaf of leaves) {
                 const view = leaf.view as any;
                 if (view && typeof view.updatePreview === 'function') {
+                    if (typeof view.syncChromeToggleButtons === 'function') {
+                        view.syncChromeToggleButtons();
+                    }
                     await view.updatePreview();
                 }
             }
@@ -422,6 +417,26 @@ export class RedSettingTab extends PluginSettingTab {
                         showFooter: value
                     });
                     await refreshActiveViews();
+                })
+            );
+
+        new Setting(themeVisibilityContent)
+            .setName('全局文字颜色')
+            .setDesc('留空则跟随主题默认色。填写后对正文、列表、引用、标题、表格等生效。')
+            .addText(text => {
+                text.setPlaceholder('#333333');
+                text.setValue(this.plugin.settingsManager.getSettings().textColor || '');
+                text.onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ textColor: value.trim() });
+                    await refreshActiveViews();
+                });
+            })
+            .addButton(button => button
+                .setButtonText('清空')
+                .onClick(async () => {
+                    await this.plugin.settingsManager.updateSettings({ textColor: '' });
+                    await refreshActiveViews();
+                    this.display();
                 })
             );
    
