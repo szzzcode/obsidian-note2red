@@ -4,6 +4,7 @@ import { CreateThemeModal } from './CreateThemeModal';
 import { CreateFontModal } from './CreateFontModal';
 import { ConfirmModal } from './ConfirmModal'; // 添加确认模态框导入
 import { ThemePreviewModal } from './ThemePreviewModal'; // 新增导入
+import { VIEW_TYPE_RED } from '../view';
 
 export class RedSettingTab extends PluginSettingTab {
     plugin: RedPlugin; // 修改插件类型以匹配类名
@@ -187,18 +188,40 @@ export class RedSettingTab extends PluginSettingTab {
             themeVisibilitySection.toggleClass('is-expanded', isExpanded);
             setIcon(themeVisibilityToggle, isExpanded ? 'chevron-down' : 'chevron-right');
         });
+
+        const refreshActiveViews = async () => {
+            const leaves = this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE_RED);
+            for (const leaf of leaves) {
+                const view = leaf.view as any;
+                if (view && typeof view.updatePreview === 'function') {
+                    await view.updatePreview();
+                }
+            }
+        };
         
-        // 添加页脚显示设置
+        new Setting(themeVisibilityContent)
+            .setName('是否显示页眉（头像和用户信息）')
+            .setDesc('关闭后文字区域会自动扩大，每页容纳更多内容')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settingsManager.getSettings().showHeader === true)
+                .onChange(async (value) => {
+                    await this.plugin.settingsManager.updateSettings({
+                        showHeader: value
+                    });
+                    await refreshActiveViews();
+                })
+            );
+
         new Setting(themeVisibilityContent)
             .setName('是否显示时间')
-            .setDesc('控制是否在主题中显示页眉时间')
+            .setDesc('需先开启页眉；打开后时间显示在用户信息右侧')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settingsManager.getSettings().showTime !== false)
                 .onChange(async (value) => {
                     await this.plugin.settingsManager.updateSettings({
                         showTime: value
                     });
-                    new Notice('请重启 Obsidian 或重新加载以使更改生效');
+                    await refreshActiveViews();
                 })
             );
 
@@ -212,7 +235,7 @@ export class RedSettingTab extends PluginSettingTab {
                     await this.plugin.settingsManager.updateSettings({
                         showFooter: value
                     });
-                    new Notice('请重启 Obsidian 或重新加载以使更改生效');
+                    await refreshActiveViews();
                 })
             );
    

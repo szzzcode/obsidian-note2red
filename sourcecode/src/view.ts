@@ -8,7 +8,7 @@ import { ClipboardManager } from './clipboardManager';
 import { ImgTemplateManager } from './imgTemplateManager';
 import { BackgroundSettingModal } from './modals/BackgroundSettingModal';
 import { BackgroundManager } from './backgroundManager';
-export const VIEW_TYPE_RED = 'note-to-red';
+export const VIEW_TYPE_RED = 'obsidian-note2red';
 
 export class RedView extends ItemView {
     // #region 属性定义
@@ -29,6 +29,7 @@ export class RedView extends ItemView {
     private customTemplateSelect: HTMLElement;
     private customThemeSelect: HTMLElement;
     private customFontSelect: HTMLElement;
+    private customOverflowSelect: HTMLElement;
     private fontSizeSelect: HTMLInputElement;
     private navigationButtons: {
         prev: HTMLButtonElement;
@@ -101,7 +102,27 @@ export class RedView extends ItemView {
         await this.initializeThemeSelect(controlsGroup);
         await this.initializeFontSelect(controlsGroup);
         await this.initializeFontSizeControls(controlsGroup);
+        await this.initializeOverflowStrategySelect(controlsGroup);
         await this.restoreSettings();
+    }
+
+    private async initializeOverflowStrategySelect(parent: HTMLElement) {
+        this.customOverflowSelect = this.createCustomSelect(
+            parent,
+            'red-overflow-select',
+            [
+                { value: 'paginate', label: '切分' },
+                { value: 'scale', label: '缩放' },
+                { value: 'native', label: '换页' }
+            ]
+        );
+        this.customOverflowSelect.id = 'overflow-select';
+
+        this.customOverflowSelect.querySelector('.red-select')?.addEventListener('change', async (e: any) => {
+            const value = e.detail.value;
+            await this.settingsManager.updateSettings({ overflowStrategy: value });
+            await this.updatePreview();
+        });
     }
 
     // 添加背景设置按钮初始化方法
@@ -403,6 +424,34 @@ export class RedView extends ItemView {
                 }
             }
         });
+
+        const longImageButton = parent.createEl('button', {
+            text: '导出长图',
+            cls: 'red-export-button'
+        });
+
+        longImageButton.addEventListener('click', async () => {
+            if (this.previewEl) {
+                if (this.shouldShowDonatePrompt()) {
+                    DonateManager.showDonateModal(this.containerEl);
+                }
+
+                longImageButton.disabled = true;
+                longImageButton.setText('导出中...');
+
+                try {
+                    await DownloadManager.downloadLongImage(this.previewEl);
+                    longImageButton.setText('导出成功');
+                } catch (error) {
+                    longImageButton.setText('导出失败');
+                } finally {
+                    setTimeout(() => {
+                        longImageButton.disabled = false;
+                        longImageButton.setText('导出长图');
+                    }, 2000);
+                }
+            }
+        });
     }
 
     private initializeCopyButtonListener() {
@@ -454,6 +503,27 @@ export class RedView extends ItemView {
         }
         if (settings.templateId) { // 添加模板 ID 的恢复逻辑
             await this.restoreTemplateSettings(settings.templateId);
+        }
+        if (settings.overflowStrategy) {
+            this.restoreOverflowStrategy(settings.overflowStrategy);
+        }
+    }
+
+    private restoreOverflowStrategy(strategy: string) {
+        if (!this.customOverflowSelect) return;
+        const text = this.customOverflowSelect.querySelector('.red-select-text');
+        const dropdown = this.customOverflowSelect.querySelector('.red-select-dropdown');
+        const label = strategy === 'scale' ? '缩放' : strategy === 'native' ? '换页' : '切分';
+        if (text) text.textContent = label;
+        this.customOverflowSelect.querySelector('.red-select')?.setAttribute('data-value', strategy);
+        if (dropdown) {
+            dropdown.querySelectorAll('.red-select-item').forEach(el => {
+                if (el.getAttribute('data-value') === strategy) {
+                    el.classList.add('red-selected');
+                } else {
+                    el.classList.remove('red-selected');
+                }
+            });
         }
     }
 
@@ -525,6 +595,8 @@ export class RedView extends ItemView {
     private async updatePreview() {
         if (!this.currentFile) return;
         this.previewEl.empty();
+        this.previewEl.dataset.noteTitle = this.currentFile.basename.replace(/\.md$/i, '');
+        this.previewEl.dataset.notePath = this.currentFile.path;
 
         const content = await this.app.vault.cachedRead(this.currentFile);
         await MarkdownRenderer.render(
@@ -535,12 +607,20 @@ export class RedView extends ItemView {
             this
         );
 
+        await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        this.themeManager.applyTheme(this.previewEl);
         RedConverter.formatContent(this.previewEl);
         const hasValidContent = RedConverter.hasValidContent(this.previewEl);
 
         if (hasValidContent) {
             // 应用当前模板
             this.imgTemplateManager.applyTemplate(this.previewEl, this.settingsManager.getSettings());
+            this.themeManager.applyTheme(this.previewEl);
+            await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+            RedConverter.paginateContent(this.previewEl, {
+                overflowStrategy: this.settingsManager.getSettings().overflowStrategy
+            });
+            this.themeManager.applyTheme(this.previewEl);
             // 应用当前背景设置
             const settings = this.settingsManager.getSettings();
             if (settings.backgroundSettings.imageUrl) {

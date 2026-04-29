@@ -16,9 +16,11 @@ interface RedSettings {
     userName: string;
     notesTitle: string;
     userId: string;
+    showHeader?: boolean;
     showTime: boolean;
     timeFormat: string;
     showFooter?: boolean;
+    overflowStrategy?: 'paginate' | 'scale' | 'native';
     footerLeftText: string;
     footerRightText: string;
     headingLevel: 'h1' | 'h2'; // 标题级别选项
@@ -35,6 +37,7 @@ export const DEFAULT_SETTINGS: RedSettings = {
     themeId: 'default',
     fontFamily: 'Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC"',
     fontSize: 16,
+    overflowStrategy: 'paginate',
     backgroundId: '',
     themes: [],
     customThemes: [],
@@ -43,6 +46,7 @@ export const DEFAULT_SETTINGS: RedSettings = {
     userName: '夜半',
     notesTitle: '备忘录',
     userId: '@Yeban',
+    showHeader: false,
     showTime: true,
     timeFormat: 'zh-CN',
     headingLevel: 'h2', // 默认使用二级标题

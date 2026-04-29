@@ -27,7 +27,11 @@ export class DefaultTemplate implements ImgTemplate {
 
             // 更新头部内容
             if (this.sections.header && header) {
-                this.createHeaderContent(header as HTMLElement);
+                if (settings.showHeader === true) {
+                    this.createHeaderContent(header as HTMLElement);
+                } else {
+                    header.remove();
+                }
             }
 
             // 页脚内容
