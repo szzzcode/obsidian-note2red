@@ -1,4 +1,4 @@
-# Note to RED Custom
+# Note2Red
 
 这是 `note-to-red` 的个人定制版本，用于在 Obsidian 中将 Markdown 笔记导出为小红书风格图片。
 
@@ -13,6 +13,7 @@
 当前插件版本见 `manifest.json`：
 
 - 插件 ID：`obsidian-note2red`
+- 插件显示名：`Note2Red`
 - 当前版本：`1.0.19-custom.13`
 
 ## 目录说明

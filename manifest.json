@@ -1,6 +1,6 @@
 {
     "id": "obsidian-note2red",
-    "name": "obsidian-note2red",
+    "name": "Note2Red",
     "version": "1.0.19-custom.13",
     "minAppVersion": "0.15.0",
     "description": "Convert Markdown notes to RED (Xiaohongshu) style images (custom fork with auto-pagination by content height)",

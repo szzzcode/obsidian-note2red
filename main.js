@@ -8320,7 +8320,7 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
     containerEl.addClass("red-settings");
-    containerEl.createEl("h2", { text: "obsidian-note2red \u8BBE\u7F6E" });
+    containerEl.createEl("h2", { text: "Note2Red \u8BBE\u7F6E" });
     this.createSection(containerEl, "\u57FA\u672C\u8BBE\u7F6E", (el) => this.renderBasicSettings(el));
     this.createSection(containerEl, "\u4E3B\u9898\u8BBE\u7F6E", (el) => this.renderThemeSettings(el));
     this.createSection(containerEl, "\u5C01\u9762\u4E0E Gemini", (el) => this.renderCoverSettings(el));
