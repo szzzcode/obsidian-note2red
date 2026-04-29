@@ -1,0 +1,5 @@
+data.json
+sourcecode/node_modules/
+sourcecode/dist/
+.DS_Store
+*.log
