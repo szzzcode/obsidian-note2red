@@ -21,6 +21,18 @@ interface RedSettings {
     timeFormat: string;
     showFooter?: boolean;
     overflowStrategy?: 'paginate' | 'scale' | 'native';
+    textColor?: string;
+    coverEnabled?: boolean;
+    coverLayout?: 'image-top' | 'title-top';
+    coverShowExcerpt?: boolean;
+    coverExcerptText?: string;
+    coverTitleFont?: string;
+    coverPromptPreset?: string;
+    coverPromptCustom?: string;
+    geminiApiKey?: string;
+    geminiImageModel?: string;
+    coverSaveFolder?: string;
+    coverManualImagePath?: string;
     footerLeftText: string;
     footerRightText: string;
     headingLevel: 'h1' | 'h2'; // 标题级别选项
@@ -38,6 +50,18 @@ export const DEFAULT_SETTINGS: RedSettings = {
     fontFamily: 'Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC"',
     fontSize: 16,
     overflowStrategy: 'paginate',
+    textColor: '',
+    coverEnabled: false,
+    coverLayout: 'image-top',
+    coverShowExcerpt: true,
+    coverExcerptText: '',
+    coverTitleFont: '',
+    coverPromptPreset: 'notion',
+    coverPromptCustom: '',
+    geminiApiKey: '',
+    geminiImageModel: 'gemini-2.5-flash-image',
+    coverSaveFolder: '99_attachments/note-to-red-covers',
+    coverManualImagePath: '',
     backgroundId: '',
     themes: [],
     customThemes: [],

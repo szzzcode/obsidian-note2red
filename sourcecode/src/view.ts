@@ -8,6 +8,7 @@ import { ClipboardManager } from './clipboardManager';
 import { ImgTemplateManager } from './imgTemplateManager';
 import { BackgroundSettingModal } from './modals/BackgroundSettingModal';
 import { BackgroundManager } from './backgroundManager';
+import { CoverGenerator } from './coverGenerator';
 export const VIEW_TYPE_RED = 'obsidian-note2red';
 
 export class RedView extends ItemView {
@@ -26,6 +27,7 @@ export class RedView extends ItemView {
     // UI 元素
     private lockButton: HTMLButtonElement;
     private copyButton: HTMLButtonElement;
+    private coverGenButton: HTMLButtonElement;
     private customTemplateSelect: HTMLElement;
     private customThemeSelect: HTMLElement;
     private customFontSelect: HTMLElement;
@@ -191,6 +193,7 @@ export class RedView extends ItemView {
         this.navigationButtons.prev.classList.toggle('red-nav-hidden', this.currentImageIndex === 0);
         this.navigationButtons.next.classList.toggle('red-nav-hidden', this.currentImageIndex === sections.length - 1);
         this.navigationButtons.indicator.textContent = `${this.currentImageIndex + 1}/${sections.length}`;
+        RedView.syncCoverActiveFlag(this.previewEl);
     }
 
     private navigateImages(direction: 'prev' | 'next') {
@@ -208,6 +211,7 @@ export class RedView extends ItemView {
         const bottomControlsGroup = bottomBar.createEl('div', { cls: 'red-controls-group' });
 
         this.initializeHelpButton(bottomControlsGroup);
+        this.initializeCoverButton(bottomControlsGroup);
         this.initializeBackgroundButton(bottomControlsGroup);
         this.initializeDonateButton(bottomControlsGroup);
         this.initializeExportButtons(bottomControlsGroup);
@@ -362,6 +366,14 @@ export class RedView extends ItemView {
         likeButton.addEventListener('click', () => {
             DonateManager.showDonateModal(this.containerEl);
         });
+    }
+
+    private initializeCoverButton(parent: HTMLElement) {
+        this.coverGenButton = parent.createEl('button', {
+            cls: 'red-cover-gen-button',
+            text: '生成封面'
+        });
+        this.coverGenButton.addEventListener('click', () => this.onGenerateCoverClick());
     }
 
     private initializeExportButtons(parent: HTMLElement) {
@@ -621,6 +633,8 @@ export class RedView extends ItemView {
                 overflowStrategy: this.settingsManager.getSettings().overflowStrategy
             });
             this.themeManager.applyTheme(this.previewEl);
+            await this.syncCoverPage();
+            this.themeManager.applyTheme(this.previewEl);
             // 应用当前背景设置
             const settings = this.settingsManager.getSettings();
             if (settings.backgroundSettings.imageUrl) {
@@ -638,6 +652,190 @@ export class RedView extends ItemView {
             this.copyButton.removeAttribute('title');
         }
         this.updateNavigationState();
+    }
+
+    private renumberSectionIndices() {
+        const sections = this.previewEl.querySelectorAll('.red-content-section');
+        sections.forEach((section, index) => section.setAttribute('data-index', String(index)));
+    }
+
+    private buildCoverPageInner(title: string, imgUrl: string, excerpt: string): HTMLElement {
+        const settings = this.settingsManager.getSettings();
+        const layout = settings.coverLayout || 'image-top';
+        const wrap = document.createElement('div');
+        wrap.className = `red-cover-page${layout === 'title-top' ? ' red-cover-page--title-top' : ''}`;
+        const coverFont = settings.coverTitleFont || '';
+
+        const createImageWrap = (small: boolean) => {
+            const imgWrap = document.createElement('div');
+            imgWrap.className = small ? 'red-cover-image-wrap red-cover-image-wrap--small' : 'red-cover-image-wrap';
+            if (imgUrl) {
+                const img = document.createElement('img');
+                img.className = 'red-cover-image';
+                img.src = imgUrl;
+                img.alt = '';
+                imgWrap.appendChild(img);
+            } else {
+                const ph = document.createElement('div');
+                ph.className = 'red-cover-placeholder';
+                ph.textContent = '暂无封面图 - 设置中可上传图片或点本按钮生成';
+                imgWrap.appendChild(ph);
+            }
+            return imgWrap;
+        };
+
+        const createTitle = (top: boolean) => {
+            const tWrap = document.createElement('div');
+            tWrap.className = top ? 'red-cover-title-wrap red-cover-title-wrap--top' : 'red-cover-title-wrap';
+            const h = document.createElement('h2');
+            h.className = top ? 'red-cover-title red-cover-title--top' : 'red-cover-title';
+            h.textContent = title;
+            if (coverFont) h.style.fontFamily = coverFont;
+            tWrap.appendChild(h);
+            return tWrap;
+        };
+
+        if (layout === 'title-top') {
+            wrap.appendChild(createTitle(true));
+            wrap.appendChild(createImageWrap(true));
+            if (settings.coverShowExcerpt !== false) {
+                const eWrap = document.createElement('div');
+                eWrap.className = 'red-cover-excerpt-wrap';
+                const eText = document.createElement('p');
+                eText.className = 'red-cover-excerpt';
+                eText.contentEditable = 'true';
+                eText.setAttribute('data-placeholder', '点击输入封面摘要...');
+                const excerptText = (settings.coverExcerptText || excerpt || '').trim();
+                if (excerptText) eText.textContent = excerptText;
+                eText.addEventListener('blur', async () => {
+                    await this.settingsManager.updateSettings({ coverExcerptText: (eText.textContent || '').trim() });
+                });
+                eText.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' && !event.shiftKey) {
+                        event.preventDefault();
+                        eText.blur();
+                    }
+                });
+                eWrap.appendChild(eText);
+                wrap.appendChild(eWrap);
+            }
+        } else {
+            wrap.appendChild(createImageWrap(false));
+            wrap.appendChild(createTitle(false));
+        }
+
+        return wrap;
+    }
+
+    private async syncCoverPage() {
+        const container = this.previewEl.querySelector('.red-content-container');
+        if (!container || !this.currentFile) return;
+        container.querySelectorAll('.red-cover-section').forEach(el => el.remove());
+
+        const settings = this.settingsManager.getSettings();
+        if (!settings.coverEnabled) {
+            this.renumberSectionIndices();
+            this.updateNavigationState();
+            return;
+        }
+
+        const title = this.currentFile.basename.replace(/\.md$/i, '');
+        const safeTitle = title.replace(/[\\/:*?"<>|]/g, '_');
+        let imgUrl = '';
+        const manual = (settings.coverManualImagePath || '').trim();
+
+        if (manual) {
+            const file = this.app.vault.getAbstractFileByPath(manual);
+            if (file && 'extension' in file && /^(png|jpe?g|gif|webp|avif|bmp)$/i.test((file as any).extension)) {
+                imgUrl = this.app.vault.adapter.getResourcePath((file as any).path);
+            }
+        } else {
+            const folder = (settings.coverSaveFolder || '99_attachments/note-to-red-covers').replace(/\/+$/, '');
+            const cachePath = `${folder}/generated-${safeTitle}.png`;
+            const cached = this.app.vault.getAbstractFileByPath(cachePath);
+            if (cached && 'extension' in cached) {
+                imgUrl = this.app.vault.adapter.getResourcePath((cached as any).path);
+            } else {
+                const legacyPath = `_note-to-red-covers/generated-${safeTitle}.png`;
+                const legacy = this.app.vault.getAbstractFileByPath(legacyPath);
+                if (legacy && 'extension' in legacy) {
+                    imgUrl = this.app.vault.adapter.getResourcePath((legacy as any).path);
+                }
+            }
+        }
+
+        let excerpt = '';
+        try {
+            const content = await this.app.vault.cachedRead(this.currentFile);
+            excerpt = CoverGenerator.extractExcerpt(content);
+        } catch (_e) {}
+
+        const section = document.createElement('section');
+        section.className = 'red-content-section red-cover-section';
+        section.appendChild(this.buildCoverPageInner(title, imgUrl, excerpt));
+        container.insertBefore(section, container.firstChild);
+        this.renumberSectionIndices();
+        this.updateNavigationState();
+    }
+
+    private async ensureFolderRecursive(folderPath: string) {
+        const parts = folderPath.split('/').filter(Boolean);
+        let cur = '';
+        for (const part of parts) {
+            cur = cur ? `${cur}/${part}` : part;
+            if (!this.app.vault.getAbstractFileByPath(cur)) {
+                try {
+                    await this.app.vault.createFolder(cur);
+                } catch (_e) {}
+            }
+        }
+    }
+
+    private async onGenerateCoverClick() {
+        const settings = this.settingsManager.getSettings();
+        if (!this.currentFile) {
+            new Notice('没有活动笔记');
+            return;
+        }
+        const apiKey = (settings.geminiApiKey || '').trim();
+        if (!apiKey) {
+            new Notice('请先在设置中填写 Gemini API Key');
+            return;
+        }
+
+        new Notice('正在请求 Gemini 生成封面...');
+        try {
+            const content = await this.app.vault.cachedRead(this.currentFile);
+            const excerpt = CoverGenerator.extractExcerpt(content);
+            const title = this.currentFile.basename.replace(/\.md$/i, '');
+            const prompt = CoverGenerator.buildImagePrompt(title, excerpt, settings);
+            const b64 = await CoverGenerator.geminiGenerateImageBase64(
+                apiKey,
+                settings.geminiImageModel || 'gemini-2.5-flash-image',
+                prompt
+            );
+            const binStr = atob(b64);
+            const bytes = new Uint8Array(binStr.length);
+            for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
+
+            const folder = (settings.coverSaveFolder || '99_attachments/note-to-red-covers').replace(/\/+$/, '');
+            await this.ensureFolderRecursive(folder);
+            const safeTitle = title.replace(/[\\/:*?"<>|]/g, '_');
+            const outPath = `${folder}/generated-${safeTitle}.png`;
+            const existing = this.app.vault.getAbstractFileByPath(outPath);
+            if (existing) await this.app.vault.delete(existing);
+            await this.app.vault.createBinary(outPath, bytes.buffer);
+
+            new Notice(`封面已保存：${outPath}`);
+            if (!settings.coverEnabled) {
+                await this.settingsManager.updateSettings({ coverEnabled: true });
+            }
+            await this.syncCoverPage();
+            this.themeManager.applyTheme(this.previewEl);
+        } catch (error: any) {
+            console.error('[obsidian-note2red] generate cover', error);
+            new Notice(`生成失败：${error?.message || String(error)}`);
+        }
     }
 
     private updateControlsState(enabled: boolean) {
@@ -666,10 +864,22 @@ export class RedView extends ItemView {
         });
 
         this.copyButton.disabled = !enabled;
+        if (this.coverGenButton) {
+            this.coverGenButton.disabled = !enabled;
+        }
         const singleDownloadButton = this.containerEl.querySelector('.red-export-button');
         if (singleDownloadButton) {
             (singleDownloadButton as HTMLButtonElement).disabled = !enabled;
         }
+    }
+
+    static syncCoverActiveFlag(previewEl: HTMLElement) {
+        const imagePreview = previewEl.querySelector('.red-image-preview');
+        if (!imagePreview) return;
+        const coverShown = !!imagePreview.querySelector(
+            '.red-cover-section.red-section-active:not(.red-section-hidden), .red-cover-section.red-section-visible'
+        );
+        imagePreview.classList.toggle('red-image-preview--cover-active', coverShown);
     }
     // #endregion
 

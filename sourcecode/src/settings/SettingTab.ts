@@ -5,6 +5,7 @@ import { CreateFontModal } from './CreateFontModal';
 import { ConfirmModal } from './ConfirmModal'; // 添加确认模态框导入
 import { ThemePreviewModal } from './ThemePreviewModal'; // 新增导入
 import { VIEW_TYPE_RED } from '../view';
+import { CoverGenerator } from '../coverGenerator';
 
 export class RedSettingTab extends PluginSettingTab {
     plugin: RedPlugin; // 修改插件类型以匹配类名
@@ -52,10 +53,195 @@ export class RedSettingTab extends PluginSettingTab {
         containerEl.empty();
         containerEl.addClass('red-settings');
 
-        containerEl.createEl('h2', { text: 'Note to RED 设置' });
+        containerEl.createEl('h2', { text: 'Note2Red 设置' });
 
         this.createSection(containerEl, '基本设置', el => this.renderBasicSettings(el));
         this.createSection(containerEl, '主题设置', el => this.renderThemeSettings(el));
+        this.createSection(containerEl, '封面与 Gemini', el => this.renderCoverSettings(el));
+    }
+
+    private async refreshActiveViews() {
+        const leaves = this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE_RED);
+        for (const leaf of leaves) {
+            const view = leaf.view as any;
+            if (view && typeof view.updatePreview === 'function') {
+                await view.updatePreview();
+            }
+        }
+    }
+
+    private async ensureFolderRecursive(folderPath: string) {
+        const parts = folderPath.split('/').filter(Boolean);
+        let cur = '';
+        for (const part of parts) {
+            cur = cur ? `${cur}/${part}` : part;
+            if (!this.app.vault.getAbstractFileByPath(cur)) {
+                try {
+                    await this.app.vault.createFolder(cur);
+                } catch (_e) {}
+            }
+        }
+    }
+
+    private renderCoverSettings(containerEl: HTMLElement): void {
+        const settings = () => this.plugin.settingsManager.getSettings();
+
+        new Setting(containerEl)
+            .setName('启用第一页封面')
+            .setDesc('开启后会在正文分页前插入一页封面。')
+            .addToggle(toggle => toggle
+                .setValue(settings().coverEnabled === true)
+                .onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ coverEnabled: value });
+                    await this.refreshActiveViews();
+                })
+            );
+
+        new Setting(containerEl)
+            .setName('封面排版风格')
+            .setDesc('控制封面页标题、图片和摘要的位置。')
+            .addDropdown(dropdown => dropdown
+                .addOption('image-top', '图片在上 + 标题在下')
+                .addOption('title-top', '标题在上 + 图片在中 + 摘要在下')
+                .setValue(settings().coverLayout || 'image-top')
+                .onChange(async (value: 'image-top' | 'title-top') => {
+                    await this.plugin.settingsManager.updateSettings({ coverLayout: value });
+                    await this.refreshActiveViews();
+                })
+            );
+
+        new Setting(containerEl)
+            .setName('显示封面摘要')
+            .setDesc('仅在“标题在上”模式下生效；摘要也可以在封面预览区直接点击编辑。')
+            .addToggle(toggle => toggle
+                .setValue(settings().coverShowExcerpt !== false)
+                .onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ coverShowExcerpt: value });
+                    await this.refreshActiveViews();
+                })
+            );
+
+        new Setting(containerEl)
+            .setName('封面标题字体')
+            .setDesc('留空则跟随正文；示例：SimSun, 宋体, serif')
+            .addText(text => {
+                text.setPlaceholder('留空跟随正文字体');
+                text.setValue(settings().coverTitleFont || '');
+                text.onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ coverTitleFont: value.trim() });
+                    await this.refreshActiveViews();
+                });
+            });
+
+        new Setting(containerEl)
+            .setName('Gemini API Key')
+            .setDesc('用于点击“生成封面”时调用 Gemini。')
+            .addText(text => {
+                text.inputEl.type = 'password';
+                text.setPlaceholder('AIza...');
+                text.setValue(settings().geminiApiKey || '');
+                text.onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ geminiApiKey: value.trim() });
+                });
+            });
+
+        new Setting(containerEl)
+            .setName('Gemini 图片模型')
+            .setDesc('默认 gemini-2.5-flash-image。')
+            .addText(text => {
+                text.setValue(settings().geminiImageModel || 'gemini-2.5-flash-image');
+                text.onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ geminiImageModel: value.trim() || 'gemini-2.5-flash-image' });
+                });
+            });
+
+        new Setting(containerEl)
+            .setName('封面存储文件夹')
+            .setDesc('AI 生成与手动上传的封面图都会存到这个库内相对路径。')
+            .addText(text => {
+                text.setPlaceholder('99_attachments/note-to-red-covers');
+                text.setValue(settings().coverSaveFolder || '');
+                text.onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ coverSaveFolder: value.trim() });
+                });
+            });
+
+        new Setting(containerEl)
+            .setName('手动封面图路径')
+            .setDesc('填入库内相对路径时优先于 AI 生成图。')
+            .addText(text => {
+                text.setValue(settings().coverManualImagePath || '');
+                text.onChange(async value => {
+                    await this.plugin.settingsManager.updateSettings({ coverManualImagePath: value.trim() });
+                    await this.refreshActiveViews();
+                });
+            })
+            .addButton(button => button
+                .setButtonText('从本机选图并存入库')
+                .onClick(async () => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.onchange = async () => {
+                        const file = input.files?.[0];
+                        if (!file) return;
+                        const buffer = await file.arrayBuffer();
+                        const folder = (settings().coverSaveFolder || '99_attachments/note-to-red-covers').replace(/\/+$/, '');
+                        await this.ensureFolderRecursive(folder);
+                        const safe = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+                        const outPath = `${folder}/manual-upload-${Date.now()}-${safe}`;
+                        await this.app.vault.createBinary(outPath, buffer);
+                        await this.plugin.settingsManager.updateSettings({ coverManualImagePath: outPath });
+                        new Notice(`已保存：${outPath}`);
+                        this.display();
+                        await this.refreshActiveViews();
+                    };
+                    input.click();
+                })
+            )
+            .addButton(button => button
+                .setButtonText('清空')
+                .onClick(async () => {
+                    await this.plugin.settingsManager.updateSettings({ coverManualImagePath: '' });
+                    this.display();
+                    await this.refreshActiveViews();
+                })
+            );
+
+        const presetKey = settings().coverPromptPreset || 'notion';
+        const currentCustom = settings().coverPromptCustom || '';
+        const currentPresetText = CoverGenerator.PROMPT_PRESETS[presetKey] || CoverGenerator.PROMPT_PRESETS.notion;
+        const promptSetting = new Setting(containerEl)
+            .setName('封面提示词')
+            .setDesc('可使用 {标题} 和 {摘要} 作为占位符。');
+
+        const textarea = document.createElement('textarea');
+        textarea.className = 'red-prompt-textarea';
+        textarea.rows = 10;
+        textarea.value = currentCustom.trim() ? currentCustom : currentPresetText;
+        textarea.style.cssText = 'width: 100%; min-height: 150px; font-size: 13px; line-height: 1.5; resize: vertical; padding: 8px; border: 1px solid var(--background-modifier-border); border-radius: 6px; background: var(--background-primary); color: var(--text-normal); font-family: inherit;';
+        promptSetting.settingEl.appendChild(textarea);
+        promptSetting.settingEl.style.flexWrap = 'wrap';
+
+        const row = document.createElement('div');
+        row.style.cssText = 'width: 100%; display: flex; gap: 8px; margin-top: 6px; align-items: center;';
+        const save = document.createElement('button');
+        save.textContent = '保存提示词';
+        save.className = 'mod-cta';
+        save.addEventListener('click', async () => {
+            await this.plugin.settingsManager.updateSettings({ coverPromptCustom: textarea.value });
+            new Notice('提示词已保存');
+        });
+        const restore = document.createElement('button');
+        restore.textContent = '恢复默认';
+        restore.addEventListener('click', async () => {
+            textarea.value = CoverGenerator.PROMPT_PRESETS[settings().coverPromptPreset || 'notion'] || CoverGenerator.PROMPT_PRESETS.notion;
+            await this.plugin.settingsManager.updateSettings({ coverPromptCustom: '' });
+            new Notice('已恢复默认预设提示词');
+        });
+        row.appendChild(save);
+        row.appendChild(restore);
+        promptSetting.settingEl.appendChild(row);
     }
 
     private renderBasicSettings(containerEl: HTMLElement): void {

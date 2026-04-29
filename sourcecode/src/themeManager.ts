@@ -280,6 +280,7 @@ export class ThemeManager {
 
         // 应用图片样式
         element.querySelectorAll('img').forEach(el => {
+            if (el.classList.contains('red-cover-image')) return;
             el.setAttribute('style', styles.image);
             const parent = el.parentElement;
             if (parent && parent.tagName.toLowerCase() === 'p') {
@@ -288,6 +289,17 @@ export class ThemeManager {
                 }
             }
         });
+
+        const textColor = this.settingsManager.getSettings().textColor;
+        if (textColor && textColor.trim()) {
+            const color = textColor.trim();
+            element.querySelectorAll<HTMLElement>('.red-preview-content p, .red-preview-content li, .red-preview-content blockquote, .red-preview-content .task-list-item, .red-preview-content h2, .red-preview-content h3, .red-preview-content h4, .red-preview-content h5, .red-preview-content h6, .red-preview-content th, .red-preview-content td').forEach(el => {
+                el.style.setProperty('color', color, 'important');
+                el.querySelectorAll<HTMLElement>('.content').forEach(span => {
+                    span.style.setProperty('color', color, 'important');
+                });
+            });
+        }
     }
 
     // 移除不再需要的方法
