@@ -26,6 +26,26 @@
 - `ROADMAP.md`：后续计划。
 - `sourcecode/`：后续源码维护目录，建立后日常只改这里的源码。
 
+## 源码构建
+
+`sourcecode/` 已放入上游源码工程，作为后续迁移定制逻辑的基础。
+
+```bash
+cd sourcecode
+npm ci
+npm run build
+```
+
+普通 `npm run build` 只输出到 `sourcecode/dist/`，用于安全验证，不会覆盖 Obsidian 当前正在运行的插件。
+
+只有确认源码已经迁移完成并测试通过后，才执行：
+
+```bash
+npm run build:runtime
+```
+
+这个命令会输出到 `.obsidian/plugins/obsidian-note2red/`，覆盖 Obsidian 实际加载的 `main.js` 和 `styles.css`。
+
 ## 维护原则
 
 当前阶段先保存可用基线版本。后续迁移到源码维护后，外层 `main.js` 和 `styles.css` 应由构建流程生成。
