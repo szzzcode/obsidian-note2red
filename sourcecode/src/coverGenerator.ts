@@ -114,6 +114,6 @@ export class CoverGenerator {
 
         const finish = data.candidates?.[0]?.finishReason;
         const safety = JSON.stringify(data.candidates?.[0]?.safetyRatings || []);
-        throw new Error(`Gemini 未返回图片数据 (finishReason=${finish || '?'}).${safety && safety.length > 2 ? ' safety=' + safety : ''}`);
+        throw new Error(`Gemini 未返回图片数据 (finishReason=${finish || '?'})。如是 SAFETY/PROHIBITED 请换主题或换画风，并确认模型在当前地区可用。${safety && safety.length > 2 ? ' safety=' + safety : ''}`);
     }
 }

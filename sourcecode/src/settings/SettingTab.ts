@@ -91,7 +91,7 @@ export class RedSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('启用第一页封面')
-            .setDesc('开启后会在正文分页前插入一页封面。')
+            .setDesc('封面布局：上方约 62% 插图，下方文件名作为标题。开启后第一张为封面，后续为正文分页。')
             .addToggle(toggle => toggle
                 .setValue(settings().coverEnabled === true)
                 .onChange(async value => {
@@ -138,7 +138,7 @@ export class RedSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('Gemini API Key')
-            .setDesc('用于点击“生成封面”时调用 Gemini。')
+            .setDesc('Google AI Studio 申请；密钥保存在插件 data.json 中，请勿泄露仓库。')
             .addText(text => {
                 text.inputEl.type = 'password';
                 text.setPlaceholder('AIza...');
@@ -149,18 +149,18 @@ export class RedSettingTab extends PluginSettingTab {
             });
 
         new Setting(containerEl)
-            .setName('Gemini 图片模型')
-            .setDesc('默认 gemini-2.5-flash-image。')
+            .setName('生图模型 ID')
+            .setDesc('默认 gemini-2.5-flash-image。若报错可改为 gemini-2.0-flash-preview-image-generation 等官方文档列出的生图模型。')
             .addText(text => {
-                text.setValue(settings().geminiImageModel || 'gemini-2.5-flash-image');
+                text.setValue(settings().geminiImageModel || '');
                 text.onChange(async value => {
-                    await this.plugin.settingsManager.updateSettings({ geminiImageModel: value.trim() || 'gemini-2.5-flash-image' });
+                    await this.plugin.settingsManager.updateSettings({ geminiImageModel: value.trim() });
                 });
             });
 
         new Setting(containerEl)
             .setName('封面存储文件夹')
-            .setDesc('AI 生成与手动上传的封面图都会存到这个库内相对路径。')
+            .setDesc('AI 生成与手动上传的封面图都会存到这个库内相对路径。默认 99_attachments/note-to-red-covers。')
             .addText(text => {
                 text.setPlaceholder('99_attachments/note-to-red-covers');
                 text.setValue(settings().coverSaveFolder || '');
@@ -171,7 +171,7 @@ export class RedSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('手动封面图路径')
-            .setDesc('填入库内相对路径时优先于 AI 生成图。')
+            .setDesc('填入库内相对路径时优先于 AI 生成图。留空则使用生成图或占位。')
             .addText(text => {
                 text.setValue(settings().coverManualImagePath || '');
                 text.onChange(async value => {
@@ -212,11 +212,30 @@ export class RedSettingTab extends PluginSettingTab {
             );
 
         const presetKey = settings().coverPromptPreset || 'notion';
+        const presetLabels: Record<string, string> = { notion: 'Notion 插画风' };
         const currentCustom = settings().coverPromptCustom || '';
         const currentPresetText = CoverGenerator.PROMPT_PRESETS[presetKey] || CoverGenerator.PROMPT_PRESETS.notion;
         const promptSetting = new Setting(containerEl)
             .setName('封面提示词')
-            .setDesc('可使用 {标题} 和 {摘要} 作为占位符。');
+            .setDesc('编辑生成封面图的提示词。可使用 {标题} 和 {摘要} 作为占位符。');
+
+        const promptStatusEl = document.createElement('span');
+        promptStatusEl.style.cssText = 'font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-left: 8px;';
+        const updateStatusBadge = (custom: string) => {
+            const presetText = CoverGenerator.PROMPT_PRESETS[settings().coverPromptPreset || 'notion'] || '';
+            const modified = custom.trim() !== '' && custom.trim() !== presetText.trim();
+            if (modified) {
+                promptStatusEl.textContent = '• 已自定义';
+                promptStatusEl.style.color = '#e67e22';
+                promptStatusEl.style.background = 'rgba(230,126,34,0.1)';
+            } else {
+                promptStatusEl.textContent = '○ 默认预设';
+                promptStatusEl.style.color = 'var(--text-muted)';
+                promptStatusEl.style.background = 'var(--background-modifier-hover)';
+            }
+        };
+        updateStatusBadge(currentCustom);
+        promptSetting.nameEl.appendChild(promptStatusEl);
 
         const textarea = document.createElement('textarea');
         textarea.className = 'red-prompt-textarea';
@@ -231,19 +250,40 @@ export class RedSettingTab extends PluginSettingTab {
         const save = document.createElement('button');
         save.textContent = '保存提示词';
         save.className = 'mod-cta';
+        save.style.fontSize = '12px';
         save.addEventListener('click', async () => {
             await this.plugin.settingsManager.updateSettings({ coverPromptCustom: textarea.value });
+            updateStatusBadge(textarea.value);
             new Notice('提示词已保存');
         });
         const restore = document.createElement('button');
         restore.textContent = '恢复默认';
+        restore.style.fontSize = '12px';
         restore.addEventListener('click', async () => {
             textarea.value = CoverGenerator.PROMPT_PRESETS[settings().coverPromptPreset || 'notion'] || CoverGenerator.PROMPT_PRESETS.notion;
             await this.plugin.settingsManager.updateSettings({ coverPromptCustom: '' });
+            updateStatusBadge('');
             new Notice('已恢复默认预设提示词');
+        });
+        const presetSelectLabel = document.createElement('span');
+        presetSelectLabel.textContent = '预设：';
+        presetSelectLabel.style.cssText = 'font-size: 12px; color: var(--text-muted); margin-left: auto;';
+        const presetSelect = document.createElement('select');
+        presetSelect.style.cssText = 'font-size: 12px; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--background-modifier-border); background: var(--background-primary); color: var(--text-normal);';
+        for (const key of Object.keys(CoverGenerator.PROMPT_PRESETS)) {
+            const opt = document.createElement('option');
+            opt.value = key;
+            opt.textContent = presetLabels[key] || key;
+            presetSelect.appendChild(opt);
+        }
+        presetSelect.value = presetKey;
+        presetSelect.addEventListener('change', async () => {
+            await this.plugin.settingsManager.updateSettings({ coverPromptPreset: presetSelect.value });
         });
         row.appendChild(save);
         row.appendChild(restore);
+        row.appendChild(presetSelectLabel);
+        row.appendChild(presetSelect);
         promptSetting.settingEl.appendChild(row);
     }
 
