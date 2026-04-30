@@ -1,4 +1,5 @@
 data.json
+backups/
 sourcecode/node_modules/
 sourcecode/dist/
 .DS_Store
