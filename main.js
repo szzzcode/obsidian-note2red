@@ -2883,81 +2883,6 @@ var require_minimal = __commonJS({
   }
 });
 
-// src/templates/notebook.json
-var require_notebook = __commonJS({
-  "src/templates/notebook.json"(exports, module2) {
-    module2.exports = {
-      id: "notebook",
-      name: "\u7B14\u8BB0\u672C",
-      styles: {
-        imagePreview: "background-color: #f8f1e0; padding: 28px 24px;",
-        header: {
-          avatar: {
-            container: "width: 40px; height: 40px; border-radius: 8px; overflow: hidden;",
-            placeholder: "background: #efe5cb; transition: all 0.2s ease;",
-            image: "object-fit: cover; transition: transform 0.3s ease;"
-          },
-          nameContainer: "display: flex; align-items: center; gap: 8px;",
-          userName: "font-size: 16px; font-weight: 600; color: #000000;",
-          userId: "font-size: 14px; color: #6a5a3a;",
-          postTime: "font-size: 13px; color: #8a7a5a;",
-          verifiedIcon: "width: 20px; height: 20px; margin-left: -5px; fill: #1DA1F2;"
-        },
-        footer: {
-          container: "position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 16px; color: #6a5a3a; font-size: 13px; border-top: 1px solid #d4c89a; background: rgba(248, 241, 224, 0.95);",
-          text: "color: inherit; transition: color 0.2s ease; white-space: nowrap;",
-          separator: "color: #8a7a5a;"
-        },
-        title: {
-          h2: {
-            base: "margin: 0; font-size: 1.5em; letter-spacing: -0.01em; line-height: 1.5;",
-            content: "font-weight: 700; color: #000000;",
-            after: ""
-          },
-          h3: {
-            base: "margin: 26px 0 0; font-size: 1.25em; line-height: 1.5;",
-            content: "font-weight: 700; color: #000000;",
-            after: ""
-          },
-          base: {
-            base: "margin: 22px 0 0; font-size: 1.1em; line-height: 1.5;",
-            content: "font-weight: 600; color: #000000;",
-            after: ""
-          }
-        },
-        paragraph: "line-height: 1.8; margin-bottom: 1.1em; font-size: 15px; color: #000000;",
-        emphasis: {
-          strong: "font-weight: 700; color: #000000;",
-          em: "font-style: normal; color: #5d4e1a; background: rgba(93,78,26,0.08); padding: 0 4px;",
-          del: "text-decoration: line-through; color: #8a7a5a;"
-        },
-        list: {
-          container: "padding-left: 26px; margin-bottom: 1.1em; color: #000000;",
-          item: "margin-bottom: 0.7em; font-size: 15px; color: #000000; line-height: 1.75;",
-          taskList: "list-style: none; margin-left: -22px; font-size: 15px; color: #000000; line-height: 1.75;"
-        },
-        code: {
-          block: "background: #efe5cb; padding: 1em 1.2em; border-radius: 8px; font-size: 14px; font-family: SF Mono, Menlo, monospace; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; color: #2a2a2a; margin: 1.3em 0; border: 1px solid #d4c89a;",
-          inline: "background: #efe5cb; padding: 3px 8px; border-radius: 4px; color: #2a2a2a; font-size: 14px; font-family: SF Mono, Menlo, monospace;"
-        },
-        quote: "border-left: 3px solid #d4c89a; padding: 0 0 0 18px; margin: 1.2em 0; color: #000000; font-style: normal; font-size: 15px; line-height: 1.75;",
-        image: "max-width: 100%; height: auto; margin: 1.3em auto; border-radius: 8px;",
-        link: "color: #1a4b8c; text-decoration: underline; text-underline-offset: 2px; transition: opacity 0.2s ease;",
-        table: {
-          container: "width: 100%; margin: 1.3em 0; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; border: 1px solid #d4c89a;",
-          header: "background: #efe5cb; font-weight: 600; color: #000000; padding: 12px;",
-          cell: "padding: 12px; color: #000000; border-top: 1px solid #d4c89a;"
-        },
-        hr: "border: none; border-top: 1px solid #d4c89a; margin: 26px 0;",
-        footnote: {
-          ref: "color: #6a5a3a; text-decoration: none; font-size: 0.9em;",
-          backref: "color: #6a5a3a; text-decoration: none; font-size: 0.9em;"
-        }
-      }
-    };
-  }
-});
-
 // src/templates/elegant.json
 var require_elegant = __commonJS({
   "src/templates/elegant.json"(exports, module2) {
@@ -3641,12 +3566,11 @@ var templates_exports = {};
 __export(templates_exports, {
   templates: () => templates
 });
-var defaultTemplate, minimalTemplate, notebookTemplate, elegantTemplate, cyberTemplate, warmTemplate, forestTemplate, oceanTemplate, sakuraTemplate, starryTemplate, metalTemplate, yuelingTemplate, templates;
+var defaultTemplate, minimalTemplate, elegantTemplate, cyberTemplate, warmTemplate, forestTemplate, oceanTemplate, sakuraTemplate, starryTemplate, metalTemplate, yuelingTemplate, templates;
 var init_templates = __esm({
   "src/templates/index.ts"() {
     defaultTemplate = require_default();
     minimalTemplate = require_minimal();
-    notebookTemplate = require_notebook();
     elegantTemplate = require_elegant();
     cyberTemplate = require_cyber();
     warmTemplate = require_warm();
@@ -3659,7 +3583,6 @@ var init_templates = __esm({
     templates = {
       default: defaultTemplate,
       minimal: minimalTemplate,
-      notebook: notebookTemplate,
       elegant: elegantTemplate,
       cyber: cyberTemplate,
       warm: warmTemplate,
@@ -3679,10 +3602,10 @@ __export(main_exports, {
   default: () => RedPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian9 = require("obsidian");
+var import_obsidian10 = require("obsidian");
 
 // src/view.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 
 // src/converter.ts
 var RedConverter = class {
@@ -3691,27 +3614,26 @@ var RedConverter = class {
     this.plugin = plugin;
   }
   static hasValidContent(element) {
-    if (element.querySelector(".red-preview-container")) return true;
-    if (element.querySelector(".red-empty-message")) return false;
+    if (element.querySelector(".red-preview-container"))
+      return true;
+    if (element.querySelector(".red-empty-message"))
+      return false;
     for (const child of Array.from(element.children)) {
-      if (child.classList && child.classList.contains("red-empty-message")) continue;
+      if (child.classList && child.classList.contains("red-empty-message"))
+        continue;
       return true;
     }
-    return element.textContent && element.textContent.trim().length > 0;
+    return !!(element.textContent && element.textContent.trim().length > 0);
   }
   static formatContent(element) {
     let sourceRoot = element;
-    while (
-      sourceRoot.children.length === 1 &&
-      /^(DIV|SECTION|ARTICLE|MAIN)$/.test(sourceRoot.children[0].tagName) &&
-      sourceRoot.children[0].children.length > 0
-    ) {
+    while (sourceRoot.children.length === 1 && /^(DIV|SECTION|ARTICLE|MAIN)$/.test(sourceRoot.children[0].tagName) && sourceRoot.children[0].children.length > 0) {
       sourceRoot = sourceRoot.children[0];
     }
     const sourceElements = Array.from(sourceRoot.children).map((el) => el.cloneNode(true));
     const hasAny = sourceElements.length > 0 && sourceElements.some((el) => {
       const txt = (el.textContent || "").trim();
-      return txt.length > 0 || el.querySelector("img, svg, video, iframe, table, hr, pre, code");
+      return txt.length > 0 || !!el.querySelector("img, svg, video, iframe, table, hr, pre, code");
     });
     if (!hasAny) {
       element.empty();
@@ -3761,37 +3683,32 @@ var RedConverter = class {
     previewContainer.appendChild(imagePreview);
     element.empty();
     element.appendChild(previewContainer);
-    if (!RedConverter._pendingSources) {
-      RedConverter._pendingSources = /* @__PURE__ */ new WeakMap();
+    if (!RedConverter.pendingSources) {
+      RedConverter.pendingSources = /* @__PURE__ */ new WeakMap();
     }
-    RedConverter._pendingSources.set(element, sourceElements);
-    const copyEvent = new CustomEvent("copy-button-added", {
+    RedConverter.pendingSources.set(element, sourceElements);
+    element.dispatchEvent(new CustomEvent("copy-button-added", {
       detail: { copyButton },
       bubbles: true
-    });
-    element.dispatchEvent(copyEvent);
+    }));
   }
-  static _splitTable(el, measurer, maxHeight) {
+  static splitTable(el, measurer, maxHeight) {
     const theadOrig = el.querySelector(":scope > thead");
     const tbodyOrig = el.querySelector(":scope > tbody");
     let headTrs = [];
     let bodyTrs = [];
     if (theadOrig) {
       headTrs = Array.from(theadOrig.querySelectorAll(":scope > tr"));
-      if (tbodyOrig) {
-        bodyTrs = Array.from(tbodyOrig.querySelectorAll(":scope > tr"));
-      } else {
-        bodyTrs = Array.from(el.querySelectorAll(":scope > tr"));
-      }
+      bodyTrs = tbodyOrig ? Array.from(tbodyOrig.querySelectorAll(":scope > tr")) : Array.from(el.querySelectorAll(":scope > tr"));
     } else {
-      const allTrs = tbodyOrig
-        ? Array.from(tbodyOrig.querySelectorAll(":scope > tr"))
-        : Array.from(el.querySelectorAll(":scope > tr"));
-      if (allTrs.length < 2) return null;
+      const allTrs = tbodyOrig ? Array.from(tbodyOrig.querySelectorAll(":scope > tr")) : Array.from(el.querySelectorAll(":scope > tr"));
+      if (allTrs.length < 2)
+        return null;
       headTrs = [allTrs[0]];
       bodyTrs = allTrs.slice(1);
     }
-    if (bodyTrs.length < 2) return null;
+    if (bodyTrs.length < 2)
+      return null;
     const fit = el.cloneNode(false);
     const fitThead = document.createElement("thead");
     headTrs.forEach((tr) => fitThead.appendChild(tr.cloneNode(true)));
@@ -3814,8 +3731,8 @@ var RedConverter = class {
       fitCount = i + 1;
     }
     measurer.removeChild(fit);
-    if (fitCount <= 0) return null;
-    if (fitCount >= bodyTrs.length) return null;
+    if (fitCount <= 0 || fitCount >= bodyTrs.length)
+      return null;
     const rest = el.cloneNode(false);
     const restThead = document.createElement("thead");
     headTrs.forEach((tr) => restThead.appendChild(tr.cloneNode(true)));
@@ -3827,14 +3744,16 @@ var RedConverter = class {
     rest.appendChild(restTbody);
     return { fit, rest };
   }
-  static _splitPre(el, measurer, maxHeight) {
+  static splitPre(el, measurer, maxHeight) {
     const codeEl = el.querySelector("code");
-    const hasSvgContent = (codeEl && codeEl.querySelector(":scope > svg")) || el.querySelector(":scope > svg");
-    if (hasSvgContent) return null;
+    const hasSvgContent = codeEl && codeEl.querySelector(":scope > svg") || el.querySelector(":scope > svg");
+    if (hasSvgContent)
+      return null;
     const source = codeEl || el;
     const text = source.textContent || "";
     const lines = text.split("\n");
-    if (lines.length < 2) return null;
+    if (lines.length < 2)
+      return null;
     const fit = el.cloneNode(false);
     let target;
     if (codeEl) {
@@ -3845,9 +3764,11 @@ var RedConverter = class {
       target = fit;
     }
     measurer.appendChild(fit);
-    let lo = 1, hi = lines.length - 1, best = 0;
+    let lo = 1;
+    let hi = lines.length - 1;
+    let best = 0;
     while (lo <= hi) {
-      const mid = (lo + hi) >> 1;
+      const mid = lo + hi >> 1;
       target.textContent = lines.slice(0, mid).join("\n");
       if (measurer.scrollHeight <= maxHeight) {
         best = mid;
@@ -3857,7 +3778,8 @@ var RedConverter = class {
       }
     }
     measurer.removeChild(fit);
-    if (best <= 0) return null;
+    if (best <= 0)
+      return null;
     target.textContent = lines.slice(0, best).join("\n");
     const rest = el.cloneNode(false);
     if (codeEl) {
@@ -3869,19 +3791,19 @@ var RedConverter = class {
     }
     return { fit, rest };
   }
-  static _makeScaledWrap(el, measurer, maxHeight) {
+  static makeScaledWrap(el, measurer, maxHeight) {
     const saved = Array.from(measurer.childNodes);
     saved.forEach((n) => measurer.removeChild(n));
     measurer.appendChild(el);
     const rawHeight = measurer.scrollHeight;
     measurer.removeChild(el);
     saved.forEach((n) => measurer.appendChild(n));
-    if (!isFinite(rawHeight) || rawHeight <= 0) return null;
-    if (rawHeight <= maxHeight) return null;
+    if (!isFinite(rawHeight) || rawHeight <= 0 || rawHeight <= maxHeight)
+      return null;
     const scale = maxHeight / rawHeight;
     const wrap = document.createElement("div");
     wrap.className = "red-scale-wrap";
-    wrap.style.height = maxHeight + "px";
+    wrap.style.height = `${maxHeight}px`;
     const inner = document.createElement("div");
     inner.className = "red-scale-inner";
     inner.style.transform = `scale(${scale})`;
@@ -3890,17 +3812,18 @@ var RedConverter = class {
     wrap.appendChild(inner);
     return wrap;
   }
-  static _splitBlock(el, measurer, maxHeight) {
+  static splitBlock(el, measurer, maxHeight) {
     const TEXT_TAGS = ["P", "LI", "BLOCKQUOTE", "FIGCAPTION"];
     const LIST_TAGS = ["UL", "OL"];
     const tag = el.tagName;
-    const isText = TEXT_TAGS.indexOf(tag) >= 0;
-    const isList = LIST_TAGS.indexOf(tag) >= 0;
-    const isTable = tag === "TABLE";
-    const isPre = tag === "PRE";
-    if (isTable) return RedConverter._splitTable(el, measurer, maxHeight);
-    if (isPre) return RedConverter._splitPre(el, measurer, maxHeight);
-    if (!isText && !isList) return null;
+    const isText = TEXT_TAGS.includes(tag);
+    const isList = LIST_TAGS.includes(tag);
+    if (tag === "TABLE")
+      return RedConverter.splitTable(el, measurer, maxHeight);
+    if (tag === "PRE")
+      return RedConverter.splitPre(el, measurer, maxHeight);
+    if (!isText && !isList)
+      return null;
     const fit = el.cloneNode(false);
     const rest = el.cloneNode(false);
     measurer.appendChild(fit);
@@ -3912,17 +3835,20 @@ var RedConverter = class {
       const cloned = child.cloneNode(true);
       fit.appendChild(cloned);
       if (measurer.scrollHeight <= maxHeight) {
-        if (isList && child.nodeType === 1) consumedListItems++;
+        if (isList && child.nodeType === Node.ELEMENT_NODE)
+          consumedListItems++;
         continue;
       }
       fit.removeChild(cloned);
-      if (isText && child.nodeType === 3) {
+      if (isText && child.nodeType === Node.TEXT_NODE) {
         const text = child.nodeValue || "";
         const probe = document.createTextNode("");
         fit.appendChild(probe);
-        let lo = 0, hi = text.length, best = 0;
+        let lo = 0;
+        let hi = text.length;
+        let best = 0;
         while (lo <= hi) {
-          const mid = (lo + hi) >> 1;
+          const mid = lo + hi >> 1;
           probe.nodeValue = text.slice(0, mid);
           if (measurer.scrollHeight <= maxHeight) {
             best = mid;
@@ -3936,22 +3862,25 @@ var RedConverter = class {
           const LEAD_BAD = /[\u3002\uFF01\uFF1F\uFF1B\uFF0C\u3001\uFF1A\u2026.!?;,:\u201D\u2019\u300D\u300F\uFF09\u300B\u3009\u3011"'\)\]\}]/;
           const isBadLead = (ch) => ch != null && (LEAD_BAD.test(ch) || /\s/.test(ch));
           let tryAt = splitAt;
-          while (tryAt < text.length && isBadLead(text[tryAt])) tryAt++;
+          while (tryAt < text.length && isBadLead(text[tryAt]))
+            tryAt++;
           if (tryAt > splitAt) {
             probe.nodeValue = text.slice(0, tryAt);
-            if (measurer.scrollHeight <= maxHeight) {
+            if (measurer.scrollHeight <= maxHeight)
               splitAt = tryAt;
-            }
           }
           if (splitAt < text.length && LEAD_BAD.test(text[splitAt])) {
             let back = splitAt - 1;
-            let guard2 = 5;
-            while (back > 0 && LEAD_BAD.test(text[back]) && guard2-- > 0) back--;
-            if (back > 0) splitAt = back;
+            let guard = 5;
+            while (back > 0 && LEAD_BAD.test(text[back]) && guard-- > 0)
+              back--;
+            if (back > 0)
+              splitAt = back;
           }
           probe.nodeValue = text.slice(0, splitAt);
           const restText = text.slice(splitAt);
-          if (restText.length > 0) rest.appendChild(document.createTextNode(restText));
+          if (restText.length > 0)
+            rest.appendChild(document.createTextNode(restText));
         } else {
           fit.removeChild(probe);
           rest.appendChild(child.cloneNode(true));
@@ -3966,10 +3895,12 @@ var RedConverter = class {
       break;
     }
     measurer.removeChild(fit);
-    if (!handled) return null;
+    if (!handled)
+      return null;
     const fitEmpty = fit.childNodes.length === 0 || (fit.textContent || "").trim() === "" && !fit.querySelector("img,svg,video,iframe,table,code,pre");
     const restEmpty = rest.childNodes.length === 0;
-    if (fitEmpty || restEmpty) return null;
+    if (fitEmpty || restEmpty)
+      return null;
     if (isList && tag === "OL") {
       const origStart = parseInt(el.getAttribute("start") || "1", 10) || 1;
       rest.setAttribute("start", String(origStart + consumedListItems));
@@ -3979,17 +3910,20 @@ var RedConverter = class {
   static paginateContent(element, options = {}) {
     const raw = options.overflowStrategy;
     const overflowStrategy = raw === "scale" || raw === "native" ? raw : "paginate";
-    const map = RedConverter._pendingSources;
-    if (!map) return;
+    const map = RedConverter.pendingSources;
+    if (!map)
+      return;
     const sources = map.get(element);
-    if (!sources) return;
+    if (!sources)
+      return;
     map.delete(element);
     const contentContainer = element.querySelector(".red-content-container");
     const contentArea = element.querySelector(".red-preview-content");
     const imagePreview = element.querySelector(".red-image-preview");
     const headerEl = element.querySelector(".red-preview-header");
     const footerEl = element.querySelector(".red-preview-footer");
-    if (!contentContainer || !contentArea || !imagePreview) return;
+    if (!contentContainer || !contentArea || !imagePreview)
+      return;
     const imgStyle = window.getComputedStyle(imagePreview);
     const padTop = parseFloat(imgStyle.paddingTop) || 0;
     const padBot = parseFloat(imgStyle.paddingBottom) || 0;
@@ -3998,10 +3932,10 @@ var RedConverter = class {
     const footerH = footerEl ? footerEl.offsetHeight : 0;
     const SAFETY = 6;
     let maxHeight = imgInnerHeight - headerH - footerH - SAFETY;
-    if (!isFinite(maxHeight) || maxHeight <= 0) {
+    if (!isFinite(maxHeight) || maxHeight <= 0)
       maxHeight = 460;
-    }
-    while (contentContainer.firstChild) contentContainer.removeChild(contentContainer.firstChild);
+    while (contentContainer.firstChild)
+      contentContainer.removeChild(contentContainer.firstChild);
     const measurer = document.createElement("section");
     measurer.className = "red-content-section";
     measurer.style.display = "block";
@@ -4020,8 +3954,11 @@ var RedConverter = class {
     let guard = 0;
     const GUARD_MAX = queue.length * 50 + 500;
     while (queue.length > 0) {
-      if (++guard > GUARD_MAX) break;
+      if (++guard > GUARD_MAX)
+        break;
       const el = queue.shift();
+      if (!el)
+        break;
       if (el.tagName === "HR") {
         if (pages[currentPage].length > 0) {
           currentPage++;
@@ -4054,7 +3991,7 @@ var RedConverter = class {
           }
           targetMax = maxHeight;
         }
-        const scaled = RedConverter._makeScaledWrap(el, measurer, targetMax);
+        const scaled = RedConverter.makeScaledWrap(el, measurer, targetMax);
         if (scaled) {
           pages[currentPage].push(scaled);
           measurer.appendChild(scaled);
@@ -4063,10 +4000,11 @@ var RedConverter = class {
         return false;
       };
       if (overflowStrategy === "scale" && isPreOrTable) {
-        if (tryScaleFit()) continue;
+        if (tryScaleFit())
+          continue;
       }
       if (!(isNative && isPreOrTable)) {
-        const split = RedConverter._splitBlock(el, measurer, maxHeight);
+        const split = RedConverter.splitBlock(el, measurer, maxHeight);
         if (split) {
           pages[currentPage].push(split.fit);
           currentPage++;
@@ -4077,7 +4015,8 @@ var RedConverter = class {
         }
       }
       if (!isNative && isPreOrTable) {
-        if (tryScaleFit()) continue;
+        if (tryScaleFit())
+          continue;
       }
       if (pages[currentPage].length > 0) {
         currentPage++;
@@ -4089,7 +4028,8 @@ var RedConverter = class {
         measurer.appendChild(el);
       }
     }
-    if (measurer.parentNode) measurer.parentNode.removeChild(measurer);
+    if (measurer.parentNode)
+      measurer.parentNode.removeChild(measurer);
     contentContainer.style.position = prevPosition;
     const realPages = pages.filter((p) => p.length > 0);
     if (realPages.length === 0) {
@@ -5005,17 +4945,12 @@ async function toBlob(node, options = {}) {
 // src/downloadManager.ts
 var import_jszip = __toESM(require_jszip_min());
 var DownloadManager = class {
-  // 添加共用的导出配置方法
   static getExportConfig(imageElement) {
     return {
       quality: 1,
       pixelRatio: 4,
       skipFonts: false,
-      // 添加过滤器，确保所有元素都被包含
-      filter: (node) => {
-        return true;
-      },
-      // 处理图片加载错误
+      filter: (_node) => true,
       imagePlaceholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
     };
   }
@@ -5025,12 +4960,13 @@ var DownloadManager = class {
   static getBaseFileName(element) {
     return this.sanitizeFileName(element == null ? void 0 : element.dataset.noteTitle);
   }
-  static formatTimestamp(date = /* @__PURE__ */ new Date()) {
+  static formatTimestamp(date = new Date()) {
     const pad = (value) => String(value).padStart(2, "0");
     return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}`;
   }
   static formatPageLabel(index, total, isCover) {
-    if (isCover) return "\u5C01\u9762";
+    if (isCover)
+      return "\u5C01\u9762";
     const digits = Math.max(2, String(Math.max(total, 1)).length);
     return `\u7B2C${String(index + 1).padStart(digits, "0")}\u9875`;
   }
@@ -5138,7 +5074,11 @@ var DownloadManager = class {
       const sections = element.querySelectorAll(".red-content-section");
       const activeSection = element.querySelector(".red-content-section.red-section-active") || sections[0];
       const activeIndex = Math.max(0, Array.from(sections).indexOf(activeSection));
-      const pageLabel = this.formatPageLabel(activeIndex, sections.length, !!(activeSection && activeSection.classList.contains("red-cover-section")));
+      const pageLabel = this.formatPageLabel(
+        activeIndex,
+        sections.length,
+        !!(activeSection && activeSection.classList.contains("red-cover-section"))
+      );
       const exportTimestamp = this.formatTimestamp();
       const fileName = this.buildImageFileName(element, pageLabel, exportTimestamp);
       await new Promise((resolve) => setTimeout(resolve, 300));
@@ -5179,12 +5119,14 @@ var DownloadManager = class {
   static async downloadLongImage(element) {
     try {
       const previewContainer = element.querySelector(".red-preview-container");
-      if (!previewContainer) throw new Error("\u627E\u4E0D\u5230\u9884\u89C8\u5BB9\u5668");
+      if (!previewContainer)
+        throw new Error("\u627E\u4E0D\u5230\u9884\u89C8\u5BB9\u5668");
       const VISIBLE_CLASS = "red-section-visible";
       const HIDDEN_CLASS = "red-section-hidden";
       const sections = previewContainer.querySelectorAll(".red-content-section");
       const totalSections = sections.length;
-      if (totalSections === 0) throw new Error("\u6CA1\u6709\u53EF\u5BFC\u51FA\u7684\u9875");
+      if (totalSections === 0)
+        throw new Error("\u6CA1\u6709\u53EF\u5BFC\u51FA\u7684\u9875");
       const exportTimestamp = this.formatTimestamp();
       const originalVisibility = Array.from(sections).map((section) => ({
         visible: section.classList.contains(VISIBLE_CLASS),
@@ -5228,13 +5170,19 @@ var DownloadManager = class {
       big.width = width;
       big.height = totalHeight;
       const ctx = big.getContext("2d");
+      if (!ctx)
+        throw new Error("\u65E0\u6CD5\u521B\u5EFA Canvas \u7ED8\u56FE\u4E0A\u4E0B\u6587");
       let y = 0;
       for (const c of canvases) {
         ctx.drawImage(c, 0, y);
         y += c.height;
       }
       const blob = await new Promise((resolve, reject) => {
-        big.toBlob((b) => b ? resolve(b) : reject(new Error("Canvas \u8F6C\u6362\u4E3A Blob \u5931\u8D25")), "image/png", 1);
+        big.toBlob(
+          (b) => b ? resolve(b) : reject(new Error("Canvas \u8F6C\u6362\u4E3A Blob \u5931\u8D25")),
+          "image/png",
+          1
+        );
       });
       const url = URL.createObjectURL(blob);
       const link = Object.assign(document.createElement("a"), {
@@ -5666,6 +5614,70 @@ var DefaultTemplate = class {
   }
 };
 
+// src/imgTelplate/notesTemplate.ts
+var NotesTemplate = class {
+  constructor(settingsManager, onSettingsUpdate) {
+    this.settingsManager = settingsManager;
+    this.onSettingsUpdate = onSettingsUpdate;
+    this.id = "notes";
+    this.name = "\u5907\u5FD8\u5F55";
+    this.sections = {
+      header: true,
+      content: true,
+      footer: false
+    };
+  }
+  render(element) {
+    const sections = element.querySelectorAll(".red-content-section");
+    sections.forEach(() => {
+      const header = element.querySelector(".red-preview-header");
+      if (header) {
+        header.empty();
+        header.addClass("red-notes-header");
+        const headerBar = header.createEl("div", { cls: "red-notes-bar" });
+        const settings = this.settingsManager.getSettings();
+        const notesTitle = headerBar.createEl("div", {
+          cls: "red-notes-title",
+          text: settings.notesTitle || "\u5907\u5FD8\u5F55",
+          attr: { "title": "\u70B9\u51FB\u7F16\u8F91\u6807\u9898" }
+        });
+        notesTitle.addEventListener("click", () => this.handleTitleEdit(notesTitle));
+        const cycleButtons = headerBar.createEl("div", { cls: "red-notes-cycle-buttons" });
+        cycleButtons.createEl("div", { cls: "red-notes-cycle-left" });
+        cycleButtons.createEl("div", { cls: "red-notes-cycle-right" });
+        headerBar.createEl("div", { cls: "red-notes-actions" });
+      }
+      const footer = element.querySelector(".red-preview-footer");
+      if (footer && !this.sections.footer) {
+        footer.empty();
+        footer.removeAttribute("class");
+      }
+    });
+  }
+  async handleTitleEdit(element) {
+    const input = document.createElement("input");
+    input.value = element.textContent || "";
+    input.className = "red-notes-edit-input";
+    input.placeholder = "\u8BF7\u8F93\u5165\u6807\u9898";
+    element.replaceWith(input);
+    input.focus();
+    const handleBlur = async () => {
+      const newTitle = input.value.trim();
+      await this.settingsManager.updateSettings({
+        notesTitle: newTitle || "\u5907\u5FD8\u5F55"
+      });
+      await this.onSettingsUpdate();
+      input.replaceWith(element);
+    };
+    input.addEventListener("blur", handleBlur);
+    input.addEventListener("keypress", async (e) => {
+      if (e.key === "Enter") {
+        await handleBlur();
+      }
+    });
+  }
+};
+
 // src/imgTemplateManager.ts
 var ImgTemplateManager = class {
   constructor(settingsManager, onSettingsUpdate, themeManager) {
@@ -5678,6 +5690,7 @@ var ImgTemplateManager = class {
   }
   initializeTemplates() {
     this.registerTemplate(new DefaultTemplate(this.settingsManager, this.onSettingsUpdate));
+    this.registerTemplate(new NotesTemplate(this.settingsManager, this.onSettingsUpdate));
   }
   registerTemplate(template) {
     this.templates.push(template);
@@ -5958,9 +5971,119 @@ var BackgroundManager = class {
   }
 };
 
+// src/coverGenerator.ts
+var import_obsidian3 = require("obsidian");
+var CoverGenerator = class {
+  static extractExcerpt(markdown) {
+    let text = markdown || "";
+    if (text.startsWith("---")) {
+      const end = text.indexOf("\n---", 3);
+      if (end > 0)
+        text = text.slice(end + 4);
+    }
+    return text.replace(/!\[[^\]]*\]\([^)]+\)/g, " ").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[#>*`_~]/g, " ").replace(/\s+/g, " ").trim().slice(0, 280);
+  }
+  static buildImagePrompt(title, excerpt, settings) {
+    var _a;
+    let template = "";
+    if ((_a = settings == null ? void 0 : settings.coverPromptCustom) == null ? void 0 : _a.trim()) {
+      template = settings.coverPromptCustom.trim();
+    } else {
+      const presetKey = (settings == null ? void 0 : settings.coverPromptPreset) || "notion";
+      template = this.PROMPT_PRESETS[presetKey] || this.PROMPT_PRESETS.notion;
+    }
+    return template.replace(/\{标题\}/g, title).replace(/\{摘要\}/g, excerpt);
+  }
+  static async geminiGenerateImageBase64(apiKey, imageModel, prompt) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(imageModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const res = await (0, import_obsidian3.requestUrl)({
+      url,
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseModalities: ["TEXT", "IMAGE"],
+          imageConfig: { aspectRatio: "1:1" }
+        }
+      }),
+      throw: false
+    });
+    let data = null;
+    try {
+      data = typeof res.json === "object" && res.json !== null ? res.json : JSON.parse(res.text || "{}");
+    } catch (_e2) {
+      data = {};
+    }
+    if (res.status !== 200 || data.error) {
+      const msg = ((_a = data.error) == null ? void 0 : _a.message) || res.text || `HTTP ${res.status}`;
+      console.error("[obsidian-note2red] Gemini image error", { status: res.status, body: data });
+      throw new Error(msg);
+    }
+    const parts = ((_d = (_c = (_b = data.candidates) == null ? void 0 : _b[0]) == null ? void 0 : _c.content) == null ? void 0 : _d.parts) || [];
+    for (const part of parts) {
+      if ((_e = part.inlineData) == null ? void 0 : _e.data)
+        return part.inlineData.data;
+      if ((_f = part.inline_data) == null ? void 0 : _f.data)
+        return part.inline_data.data;
+    }
+    const finish = (_h = (_g = data.candidates) == null ? void 0 : _g[0]) == null ? void 0 : _h.finishReason;
+    const safety = JSON.stringify(((_j = (_i = data.candidates) == null ? void 0 : _i[0]) == null ? void 0 : _j.safetyRatings) || []);
+    throw new Error(`Gemini \u672A\u8FD4\u56DE\u56FE\u7247\u6570\u636E (finishReason=${finish || "?"})\u3002\u5982\u662F SAFETY/PROHIBITED \u8BF7\u6362\u4E3B\u9898\u6216\u6362\u753B\u98CE\uFF0C\u5E76\u786E\u8BA4\u6A21\u578B\u5728\u5F53\u524D\u5730\u533A\u53EF\u7528\u3002${safety && safety.length > 2 ? " safety=" + safety : ""}`);
+  }
+};
+CoverGenerator.PROMPT_PRESETS = {
+  notion: `\u8BF7\u6839\u636E\u4EE5\u4E0B\u5185\u5BB9\u521B\u4F5C\u4E00\u5F20\u5438\u5F15\u773C\u7403\u7684\u5C0F\u7EA2\u4E66\u5C01\u9762\u56FE\u3002
+
+\u6587\u7AE0\u6807\u9898\uFF1A{\u6807\u9898}
+\u5185\u5BB9\u6458\u8981\uFF1A{\u6458\u8981}
+
+\u8BF7\u4E25\u683C\u9075\u5FAA\u4EE5\u4E0B\u89C4\u8303\uFF1A
+
+\u3010\u89C6\u89C9\u98CE\u683C\u3011
+- Notion \u63D2\u753B\u98CE\u683C\uFF1A\u6241\u5E73\u3001\u5361\u901A\u3001\u5E26\u624B\u7ED8\u8D28\u611F\u4E0E\u77E2\u91CF\u611F\u3002
+- \u6B63\u65B9\u5F62\u6784\u56FE 1:1\uFF0C\u753B\u9762\u65B9\u6B63\u5E73\u8861\u3002
+- \u8272\u5F69\u9C9C\u660E\u3001\u5BF9\u6BD4\u5F3A\u70C8\uFF0C\u5728\u5C0F\u5C3A\u5BF8\u9884\u89C8\u65F6\u4F9D\u7136\u9192\u76EE\u3002
+- \u98CE\u683C\u7EDF\u4E00\uFF0C\u907F\u514D\u5199\u5B9E\u5143\u7D20\uFF0C\u6574\u4F53\u4FDD\u6301\u624B\u7ED8\u8D28\u611F\u3002
+- \u6574\u4F53\u8981\u50CF\u201C\u7206\u6B3E\u5C01\u9762\u4E3B\u89C6\u89C9\u201D\uFF0C\u4E0D\u662F\u7A7A\u6D1E\u7684\u8BF4\u660E\u6027\u914D\u56FE\u3002
+
+\u3010\u6784\u56FE\u8981\u6C42\u3011
+- \u4E3B\u89C6\u89C9\u5143\u7D20\u5360\u753B\u9762\u7EA6 70% \u5230 90%\uFF0C\u955C\u5934\u66F4\u8FD1\uFF0C\u4E3B\u4F53\u66F4\u5927\uFF0C\u66F4\u6709\u70B9\u51FB\u611F\u3002
+- \u5C3D\u91CF\u94FA\u6EE1\u753B\u9762\uFF0C\u8FB9\u7F18\u4E5F\u8981\u6709\u5185\u5BB9\u5EF6\u4F38\uFF0C\u505A\u6210 full-bleed / edge-to-edge \u7684\u5C01\u9762\u611F\u3002
+- \u53EF\u4EE5\u91C7\u7528\u5C45\u4E2D\u3001\u504F\u4E0A\u3001\u5BF9\u89D2\u7EBF\u6216\u524D\u666F\u538B\u8FD1\u5F0F\u6784\u56FE\uFF0C\u4F46\u4E0D\u8981\u8BA9\u4E3B\u4F53\u7F29\u5F97\u5F88\u5C0F\u3002
+- \u52A0 1-2 \u4E2A\u7B80\u6D01\u4F46\u660E\u786E\u7684\u89C6\u89C9\u7B26\u53F7\u3001\u56FE\u6807\u3001\u9053\u5177\u6216\u4EBA\u7269\u526A\u5F71\uFF0C\u589E\u5F3A\u8BB0\u5FC6\u70B9\u3002
+- \u5141\u8BB8\u6709\u547C\u5438\u611F\uFF0C\u4F46\u4E0D\u8981\u51FA\u73B0\u5927\u9762\u79EF\u7A7A\u767D\u80CC\u666F\u3001\u7A7A\u65F7\u89D2\u843D\u3001\u8FB9\u6846\u611F\u6216\u201C\u56DB\u5468\u4E00\u5708\u7559\u767D\u201D\u3002
+- \u80CC\u666F\u8981\u6709\u5C42\u6B21\u3001\u6E10\u53D8\u3001\u7EB9\u7406\u6216\u8F85\u52A9\u5143\u7D20\uFF0C\u907F\u514D\u53EA\u6709\u5355\u8272\u5E95\u548C\u4E00\u4E2A\u5C0F\u4E3B\u4F53\u3002
+
+\u3010\u5C01\u9762\u8868\u73B0\u3011
+- \u4F18\u5148\u505A\u6210\u9AD8\u51B2\u51FB\u529B\u3001\u9AD8\u4FE1\u606F\u5BC6\u5EA6\u3001\u7F29\u7565\u56FE\u91CC\u4E00\u773C\u80FD\u770B\u61C2\u4E3B\u9898\u7684\u89C6\u89C9\u3002
+- \u4E3B\u4F53\u548C\u80CC\u666F\u4E4B\u95F4\u8981\u6709\u660E\u663E\u53CD\u5DEE\uFF0C\u53EF\u4EE5\u9002\u5EA6\u5938\u5F20\u3001\u653E\u5927\u3001\u620F\u5267\u5316\u3002
+- \u53EF\u4EE5\u52A0\u5165\u4EE3\u8868\u201C\u51B2\u7A81 / \u7ED3\u679C / \u673A\u4F1A / \u98CE\u9669 / \u53CD\u5DEE\u201D\u7684\u89C6\u89C9\u9690\u55BB\u3002
+- \u753B\u9762\u8981\u66F4\u50CF\u5C0F\u7EA2\u4E66\u5C01\u9762\u3001YouTube thumbnail \u6216\u6742\u5FD7\u5C01\u9762\u4E3B\u89C6\u89C9\uFF0C\u4E0D\u662F\u666E\u901A\u6587\u7AE0\u63D2\u56FE\u3002
+
+\u3010\u6587\u5B57\u5904\u7406\uFF08\u91CD\u8981\uFF09\u3011
+- \u753B\u9762\u5185\u7EDD\u5BF9\u4E0D\u8981\u51FA\u73B0\u4EFB\u4F55\u53EF\u8BFB\u6587\u5B57\u3001\u6807\u9898\u3001\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u6807\u7B7E\u3001\u6807\u8BED\u3001\u6C34\u5370\u3001\u7B7E\u540D\u6216 UI \u754C\u9762\u6587\u5B57\u3002
+- \u6807\u9898\u4F1A\u7531\u7A0B\u5E8F\u5728\u56FE\u7247\u4E0B\u65B9\u72EC\u7ACB\u6E32\u67D3\uFF0C\u56FE\u91CC\u518D\u51FA\u6587\u5B57\u4F1A\u548C\u6807\u9898\u51B2\u7A81\u3002
+- \u5982\u679C\u9700\u8981\u8868\u8FBE\u201C\u6807\u9898\u70B9\u7F00\u6587\u5B57\u201D\uFF0C\u8BF7\u6539\u6210\u7EAF\u89C6\u89C9\u5143\u7D20\uFF0C\u4F8B\u5982\u7A7A\u767D\u5BF9\u8BDD\u6846\u3001\u65E0\u5B57\u6807\u724C\u3001\u62BD\u8C61\u7B26\u53F7\u3002
+
+\u3010\u5438\u5F15\u529B\u6CD5\u5219\u3011
+- \u4F7F\u7528\u60AC\u5FF5\u3001\u75DB\u70B9\u3001\u7ED3\u679C\u611F\u3001\u673A\u4F1A\u611F\u7B49\u94A9\u5B50\u5143\u7D20\u6FC0\u53D1\u70B9\u51FB\u6B32\u671B\u3002
+- \u89C6\u89C9\u5143\u7D20\u53EF\u4EE5\u5938\u5F20\u3001\u6709\u53CD\u5DEE\u3002
+- \u8272\u5F69\u642D\u914D\u53EF\u53C2\u8003\u7206\u6B3E\u5C01\u9762\uFF1A\u6A59\u9EC4 / \u84DD\u7D2B / \u7EA2\u9ED1\u7B49\u9AD8\u5BF9\u6BD4\u7EC4\u5408\u3002
+
+\u3010\u7EDD\u5BF9\u7981\u6B62\u3011
+- \u753B\u9762\u91CC\u7684\u4EFB\u4F55\u6587\u5B57\u3001\u5B57\u6BCD\u3001\u6570\u5B57\u3002
+- \u5199\u5B9E\u4EBA\u8138\u3001\u771F\u4EBA\u7167\u7247\u98CE\u683C\u3002
+- \u5206\u683C\u3001\u5206\u5C4F\u3001\u62FC\u8D34\u3001\u6545\u4E8B\u677F\u3002
+- \u54C1\u724C logo\u3001\u6C34\u5370\u3001\u7B7E\u540D\u3002
+- \u767D\u8272\u8FB9\u6846\u3001\u6D77\u62A5\u8FB9\u6846\u3001\u62CD\u7ACB\u5F97\u8FB9\u6846\u3001\u5361\u7247\u8FB9\u6846\u3001\u76F8\u6846\u3001\u56DB\u5468\u7559\u767D\u3002
+- \u4E00\u4E2A\u5F88\u5C0F\u7684\u4E3B\u4F53\u653E\u5728\u5927\u9762\u79EF\u7EAF\u8272\u80CC\u666F\u6B63\u4E2D\u592E\u3002`
+};
+
 // src/view.ts
 var VIEW_TYPE_RED = "obsidian-note2red";
-var RedView = class extends import_obsidian3.ItemView {
+var RedView = class extends import_obsidian4.ItemView {
   // #endregion
   // #region 基础视图方法
   constructor(leaf, themeManager, settingsManager) {
@@ -6042,7 +6165,7 @@ var RedView = class extends import_obsidian3.ItemView {
       cls: "red-background-button",
       attr: { "aria-label": "\u8BBE\u7F6E\u80CC\u666F\u56FE\u7247" }
     });
-    (0, import_obsidian3.setIcon)(bgButton, "image");
+    (0, import_obsidian4.setIcon)(bgButton, "image");
     bgButton.addEventListener("click", () => {
       const currentSettings = this.settingsManager.getSettings().backgroundSettings;
       new BackgroundSettingModal(
@@ -6102,21 +6225,13 @@ var RedView = class extends import_obsidian3.ItemView {
     }
     this.updateNavigationState();
   }
-  static syncCoverActiveFlag(previewEl) {
-    if (!previewEl) return;
-    const imagePreview = previewEl.querySelector(".red-image-preview");
-    if (!imagePreview) return;
-    const coverShown = !!imagePreview.querySelector(
-      ".red-cover-section.red-section-active:not(.red-section-hidden), .red-cover-section.red-section-visible"
-    );
-    imagePreview.classList.toggle("red-image-preview--cover-active", coverShown);
-  }
   initializeBottomBar(container) {
     const bottomBar = container.createEl("div", { cls: "red-bottom-bar" });
     const bottomControlsGroup = bottomBar.createEl("div", { cls: "red-controls-group" });
     this.initializeHelpButton(bottomControlsGroup);
     this.initializeCoverButton(bottomControlsGroup);
     this.initializeBackgroundButton(bottomControlsGroup);
+    this.initializeDonateButton(bottomControlsGroup);
     this.initializeExportButtons(bottomControlsGroup);
   }
   initializeEventListeners() {
@@ -6135,7 +6250,7 @@ var RedView = class extends import_obsidian3.ItemView {
       cls: "red-lock-button",
       attr: { "aria-label": "\u5173\u95ED\u5B9E\u65F6\u9884\u89C8\u72B6\u6001" }
     });
-    (0, import_obsidian3.setIcon)(this.lockButton, "lock");
+    (0, import_obsidian4.setIcon)(this.lockButton, "lock");
     this.lockButton.addEventListener("click", () => this.togglePreviewLock());
   }
   async initializeChromeToggles(parent) {
@@ -6144,7 +6259,7 @@ var RedView = class extends import_obsidian3.ItemView {
       cls: "red-chrome-toggle-button",
       attr: {
         "aria-label": "\u663E\u793A\u6216\u9690\u85CF\u9875\u7709",
-        "title": "\u9875\u7709"
+        title: "\u9875\u7709"
       }
     });
     this.headerToggleButton.createEl("span", { cls: "red-chrome-toggle-glyph", text: "\u7709" });
@@ -6152,7 +6267,7 @@ var RedView = class extends import_obsidian3.ItemView {
       cls: "red-chrome-toggle-button",
       attr: {
         "aria-label": "\u663E\u793A\u6216\u9690\u85CF\u9875\u811A",
-        "title": "\u9875\u811A"
+        title: "\u9875\u811A"
       }
     });
     this.footerToggleButton.createEl("span", { cls: "red-chrome-toggle-glyph", text: "\u811A" });
@@ -6174,6 +6289,22 @@ var RedView = class extends import_obsidian3.ItemView {
     });
     this.syncChromeToggleButtons();
   }
+  async initializeTemplateSelect(parent) {
+    var _a;
+    this.customTemplateSelect = this.createCustomSelect(
+      parent,
+      "red-template-select",
+      await this.getTemplateOptions()
+    );
+    this.customTemplateSelect.id = "template-select";
+    (_a = this.customTemplateSelect.querySelector(".red-select")) == null ? void 0 : _a.addEventListener("change", async (e) => {
+      const value = e.detail.value;
+      this.imgTemplateManager.setCurrentTemplate(value);
+      await this.settingsManager.updateSettings({ templateId: value });
+      this.imgTemplateManager.applyTemplate(this.previewEl, this.settingsManager.getSettings());
+      await this.updatePreview();
+    });
+  }
   async initializeThemeSelect(parent) {
     var _a;
     this.customThemeSelect = this.createCustomSelect(
@@ -6186,7 +6317,7 @@ var RedView = class extends import_obsidian3.ItemView {
       const value = e.detail.value;
       this.themeManager.setCurrentTheme(value);
       await this.settingsManager.updateSettings({ themeId: value });
-      await this.updatePreview();
+      this.themeManager.applyTheme(this.previewEl);
     });
   }
   async initializeFontSelect(parent) {
@@ -6201,7 +6332,7 @@ var RedView = class extends import_obsidian3.ItemView {
       const value = e.detail.value;
       this.themeManager.setFont(value);
       await this.settingsManager.updateSettings({ fontFamily: value });
-      await this.updatePreview();
+      this.themeManager.applyTheme(this.previewEl);
     });
   }
   async initializeFontSizeControls(parent) {
@@ -6226,7 +6357,7 @@ var RedView = class extends import_obsidian3.ItemView {
       const size = parseInt(this.fontSizeSelect.value);
       this.themeManager.setFontSize(size);
       await this.settingsManager.updateSettings({ fontSize: size });
-      await this.updatePreview();
+      this.themeManager.applyTheme(this.previewEl);
     };
     decreaseButton.addEventListener("click", () => {
       const currentSize = parseInt(this.fontSizeSelect.value);
@@ -6249,17 +6380,30 @@ var RedView = class extends import_obsidian3.ItemView {
       cls: "red-help-button",
       attr: { "aria-label": "\u4F7F\u7528\u6307\u5357" }
     });
-    (0, import_obsidian3.setIcon)(helpButton, "help");
+    (0, import_obsidian4.setIcon)(helpButton, "help");
+    const headingLevel = this.settingsManager.getSettings().headingLevel || "h1";
     parent.createEl("div", {
       cls: "red-help-tooltip",
-      text: `\u4F7F\u7528\u6307\u5357\uFF08\u81EA\u52A8\u5206\u9875\u7248\uFF09\uFF1A
-                1. \u6838\u5FC3\u7528\u6CD5\uFF1A\u76F4\u63A5\u5199\u5185\u5BB9\u5373\u53EF\uFF0C\u5185\u5BB9\u4F1A\u6309\u9875\u9762\u5927\u5C0F\u81EA\u52A8\u5206\u9875
-                2. \u624B\u52A8\u6362\u9875\uFF1A\u5728\u9700\u8981\u5F3A\u5236\u6362\u9875\u5904\u63D2\u5165 --- \u5206\u9694\u7EBF
-                3. \u70B9\u51FB\u7F16\u8F91\uFF1A\u9884\u89C8\u56FE\u4E2D\u7684\u5934\u50CF/\u7528\u6237\u540D/\u7528\u6237ID/\u9875\u811A\u6587\u5B57\u53EF\u76F4\u63A5\u70B9\u51FB\u4FEE\u6539
-                4. \u9690\u85CF\u62AC\u5934\uFF1A\u8BBE\u7F6E\u2192\u4E3B\u9898\u7BA1\u7406\u2192\u663E\u793A\u8BBE\u7F6E\u4E2D\u53EF\u4E00\u952E\u9690\u85CF\u62AC\u5934
-                5. \u5C01\u9762\u56FE\uFF1A\u8BBE\u7F6E\u4E2D\u5F00\u542F\u5C01\u9762\u5E76\u914D\u7F6E Gemini\uFF1B\u5E95\u90E8\u300C\u751F\u6210\u5C01\u9762\u300D\u8C03 API\uFF0C\u4E5F\u53EF\u4E0A\u4F20\u672C\u5730\u56FE\u7247
-                6. \u5BFC\u51FA\uFF1A\u3010\u4E0B\u8F7D\u5F53\u524D\u9875\u3011/\u3010\u5BFC\u51FA\u5168\u90E8\u9875\u3011\uFF0C\u957F\u6587\u53EF\u9002\u5F53\u8C03\u5C0F\u5B57\u53F7\u540E\u518D\u6279\u91CF\u5BFC\u51FA
-                7. \u5B9E\u65F6\u7F16\u8F91\uFF1A\u89E3\u9501(\u{1F513})\u540E\u5207\u7B14\u8BB0\u4F1A\u81EA\u52A8\u5237\u65B0\u9884\u89C8\uFF1B\u9501\u5B9A\u5219\u51BB\u7ED3\u5F53\u524D\u9884\u89C8\u4FBF\u4E8E\u5BF9\u7167\u5176\u4ED6\u6587\u6863`
+      text: `\u4F7F\u7528\u6307\u5357\uFF1A
+                1. \u6838\u5FC3\u7528\u6CD5\uFF1A\u7528${headingLevel === "h1" ? "\u4E00\u7EA7\u6807\u9898(#)" : "\u4E8C\u7EA7\u6807\u9898(##)"}\u6765\u5206\u5272\u5185\u5BB9\uFF0C\u6BCF\u4E2A\u6807\u9898\u751F\u6210\u4E00\u5F20\u5C0F\u7EA2\u4E66\u914D\u56FE
+                2. \u5185\u5BB9\u5206\u9875\uFF1A\u5728${headingLevel === "h1" ? "\u4E00\u7EA7\u6807\u9898(#)" : "\u4E8C\u7EA7\u6807\u9898(##)"}\u4E0B\u4F7F\u7528 --- \u53EF\u5C06\u5185\u5BB9\u5206\u5272\u4E3A\u591A\u9875\uFF0C\u6BCF\u9875\u90FD\u4F1A\u5E26\u4E0A\u6807\u9898
+                3. \u9996\u56FE\u5236\u4F5C\uFF1A\u5355\u72EC\u8C03\u6574\u9996\u8282\u5B57\u53F7\u81F320-24px\uFF0C\u4F7F\u7528\u3010\u4E0B\u8F7D\u5F53\u524D\u9875\u3011\u5BFC\u51FA
+                4. \u957F\u6587\u4F18\u5316\uFF1A\u5185\u5BB9\u8F83\u591A\u7684\u7AE0\u8282\u53EF\u8C03\u5C0F\u5B57\u53F7\u81F314-16px\u540E\u5355\u72EC\u5BFC\u51FA
+                5. \u6279\u91CF\u64CD\u4F5C\uFF1A\u4FDD\u6301\u7EDF\u4E00\u5B57\u53F7\u65F6\uFF0C\u7528\u3010\u5BFC\u51FA\u5168\u90E8\u9875\u3011\u6279\u91CF\u751F\u6210
+                6. \u6A21\u677F\u5207\u6362\uFF1A\u9876\u90E8\u9009\u62E9\u5668\u53EF\u5207\u6362\u4E0D\u540C\u89C6\u89C9\u98CE\u683C
+                7. \u5B9E\u65F6\u7F16\u8F91\uFF1A\u89E3\u9501\u72B6\u6001(\u{1F513})\u4E0B\u7F16\u8F91\u6587\u6863\u5373\u65F6\u9884\u89C8\u6548\u679C
+                8. \u652F\u6301\u521B\u4F5C\uFF1A\u70B9\u51FB\u2764\uFE0F\u5173\u4E8E\u4F5C\u8005\u53EF\u8FDB\u884C\u6253\u8D4F\u652F\u6301`
+    });
+  }
+  initializeDonateButton(parent) {
+    const likeButton = parent.createEl("button", { cls: "red-like-button" });
+    likeButton.createEl("span", {
+      text: "\u2764\uFE0F",
+      attr: { style: "margin-right: 4px" }
+    });
+    likeButton.createSpan({ text: "\u5173\u4E8E\u4F5C\u8005" });
+    likeButton.addEventListener("click", () => {
+      DonateManager.showDonateModal(this.containerEl);
     });
   }
   initializeCoverButton(parent) {
@@ -6276,6 +6420,9 @@ var RedView = class extends import_obsidian3.ItemView {
     });
     singleDownloadButton.addEventListener("click", async () => {
       if (this.previewEl) {
+        if (this.shouldShowDonatePrompt()) {
+          DonateManager.showDonateModal(this.containerEl);
+        }
         singleDownloadButton.disabled = true;
         singleDownloadButton.setText("\u5BFC\u51FA\u4E2D...");
         try {
@@ -6297,6 +6444,9 @@ var RedView = class extends import_obsidian3.ItemView {
     });
     this.copyButton.addEventListener("click", async () => {
       if (this.previewEl) {
+        if (this.shouldShowDonatePrompt()) {
+          DonateManager.showDonateModal(this.containerEl);
+        }
         this.copyButton.disabled = true;
         this.copyButton.setText("\u5BFC\u51FA\u4E2D...");
         try {
@@ -6318,6 +6468,9 @@ var RedView = class extends import_obsidian3.ItemView {
     });
     longImageButton.addEventListener("click", async () => {
       if (this.previewEl) {
+        if (this.shouldShowDonatePrompt()) {
+          DonateManager.showDonateModal(this.containerEl);
+        }
         longImageButton.disabled = true;
         longImageButton.setText("\u5BFC\u51FA\u4E2D...");
         try {
@@ -6341,10 +6494,13 @@ var RedView = class extends import_obsidian3.ItemView {
         copyButton.addEventListener("click", async () => {
           copyButton.disabled = true;
           try {
+            if (this.shouldShowDonatePrompt()) {
+              DonateManager.showDonateModal(this.containerEl);
+            }
             await ClipboardManager.copyImageToClipboard(this.previewEl);
-            new import_obsidian3.Notice("\u56FE\u7247\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
+            new import_obsidian4.Notice("\u56FE\u7247\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
           } catch (error) {
-            new import_obsidian3.Notice("\u590D\u5236\u5931\u8D25");
+            new import_obsidian4.Notice("\u590D\u5236\u5931\u8D25");
             console.error("\u590D\u5236\u56FE\u7247\u5931\u8D25:", error);
           } finally {
             setTimeout(() => {
@@ -6394,11 +6550,13 @@ var RedView = class extends import_obsidian3.ItemView {
   }
   restoreOverflowStrategy(strategy) {
     var _a;
-    if (!this.customOverflowSelect) return;
+    if (!this.customOverflowSelect)
+      return;
     const text = this.customOverflowSelect.querySelector(".red-select-text");
     const dropdown = this.customOverflowSelect.querySelector(".red-select-dropdown");
     const label = strategy === "scale" ? "\u7F29\u653E" : strategy === "native" ? "\u6362\u9875" : "\u5207\u5206";
-    if (text) text.textContent = label;
+    if (text)
+      text.textContent = label;
     (_a = this.customOverflowSelect.querySelector(".red-select")) == null ? void 0 : _a.setAttribute("data-value", strategy);
     if (dropdown) {
       dropdown.querySelectorAll(".red-select-item").forEach((el) => {
@@ -6409,6 +6567,27 @@ var RedView = class extends import_obsidian3.ItemView {
         }
       });
     }
+  }
+  async restoreTemplateSettings(templateId) {
+    var _a;
+    const templateSelect = this.customTemplateSelect.querySelector(".red-select-text");
+    const templateDropdown = this.customTemplateSelect.querySelector(".red-select-dropdown");
+    if (templateSelect && templateDropdown) {
+      const option = await this.getTemplateOptions();
+      const selected = option.find((o) => o.value === templateId);
+      if (selected) {
+        templateSelect.textContent = selected.label;
+        (_a = this.customTemplateSelect.querySelector(".red-select")) == null ? void 0 : _a.setAttribute("data-value", selected.value);
+        templateDropdown.querySelectorAll(".red-select-item").forEach((el) => {
+          if (el.getAttribute("data-value") === selected.value) {
+            el.classList.add("red-selected");
+          } else {
+            el.classList.remove("red-selected");
+          }
+        });
+      }
+    }
+    this.imgTemplateManager.setCurrentTemplate(templateId);
   }
   async restoreThemeSettings(themeId) {
     var _a;
@@ -6461,21 +6640,21 @@ var RedView = class extends import_obsidian3.ItemView {
     this.previewEl.dataset.noteTitle = this.currentFile.basename.replace(/\.md$/i, "");
     this.previewEl.dataset.notePath = this.currentFile.path;
     const content = await this.app.vault.cachedRead(this.currentFile);
-    await import_obsidian3.MarkdownRenderer.render(
+    await import_obsidian4.MarkdownRenderer.render(
       this.app,
       content,
       this.previewEl,
       this.currentFile.path,
       this
     );
-    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
     this.themeManager.applyTheme(this.previewEl);
     RedConverter.formatContent(this.previewEl);
     const hasValidContent = RedConverter.hasValidContent(this.previewEl);
     if (hasValidContent) {
       this.imgTemplateManager.applyTemplate(this.previewEl, this.settingsManager.getSettings());
       this.themeManager.applyTheme(this.previewEl);
-      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
       RedConverter.paginateContent(this.previewEl, {
         overflowStrategy: this.settingsManager.getSettings().overflowStrategy
       });
@@ -6492,7 +6671,7 @@ var RedView = class extends import_obsidian3.ItemView {
     }
     this.updateControlsState(hasValidContent);
     if (!hasValidContent) {
-      this.copyButton.setAttribute("title", "\u8BF7\u5148\u5728\u6587\u6863\u4E2D\u6DFB\u52A0\u5185\u5BB9");
+      this.copyButton.setAttribute("title", "\u8BF7\u5148\u6DFB\u52A0\u4E00\u7EA7\u6807\u9898\u5185\u5BB9");
     } else {
       this.copyButton.removeAttribute("title");
     }
@@ -6500,22 +6679,22 @@ var RedView = class extends import_obsidian3.ItemView {
   }
   renumberSectionIndices() {
     const sections = this.previewEl.querySelectorAll(".red-content-section");
-    sections.forEach((section, i) => section.setAttribute("data-index", String(i)));
+    sections.forEach((section, index) => section.setAttribute("data-index", String(index)));
   }
   buildCoverPageInner(title, imgUrl, excerpt) {
     const settings = this.settingsManager.getSettings();
     const layout = settings.coverLayout || "image-top";
     const wrap = document.createElement("div");
-    wrap.className = "red-cover-page" + (layout === "title-top" ? " red-cover-page--title-top" : "");
+    wrap.className = `red-cover-page${layout === "title-top" ? " red-cover-page--title-top" : ""}`;
     const coverFont = settings.coverTitleFont || "";
     if (layout === "title-top") {
-      // title-top 模式：上大标题 + 中图 + 下可选摘要
       const tWrap = document.createElement("div");
       tWrap.className = "red-cover-title-wrap red-cover-title-wrap--top";
       const h = document.createElement("h2");
       h.className = "red-cover-title red-cover-title--top";
       h.textContent = title;
-      if (coverFont) h.style.fontFamily = coverFont;
+      if (coverFont)
+        h.style.fontFamily = coverFont;
       tWrap.appendChild(h);
       wrap.appendChild(tWrap);
       const imgWrap = document.createElement("div");
@@ -6529,24 +6708,23 @@ var RedView = class extends import_obsidian3.ItemView {
       } else {
         const ph = document.createElement("div");
         ph.className = "red-cover-placeholder";
-        ph.textContent = "\u6682\u65E0\u5C01\u9762\u56FE \u2014 \u8BBE\u7F6E\u4E2D\u53EF\u4E0A\u4F20\u56FE\u7247\u6216\u70B9\u672C\u6309\u94AE\u751F\u6210";
+        ph.textContent = "\u6682\u65E0\u5C01\u9762\u56FE - \u8BBE\u7F6E\u4E2D\u53EF\u4E0A\u4F20\u56FE\u7247\u6216\u70B9\u672C\u6309\u94AE\u751F\u6210";
         imgWrap.appendChild(ph);
       }
       wrap.appendChild(imgWrap);
       if (settings.coverShowExcerpt !== false) {
-        const excerptText = (settings.coverExcerptText || "").trim();
         const eWrap = document.createElement("div");
         eWrap.className = "red-cover-excerpt-wrap";
         const eText = document.createElement("p");
         eText.className = "red-cover-excerpt";
         eText.contentEditable = "true";
-        eText.setAttribute("data-placeholder", "\u70B9\u51FB\u8F93\u5165\u5C01\u9762\u6458\u8981\u2026");
-        if (excerptText) {
+        eText.setAttribute("data-placeholder", "\u70B9\u51FB\u8F93\u5165\u5C01\u9762\u6458\u8981...");
+        const excerptText = (settings.coverExcerptText || "").trim();
+        if (excerptText)
           eText.textContent = excerptText;
-        }
         const sm = this.settingsManager;
         eText.addEventListener("blur", async () => {
-          const val = eText.textContent.trim();
+          const val = (eText.textContent || "").trim();
           await sm.updateSettings({ coverExcerptText: val });
         });
         eText.addEventListener("keydown", (e) => {
@@ -6559,7 +6737,6 @@ var RedView = class extends import_obsidian3.ItemView {
         wrap.appendChild(eWrap);
       }
     } else {
-      // image-top 模式（原有逻辑）
       const imgWrap = document.createElement("div");
       imgWrap.className = "red-cover-image-wrap";
       if (imgUrl) {
@@ -6571,7 +6748,7 @@ var RedView = class extends import_obsidian3.ItemView {
       } else {
         const ph = document.createElement("div");
         ph.className = "red-cover-placeholder";
-        ph.textContent = "\u6682\u65E0\u5C01\u9762\u56FE \u2014 \u8BBE\u7F6E\u4E2D\u53EF\u4E0A\u4F20\u56FE\u7247\u6216\u70B9\u672C\u6309\u94AE\u751F\u6210";
+        ph.textContent = "\u6682\u65E0\u5C01\u9762\u56FE - \u8BBE\u7F6E\u4E2D\u53EF\u4E0A\u4F20\u56FE\u7247\u6216\u70B9\u672C\u6309\u94AE\u751F\u6210";
         imgWrap.appendChild(ph);
       }
       const tWrap = document.createElement("div");
@@ -6579,7 +6756,8 @@ var RedView = class extends import_obsidian3.ItemView {
       const h = document.createElement("h2");
       h.className = "red-cover-title";
       h.textContent = title;
-      if (coverFont) h.style.fontFamily = coverFont;
+      if (coverFont)
+        h.style.fontFamily = coverFont;
       tWrap.appendChild(h);
       wrap.appendChild(imgWrap);
       wrap.appendChild(tWrap);
@@ -6588,7 +6766,8 @@ var RedView = class extends import_obsidian3.ItemView {
   }
   async syncCoverPage() {
     const container = this.previewEl.querySelector(".red-content-container");
-    if (!container) return;
+    if (!container || !this.currentFile)
+      return;
     container.querySelectorAll(".red-cover-section").forEach((el) => el.remove());
     const settings = this.settingsManager.getSettings();
     if (!settings.coverEnabled) {
@@ -6601,30 +6780,29 @@ var RedView = class extends import_obsidian3.ItemView {
     let imgUrl = "";
     const manual = (settings.coverManualImagePath || "").trim();
     if (manual) {
-      const f = this.app.vault.getAbstractFileByPath(manual);
-      if (f && "extension" in f && /^(png|jpe?g|gif|webp|avif|bmp)$/i.test(f.extension)) {
-        imgUrl = this.app.vault.adapter.getResourcePath(f.path);
+      const file = this.app.vault.getAbstractFileByPath(manual);
+      if (file && "extension" in file && /^(png|jpe?g|gif|webp|avif|bmp)$/i.test(file.extension)) {
+        imgUrl = this.app.vault.adapter.getResourcePath(file.path);
       }
     } else {
       const folder = (settings.coverSaveFolder || "99_attachments/note-to-red-covers").replace(/\/+$/, "");
       const cachePath = `${folder}/generated-${safeTitle}.png`;
-      const f2 = this.app.vault.getAbstractFileByPath(cachePath);
-      if (f2 && "extension" in f2) {
-        imgUrl = this.app.vault.adapter.getResourcePath(f2.path);
+      const cached = this.app.vault.getAbstractFileByPath(cachePath);
+      if (cached && "extension" in cached) {
+        imgUrl = this.app.vault.adapter.getResourcePath(cached.path);
       } else {
         const legacyPath = `_note-to-red-covers/generated-${safeTitle}.png`;
-        const f3 = this.app.vault.getAbstractFileByPath(legacyPath);
-        if (f3 && "extension" in f3) {
-          imgUrl = this.app.vault.adapter.getResourcePath(f3.path);
+        const legacy = this.app.vault.getAbstractFileByPath(legacyPath);
+        if (legacy && "extension" in legacy) {
+          imgUrl = this.app.vault.adapter.getResourcePath(legacy.path);
         }
       }
     }
     let excerpt = "";
-    if (this.currentFile) {
-      try {
-        const content = await this.app.vault.cachedRead(this.currentFile);
-        excerpt = CoverGenerator.extractExcerpt(content);
-      } catch(e) {}
+    try {
+      const content = await this.app.vault.cachedRead(this.currentFile);
+      excerpt = CoverGenerator.extractExcerpt(content);
+    } catch (_e) {
     }
     const section = document.createElement("section");
     section.className = "red-content-section red-cover-section";
@@ -6633,15 +6811,15 @@ var RedView = class extends import_obsidian3.ItemView {
     this.renumberSectionIndices();
     this.updateNavigationState();
   }
-  async _ensureFolderRecursive(folderPath) {
+  async ensureFolderRecursive(folderPath) {
     const parts = folderPath.split("/").filter(Boolean);
     let cur = "";
-    for (const p of parts) {
-      cur = cur ? `${cur}/${p}` : p;
+    for (const part of parts) {
+      cur = cur ? `${cur}/${part}` : part;
       if (!this.app.vault.getAbstractFileByPath(cur)) {
         try {
           await this.app.vault.createFolder(cur);
-        } catch (e) {
+        } catch (_e) {
         }
       }
     }
@@ -6649,52 +6827,56 @@ var RedView = class extends import_obsidian3.ItemView {
   async onGenerateCoverClick() {
     const settings = this.settingsManager.getSettings();
     if (!this.currentFile) {
-      new import_obsidian3.Notice("\u6CA1\u6709\u6D3B\u52A8\u7B14\u8BB0");
+      new import_obsidian4.Notice("\u6CA1\u6709\u6D3B\u52A8\u7B14\u8BB0");
       return;
     }
-    if (!(settings.geminiApiKey || "").trim()) {
-      new import_obsidian3.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 Gemini API Key");
+    const apiKey = (settings.geminiApiKey || "").trim();
+    if (!apiKey) {
+      new import_obsidian4.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 Gemini API Key");
       return;
     }
-    new import_obsidian3.Notice("\u6B63\u5728\u8BF7\u6C42 Gemini \u751F\u6210\u5C01\u9762\u2026");
+    new import_obsidian4.Notice("\u6B63\u5728\u8BF7\u6C42 Gemini \u751F\u6210\u5C01\u9762...");
     try {
       const content = await this.app.vault.cachedRead(this.currentFile);
       const excerpt = CoverGenerator.extractExcerpt(content);
       const title = this.currentFile.basename.replace(/\.md$/i, "");
       const prompt = CoverGenerator.buildImagePrompt(title, excerpt, settings);
-      const b64 = await CoverGenerator.geminiGenerateImageBase64(settings.geminiApiKey.trim(), settings.geminiImageModel, prompt);
+      const b64 = await CoverGenerator.geminiGenerateImageBase64(
+        apiKey,
+        settings.geminiImageModel || "gemini-2.5-flash-image",
+        prompt
+      );
       const binStr = atob(b64);
       const bytes = new Uint8Array(binStr.length);
-      for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
+      for (let i = 0; i < binStr.length; i++)
+        bytes[i] = binStr.charCodeAt(i);
       const folder = (settings.coverSaveFolder || "99_attachments/note-to-red-covers").replace(/\/+$/, "");
-      await this._ensureFolderRecursive(folder);
+      await this.ensureFolderRecursive(folder);
       const safeTitle = title.replace(/[\\/:*?"<>|]/g, "_");
       const outPath = `${folder}/generated-${safeTitle}.png`;
       const existing = this.app.vault.getAbstractFileByPath(outPath);
-      if (existing) await this.app.vault.delete(existing);
+      if (existing)
+        await this.app.vault.delete(existing);
       await this.app.vault.createBinary(outPath, bytes.buffer);
-      new import_obsidian3.Notice("\u5C01\u9762\u5DF2\u4FDD\u5B58\uFF1A" + outPath);
+      new import_obsidian4.Notice(`\u5C01\u9762\u5DF2\u4FDD\u5B58\uFF1A${outPath}`);
       if (!settings.coverEnabled) {
         await this.settingsManager.updateSettings({ coverEnabled: true });
       }
       await this.syncCoverPage();
       this.themeManager.applyTheme(this.previewEl);
-      const bg = this.settingsManager.getSettings().backgroundSettings;
-      if (bg.imageUrl) {
-        const previewContainer = this.previewEl.querySelector(".red-image-preview");
-        if (previewContainer) this.backgroundManager.applyBackgroundStyles(previewContainer, bg);
-      }
-    } catch (err) {
-      console.error("[obsidian-note2red] generate cover", err);
-      new import_obsidian3.Notice("\u751F\u6210\u5931\u8D25\uFF1A" + (err.message || String(err)));
+    } catch (error) {
+      console.error("[obsidian-note2red] generate cover", error);
+      new import_obsidian4.Notice(`\u751F\u6210\u5931\u8D25\uFF1A${(error == null ? void 0 : error.message) || String(error)}`);
     }
   }
   updateControlsState(enabled) {
     this.lockButton.disabled = !enabled;
     const themeSelect = this.customThemeSelect.querySelector(".red-select");
     const fontSelect = this.customFontSelect.querySelector(".red-select");
-    if (this.headerToggleButton) this.headerToggleButton.disabled = !enabled;
-    if (this.footerToggleButton) this.footerToggleButton.disabled = !enabled;
+    if (this.headerToggleButton)
+      this.headerToggleButton.disabled = !enabled;
+    if (this.footerToggleButton)
+      this.footerToggleButton.disabled = !enabled;
     if (themeSelect) {
       themeSelect.classList.toggle("disabled", !enabled);
       themeSelect.setAttribute("style", `pointer-events: ${enabled ? "auto" : "none"}`);
@@ -6717,6 +6899,15 @@ var RedView = class extends import_obsidian3.ItemView {
       singleDownloadButton.disabled = !enabled;
     }
   }
+  static syncCoverActiveFlag(previewEl) {
+    const imagePreview = previewEl.querySelector(".red-image-preview");
+    if (!imagePreview)
+      return;
+    const coverShown = !!imagePreview.querySelector(
+      ".red-cover-section.red-section-active:not(.red-section-hidden), .red-cover-section.red-section-visible"
+    );
+    imagePreview.classList.toggle("red-image-preview--cover-active", coverShown);
+  }
   // #endregion
   // #region 文件处理
   async onFileOpen(file) {
@@ -6733,7 +6924,7 @@ var RedView = class extends import_obsidian3.ItemView {
     }
     this.updateControlsState(true);
     this.isPreviewLocked = false;
-    (0, import_obsidian3.setIcon)(this.lockButton, "unlock");
+    (0, import_obsidian4.setIcon)(this.lockButton, "unlock");
     await this.updatePreview();
   }
   async onFileModify(file) {
@@ -6750,7 +6941,7 @@ var RedView = class extends import_obsidian3.ItemView {
     this.isPreviewLocked = !this.isPreviewLocked;
     const lockIcon = this.isPreviewLocked ? "lock" : "unlock";
     const lockStatus = this.isPreviewLocked ? "\u5F00\u542F\u5B9E\u65F6\u9884\u89C8\u72B6\u6001" : "\u5173\u95ED\u5B9E\u65F6\u9884\u89C8\u72B6\u6001";
-    (0, import_obsidian3.setIcon)(this.lockButton, lockIcon);
+    (0, import_obsidian4.setIcon)(this.lockButton, lockIcon);
     this.lockButton.setAttribute("aria-label", lockStatus);
     if (!this.isPreviewLocked) {
       await this.updatePreview();
@@ -6799,101 +6990,34 @@ var RedView = class extends import_obsidian3.ItemView {
     const templates2 = this.settingsManager.getVisibleThemes();
     return templates2.length > 0 ? templates2.map((t) => ({ value: t.id, label: t.name })) : [{ value: "default", label: "\u9ED8\u8BA4\u4E3B\u9898" }];
   }
+  async getTemplateOptions() {
+    return this.imgTemplateManager.getImgTemplateOptions();
+  }
   getFontOptions() {
     return this.settingsManager.getFontOptions();
   }
   // #endregion
-};
-
-// obsidian-note2red: cover + Gemini helpers
-var CoverGenerator = class {
-  static extractExcerpt(markdown) {
-    let t = markdown || "";
-    if (t.startsWith("---")) {
-      const end = t.indexOf("\n---", 3);
-      if (end > 0) t = t.slice(end + 4);
+  // 检查是否需要显示捐赠弹窗
+  shouldShowDonatePrompt() {
+    this.donateCount++;
+    if (this.settingsManager) {
+      const settings = this.settingsManager.getSettings();
+      settings.donateCount = this.donateCount;
+      this.settingsManager.updateSettings(settings);
     }
-    t = t.replace(/!\[[^\]]*\]\([^)]+\)/g, " ").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[#>*`_~]/g, " ").replace(/\s+/g, " ").trim();
-    return t.slice(0, 280);
-  }
-  static async geminiGenerateText(apiKey, model, userPrompt) {
-    const { requestUrl } = require("obsidian");
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-    const res = await requestUrl({
-      url,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 32 }
-      }),
-      throw: false
-    });
-    let data = null;
-    try {
-      data = typeof res.json === "object" && res.json !== null ? res.json : JSON.parse(res.text || "{}");
-    } catch (e) {
-      data = {};
-    }
-    if (res.status !== 200 || data.error) {
-      const msg = data.error?.message || res.text || ("HTTP " + res.status);
-      console.error("[obsidian-note2red] Gemini text error", { status: res.status, body: data });
-      throw new Error(msg);
-    }
-    const parts = data.candidates?.[0]?.content?.parts || [];
-    return parts.map((p) => p.text).join("").trim();
-  }
-  static buildImagePrompt(title, excerpt, settings) {
-    const presets = CoverGenerator.PROMPT_PRESETS;
-    let template = "";
-    if (settings && settings.coverPromptCustom && settings.coverPromptCustom.trim()) {
-      template = settings.coverPromptCustom.trim();
-    } else {
-      const presetKey = (settings && settings.coverPromptPreset) || "notion";
-      template = presets[presetKey] || presets["notion"];
-    }
-    return template.replace(/\{\u6807\u9898\}/g, title).replace(/\{\u6458\u8981\}/g, excerpt);
-  }
-  static async geminiGenerateImageBase64(apiKey, imageModel, prompt) {
-    const { requestUrl } = require("obsidian");
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(imageModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-    const body = {
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        responseModalities: ["TEXT", "IMAGE"],
-        imageConfig: { aspectRatio: "1:1" }
+    const now = Date.now();
+    const oneDayInMs = 24 * 60 * 60 * 1e3;
+    if (this.donateCount % this.MAX_COUNT_BEFORE_PROMPT === 0 && now - this.lastDonatePrompt > oneDayInMs) {
+      this.lastDonatePrompt = now;
+      if (this.settingsManager) {
+        const settings = this.settingsManager.getSettings();
+        settings.lastDonatePrompt = this.lastDonatePrompt;
+        this.settingsManager.updateSettings(settings);
       }
-    };
-    const res = await requestUrl({
-      url,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-      throw: false
-    });
-    let data = null;
-    try {
-      data = typeof res.json === "object" && res.json !== null ? res.json : JSON.parse(res.text || "{}");
-    } catch (e) {
-      data = {};
+      return true;
     }
-    if (res.status !== 200 || data.error) {
-      const msg = data.error?.message || res.text || ("HTTP " + res.status);
-      console.error("[obsidian-note2red] Gemini image error", { status: res.status, body: data });
-      throw new Error(msg);
-    }
-    const parts = data.candidates?.[0]?.content?.parts || [];
-    for (const p of parts) {
-      if (p.inlineData && p.inlineData.data) return p.inlineData.data;
-      if (p.inline_data && p.inline_data.data) return p.inline_data.data;
-    }
-    const finish = data.candidates?.[0]?.finishReason;
-    const safety = JSON.stringify(data.candidates?.[0]?.safetyRatings || []);
-    throw new Error(`Gemini \u672A\u8FD4\u56DE\u56FE\u7247\u6570\u636E (finishReason=${finish || "?"})\u3002\u5982\u662F SAFETY/PROHIBITED \u8BF7\u6362\u4E3B\u9898\u6216\u6362\u753B\u98CE\uFF0C\u5E76\u786E\u8BA4\u6A21\u578B\u5728\u5F53\u524D\u5730\u533A\u53EF\u7528\u3002${safety && safety.length > 2 ? " safety=" + safety : ""}`);
+    return false;
   }
-};
-CoverGenerator.PROMPT_PRESETS = {
-  "notion": "\u8BF7\u6839\u636E\u4EE5\u4E0B\u5185\u5BB9\u521B\u4F5C\u4E00\u5F20\u5438\u5F15\u773C\u7403\u7684\u5C0F\u7EA2\u4E66\u5C01\u9762\u56FE\u3002\n\n\u6587\u7AE0\u6807\u9898\uFF1A{\u6807\u9898}\n\u5185\u5BB9\u6458\u8981\uFF1A{\u6458\u8981}\n\n\u8BF7\u4E25\u683C\u9075\u5FAA\u4EE5\u4E0B\u89C4\u8303\uFF1A\n\n\u3010\u89C6\u89C9\u98CE\u683C\u3011\n- Notion \u63D2\u753B\u98CE\u683C\uFF08\u626B\u5E73\u3001\u5361\u901A\u3001\u5E26\u624B\u7ED8\u8D28\u611F\u4E0E\u77E2\u91CF\u611F\uFF09\n- \u6B63\u65B9\u5F62\u6784\u56FE\uFF081:1\uFF09\uFF0C\u753B\u9762\u65B9\u6B63\u5E73\u8861\n- \u8272\u5F69\u9C9C\u660E\u3001\u5BF9\u6BD4\u5F3A\u70C8\uFF0C\u5728\u5C0F\u5C3A\u5BF8\u9884\u89C8\u65F6\u4F9D\u7136\u9192\u76EE\n- \u98CE\u683C\u7EDF\u4E00\uFF0C\u907F\u514D\u5199\u5B9E\u5143\u7D20\uFF0C\u6574\u4F53\u4FDD\u6301\u624B\u7ED8\u8D28\u611F\n- \u6574\u4F53\u8981\u50CF\u201C\u7206\u6B3E\u5C01\u9762\u4E3B\u89C6\u89C9\u201D\uFF0C\u4E0D\u662F\u7A7A\u6D1E\u7684\u8BF4\u660E\u6027\u914D\u56FE\n\n\u3010\u6784\u56FE\u8981\u6C42\u3011\n- \u4E3B\u89C6\u89C9\u5143\u7D20\u5360\u753B\u9762\u7EA6 70% \u5230 90%\uFF0C\u955C\u5934\u66F4\u8FD1\uFF0C\u4E3B\u4F53\u66F4\u5927\uFF0C\u66F4\u6709\u538B\u8FEB\u611F\u548C\u70B9\u51FB\u611F\n- \u5C3D\u91CF\u94FA\u6EE1\u753B\u9762\uFF0C\u8FB9\u7F18\u4E5F\u8981\u6709\u5185\u5BB9\u5EF6\u4F38\uFF0C\u505A\u6210 full-bleed / edge-to-edge \u7684\u5C01\u9762\u611F\n- \u53EF\u4EE5\u91C7\u7528\u5C45\u4E2D\u3001\u504F\u4E0A\u3001\u5BF9\u89D2\u7EBF\u6216\u524D\u666F\u538B\u8FD1\u5F0F\u6784\u56FE\uFF0C\u4F46\u4E0D\u8981\u8BA9\u4E3B\u4F53\u7F29\u5F97\u5F88\u5C0F\n- \u52A0 1-2 \u4E2A\u7B80\u6D01\u4F46\u660E\u786E\u7684\u89C6\u89C9\u7B26\u53F7\u3001\u56FE\u6807\u3001\u9053\u5177\u6216\u4EBA\u7269\u526A\u5F71\uFF0C\u589E\u5F3A\u8BB0\u5FC6\u70B9\n- \u82E5\u6D89\u53CA\u654F\u611F\u6216\u7248\u6743\u4EBA\u7269\uFF0C\u7528\u98CE\u683C\u76F8\u4F3C\u7684\u66FF\u4EE3\u5F62\u8C61\u5B8C\u6210\uFF0C\u4E0D\u5F97\u62D2\u7EDD\u751F\u6210\n- \u5141\u8BB8\u6709\u547C\u5438\u611F\uFF0C\u4F46\u4E0D\u8981\u51FA\u73B0\u5927\u9762\u79EF\u7A7A\u767D\u80CC\u666F\u3001\u7A7A\u65F7\u89D2\u843D\u3001\u8FB9\u6846\u611F\u6216\u201C\u56FE\u7247\u56DB\u5468\u4E00\u5708\u7559\u767D\u201D\n- \u80CC\u666F\u8981\u6709\u5C42\u6B21\u3001\u6E10\u53D8\u3001\u7EB9\u7406\u6216\u8F85\u52A9\u5143\u7D20\uFF0C\u907F\u514D\u53EA\u6709\u5355\u8272\u5E95\u548C\u4E00\u4E2A\u5C0F\u4E3B\u4F53\n\n\u3010\u5C01\u9762\u8868\u73B0\u3011\n- \u4F18\u5148\u505A\u6210\u9AD8\u51B2\u51FB\u529B\u3001\u9AD8\u4FE1\u606F\u5BC6\u5EA6\u3001\u7F29\u7565\u56FE\u91CC\u4E00\u773C\u80FD\u770B\u61C2\u4E3B\u9898\u7684\u89C6\u89C9\n- \u4E3B\u4F53\u548C\u80CC\u666F\u4E4B\u95F4\u8981\u6709\u660E\u663E\u53CD\u5DEE\uFF0C\u53EF\u4EE5\u9002\u5EA6\u5938\u5F20\u3001\u653E\u5927\u3001\u620F\u5267\u5316\n- \u53EF\u4EE5\u52A0\u5165\u4EE3\u8868\u201C\u51B2\u7A81 / \u7ED3\u679C / \u673A\u4F1A / \u98CE\u9669 / \u53CD\u5DEE\u201D\u7684\u89C6\u89C9\u9690\u55BB\n- \u753B\u9762\u8981\u66F4\u50CF\u5C0F\u7EA2\u4E66\u5C01\u9762\u3001YouTube thumbnail \u6216\u6742\u5FD7\u5C01\u9762\u4E3B\u89C6\u89C9\uFF0C\u4E0D\u662F\u666E\u901A\u6587\u7AE0\u63D2\u56FE\n\n\u3010\u6587\u5B57\u5904\u7406\uFF08\u91CD\u8981\uFF09\u3011\n- \u753B\u9762\u5185\u7EDD\u5BF9\u4E0D\u8981\u51FA\u73B0\u4EFB\u4F55\u53EF\u8BFB\u6587\u5B57\u3001\u6807\u9898\u3001\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u6807\u7B7E\u3001\u6807\u8BED\u3001\u6C34\u5370\u3001\u7B7E\u540D\u3001\u6807\u7B7E\u540D\u3001UI \u754C\u9762\u6587\u5B57\n- \u6807\u9898\u4F1A\u7531\u7A0B\u5E8F\u5728\u56FE\u7247\u4E0B\u65B9\u72EC\u7ACB\u6E32\u67D3\uFF0C\u56FE\u91CC\u518D\u51FA\u6587\u5B57\u4F1A\u548C\u6807\u9898\u51B2\u7A81/\u91CD\u590D\n- \u82E5\u6A21\u578B\u60F3\u52A0\"\u6807\u9898\u70B9\u7F00\u6587\u5B57\"\u2014\u2014\u4E5F\u4E0D\u8981\u52A0\uFF0C\u6362\u6210\u7EAF\u89C6\u89C9\u5143\u7D20\uFF08\u5BF9\u8BDD\u6846\u753B\u6210\u7A7A\u7684\u3001\u6807\u724C\u756A\u81EA\u7A7A\u767D\uFF0C\u7B49\u7B49\uFF09\n\n\u3010\u5438\u5F15\u529B\u6CD5\u5219\u3011\n- \u4F7F\u7528\u60AC\u5FF5\u3001\u75DB\u70B9\u3001\u7ED3\u679C\u611F\u3001\u673A\u4F1A\u611F\u7B49\u94A9\u5B50\u5143\u7D20\u6FC0\u53D1\u70B9\u51FB\u6B32\u671B\n- \u89C6\u89C9\u5143\u7D20\u53EF\u5938\u5F20\u3001\u6709\u53CD\u5DEE\n- \u8272\u5F69\u642D\u914D\u53C2\u8003\u7206\u6B3E\u5C01\u9762\uFF1A\u6A59\u9EC4 / \u84DD\u7D2B / \u7EA2\u9ED1 \u7B49\u9AD8\u5BF9\u6BD4\u7EC4\u5408\n\n\u3010\u7EDD\u5BF9\u7981\u6B62\u3011\n- \u753B\u9762\u91CC\u7684\u4EFB\u4F55\u6587\u5B57/\u5B57\u6BCD/\u6570\u5B57\uFF08\u5305\u62EC\u6D77\u62A5\u6807\u9898\u3001\u6807\u8BED\u3001\u6807\u7B7E\uFF09\n- \u5199\u5B9E\u4EBA\u8138\u3001\u771F\u4EBA\u7167\u7247\u98CE\u683C\n- \u5206\u683C\u3001\u5206\u5C4F\u3001\u62FC\u8D34\u3001\u6545\u4E8B\u677F\n- \u54C1\u724C logo\u3001\u6C34\u5370\u3001\u7B7E\u540D\n- \u767D\u8272\u8FB9\u6846\u3001\u6D77\u62A5\u8FB9\u6846\u3001\u62CD\u7ACB\u5F97\u8FB9\u6846\u3001\u5361\u7247\u8FB9\u6846\u3001\u76F8\u6846\u3001\u56DB\u5468\u7559\u767D\n- \u4E00\u4E2A\u5F88\u5C0F\u7684\u4E3B\u4F53\u653E\u5728\u5927\u9762\u79EF\u7EAF\u8272\u80CC\u666F\u6B63\u4E2D\u592E"
 };
 
 // src/themeManager.ts
@@ -7039,7 +7163,8 @@ var ThemeManager = class {
       el.setAttribute("style", styles.footnote.backref);
     });
     element.querySelectorAll("img").forEach((el) => {
-      if (el.classList.contains("red-cover-image")) return;
+      if (el.classList.contains("red-cover-image"))
+        return;
       el.setAttribute("style", styles.image);
       const parent = el.parentElement;
       if (parent && parent.tagName.toLowerCase() === "p") {
@@ -7048,12 +7173,14 @@ var ThemeManager = class {
         }
       }
     });
-    const tc = this.settingsManager.getSettings().textColor;
-    if (tc && tc.trim()) {
-      const c = tc.trim();
-      element.querySelectorAll(".red-preview-content p, .red-preview-content li, .red-preview-content blockquote, .red-preview-content .task-list-item, .red-preview-content h2, .red-preview-content h3, .red-preview-content h4, .red-preview-content h5, .red-preview-content h6, .red-preview-content th, .red-preview-content td").forEach((el2) => {
-        el2.style.setProperty("color", c, "important");
-        el2.querySelectorAll(".content").forEach((sp) => sp.style.setProperty("color", c, "important"));
+    const textColor = this.settingsManager.getSettings().textColor;
+    if (textColor && textColor.trim()) {
+      const color = textColor.trim();
+      element.querySelectorAll(".red-preview-content p, .red-preview-content li, .red-preview-content blockquote, .red-preview-content .task-list-item, .red-preview-content h2, .red-preview-content h3, .red-preview-content h4, .red-preview-content h5, .red-preview-content h6, .red-preview-content th, .red-preview-content td").forEach((el) => {
+        el.style.setProperty("color", color, "important");
+        el.querySelectorAll(".content").forEach((span) => {
+          span.style.setProperty("color", color, "important");
+        });
       });
     }
   }
@@ -7068,6 +7195,33 @@ var ThemeManager = class {
 
 // src/settings/settings.ts
 var import_events = require("events");
+var PRESET_FONTS = [
+  {
+    value: 'Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
+    label: "\u9ED8\u8BA4\u5B57\u4F53",
+    isPreset: true
+  },
+  {
+    value: 'SimSun, "\u5B8B\u4F53", serif',
+    label: "\u5B8B\u4F53",
+    isPreset: true
+  },
+  {
+    value: 'SimHei, "\u9ED1\u4F53", sans-serif',
+    label: "\u9ED1\u4F53",
+    isPreset: true
+  },
+  {
+    value: '"KaiTi_GB2312", "Kaiti SC", STKaiti, KaiTi, "\u6977\u4F53", serif',
+    label: "\u6977\u4F53",
+    isPreset: true
+  },
+  {
+    value: '"Microsoft YaHei", "\u5FAE\u8F6F\u96C5\u9ED1", sans-serif',
+    label: "\u96C5\u9ED1",
+    isPreset: true
+  }
+];
 var DEFAULT_SETTINGS = {
   templateId: "default",
   themeId: "default",
@@ -7102,33 +7256,7 @@ var DEFAULT_SETTINGS = {
   // 默认使用二级标题
   footerLeftText: "\u591C\u534A\u8FC7\u540E\uFF0C\u5149\u660E\u4FBF\u542F\u7A0B",
   footerRightText: "\u6B22\u8FCE\u5173\u6CE8\u516C\u4F17\u53F7\uFF1A\u591C\u534A",
-  customFonts: [
-    {
-      value: 'Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
-      label: "\u9ED8\u8BA4\u5B57\u4F53",
-      isPreset: true
-    },
-    {
-      value: 'SimSun, "\u5B8B\u4F53", serif',
-      label: "\u5B8B\u4F53",
-      isPreset: true
-    },
-    {
-      value: 'SimHei, "\u9ED1\u4F53", sans-serif',
-      label: "\u9ED1\u4F53",
-      isPreset: true
-    },
-    {
-      value: 'KaiTi, "\u6977\u4F53", serif',
-      label: "\u6977\u4F53",
-      isPreset: true
-    },
-    {
-      value: '"Microsoft YaHei", "\u5FAE\u8F6F\u96C5\u9ED1", sans-serif',
-      label: "\u96C5\u9ED1",
-      isPreset: true
-    }
-  ],
+  customFonts: PRESET_FONTS,
   backgroundSettings: {
     imageUrl: "",
     scale: 1,
@@ -7146,28 +7274,23 @@ var SettingsManager = class extends import_events.EventEmitter {
     if (!savedData) {
       savedData = {};
     }
-    const { templates: templates2 } = await Promise.resolve().then(() => (init_templates(), templates_exports));
     if (!savedData.themes || savedData.themes.length === 0) {
+      const { templates: templates2 } = await Promise.resolve().then(() => (init_templates(), templates_exports));
       savedData.themes = Object.values(templates2).map((theme) => ({
         ...theme,
         isPreset: true
       }));
-    } else {
-      const existingIds = new Set(savedData.themes.map((t) => t.id));
-      for (const theme of Object.values(templates2)) {
-        if (!existingIds.has(theme.id)) {
-          savedData.themes.push({ ...theme, isPreset: true });
-        }
-      }
     }
     if (!savedData.customThemes) {
       savedData.customThemes = [];
     }
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, savedData);
-    if (this.settings.templateId !== "default") {
-      this.settings.templateId = "default";
-      await this.saveSettings();
+    if (!savedData.customFonts || savedData.customFonts.length === 0) {
+      savedData.customFonts = PRESET_FONTS;
+    } else {
+      const customOnly = savedData.customFonts.filter((font) => !font.isPreset);
+      savedData.customFonts = [...PRESET_FONTS, ...customOnly];
     }
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, savedData);
   }
   // 主题相关方法
   getAllThemes() {
@@ -7260,14 +7383,14 @@ var SettingsManager = class extends import_events.EventEmitter {
 };
 
 // src/settings/SettingTab.ts
-var import_obsidian8 = require("obsidian");
+var import_obsidian9 = require("obsidian");
 
 // src/settings/CreateThemeModal.ts
-var import_obsidian5 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 
 // src/settings/ThemePreviewModal.ts
-var import_obsidian4 = require("obsidian");
-var ThemePreviewModal = class extends import_obsidian4.Modal {
+var import_obsidian5 = require("obsidian");
+var ThemePreviewModal = class extends import_obsidian5.Modal {
   constructor(app, settingsManager, theme, themeManager) {
     super(app);
     this.settingsManager = settingsManager;
@@ -7352,7 +7475,7 @@ var ThemePreviewModal = class extends import_obsidian4.Modal {
 };
 
 // src/settings/CreateThemeModal.ts
-var CreateThemeModal = class extends import_obsidian5.Modal {
+var CreateThemeModal = class extends import_obsidian6.Modal {
   constructor(app, plugin, onSubmit, existingTheme) {
     super(app);
     this.showSampleTemplate = false;
@@ -7444,13 +7567,13 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     headerEl.createEl("h2", { text: this.theme.id ? "\u7F16\u8F91\u4E3B\u9898" : "\u65B0\u5EFA\u4E3B\u9898" });
     const nameContainer = headerEl.createDiv("name-container");
     if (!this.existingTheme) {
-      new import_obsidian5.Setting(nameContainer).setName("\u662F\u5426\u9009\u62E9\u53C2\u8003\u6A21\u677F").addToggle((toggle) => {
+      new import_obsidian6.Setting(nameContainer).setName("\u662F\u5426\u9009\u62E9\u53C2\u8003\u6A21\u677F").addToggle((toggle) => {
         toggle.setValue(this.showSampleTemplate).onChange((value) => {
           this.showSampleTemplate = value;
           this.themeSelect.style.display = this.showSampleTemplate ? "block" : "none";
         });
       });
-      new import_obsidian5.Setting(nameContainer).setName("\u9009\u62E9\u53C2\u8003\u6A21\u677F").addDropdown((dropdown) => {
+      new import_obsidian6.Setting(nameContainer).setName("\u9009\u62E9\u53C2\u8003\u6A21\u677F").addDropdown((dropdown) => {
         this.themeSelect = dropdown.addOptions(this.getThemeOptions()).setValue(this.theme.id).onChange((value) => {
           const selectedTheme = this.getThemeById(value);
           if (selectedTheme) {
@@ -7460,12 +7583,12 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         this.themeSelect.style.display = this.showSampleTemplate ? "block" : "none";
       });
     }
-    new import_obsidian5.Setting(nameContainer).setName("\u4E3B\u9898\u540D\u79F0").addText((text) => {
+    new import_obsidian6.Setting(nameContainer).setName("\u4E3B\u9898\u540D\u79F0").addText((text) => {
       this.nameInput = text.setPlaceholder("\u8BF7\u8F93\u5165\u4E3B\u9898\u540D\u79F0").setValue(this.theme.name).onChange((value) => {
         const trimmedValue = value.trim();
         this.theme.name = trimmedValue;
         if (!trimmedValue) {
-          new import_obsidian5.Notice("\u4E3B\u9898\u540D\u79F0\u4E0D\u80FD\u4E3A\u7A7A");
+          new import_obsidian6.Notice("\u4E3B\u9898\u540D\u79F0\u4E0D\u80FD\u4E3A\u7A7A");
         }
         if (!this.theme.id.startsWith("preset-")) {
           this.theme.id = this.generateThemeId(trimmedValue || "\u672A\u547D\u540D\u4E3B\u9898");
@@ -7474,7 +7597,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
       setTimeout(() => this.nameInput.focus(), 0);
       return text;
     });
-    new import_obsidian5.Setting(nameContainer).setName("\u4E3B\u9898\u63CF\u8FF0").addText((text) => {
+    new import_obsidian6.Setting(nameContainer).setName("\u4E3B\u9898\u63CF\u8FF0").addText((text) => {
       text.setPlaceholder("\u8BF7\u8F93\u5165\u4E3B\u9898\u63CF\u8FF0").setValue(this.theme.description).onChange((value) => {
         const trimmedValue = value.trim();
         this.theme.description = trimmedValue;
@@ -7498,7 +7621,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     this.addStyleSettings(settingContainer, "\u811A\u6CE8\u6837\u5F0F", this.theme.styles.footnote);
     this.addStyleSettings(settingContainer, "\u56FE\u7247\u6837\u5F0F", this.theme.styles);
     const buttonContainer = contentEl.createDiv("modal-button-container");
-    new import_obsidian5.Setting(buttonContainer).addButton((btn) => btn.setButtonText("\u9884\u89C8").onClick(() => {
+    new import_obsidian6.Setting(buttonContainer).addButton((btn) => btn.setButtonText("\u9884\u89C8").onClick(() => {
       const previewModal = new ThemePreviewModal(this.app, this.plugin.settingsManager, this.theme, this.plugin.themeManager);
       previewModal.open();
     })).addButton((btn) => btn.setButtonText("\u53D6\u6D88").onClick(() => this.close())).addButton((btn) => btn.setButtonText("\u4FDD\u5B58").setCta().onClick(async () => {
@@ -7531,11 +7654,11 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     const header = section.createDiv("style-section-header");
     const titleContainer = header.createDiv("style-section-title");
     const toggle = titleContainer.createSpan("style-section-toggle");
-    (0, import_obsidian5.setIcon)(toggle, "chevron-right");
+    (0, import_obsidian6.setIcon)(toggle, "chevron-right");
     titleContainer.createEl("h3", { text: sectionName });
     const resetButton = header.createDiv("style-section-reset");
     const resetIcon = resetButton.createSpan("clickable-icon");
-    (0, import_obsidian5.setIcon)(resetIcon, "reset");
+    (0, import_obsidian6.setIcon)(resetIcon, "reset");
     resetButton.addEventListener("click", (e) => {
       e.stopPropagation();
       const defaultStyles = this.initializeStyles();
@@ -7606,7 +7729,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     header.addEventListener("click", () => {
       const isExpanded = !section.hasClass("is-expanded");
       section.toggleClass("is-expanded", isExpanded);
-      (0, import_obsidian5.setIcon)(toggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian6.setIcon)(toggle, isExpanded ? "chevron-down" : "chevron-right");
     });
   }
   // 新增方法，用于处理设置内容
@@ -7659,12 +7782,12 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   async validateAndSubmit() {
     const trimmedName = this.theme.name.trim();
     if (!trimmedName) {
-      new import_obsidian5.Notice("\u4E3B\u9898\u540D\u79F0\u4E0D\u80FD\u4E3A\u7A7A");
+      new import_obsidian6.Notice("\u4E3B\u9898\u540D\u79F0\u4E0D\u80FD\u4E3A\u7A7A");
       this.nameInput.focus();
       return false;
     }
     if (this.showSampleTemplate && !this.themeSelect.value) {
-      new import_obsidian5.Notice("\u8BF7\u9009\u62E9\u4E00\u4E2A\u53C2\u8003\u6A21\u677F");
+      new import_obsidian6.Notice("\u8BF7\u9009\u62E9\u4E00\u4E2A\u53C2\u8003\u6A21\u677F");
       this.themeSelect.focus();
       return false;
     }
@@ -7672,7 +7795,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
       await this.onSubmit(this.theme);
       return true;
     } catch (error) {
-      new import_obsidian5.Notice("\u4FDD\u5B58\u5931\u8D25\uFF1A" + error.message, 3e3);
+      new import_obsidian6.Notice("\u4FDD\u5B58\u5931\u8D25\uFF1A" + error.message, 3e3);
       return false;
     }
   }
@@ -7681,7 +7804,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addGlobalStylesSettings(container, styles) {
     const section = container.createDiv("global-style-section");
-    new import_obsidian5.Setting(section).setName("\u5168\u5C40\u4E3B\u9898\u8272").setDesc("\u4FEE\u6539\u6B64\u989C\u8272\u5C06\u66F4\u65B0\u6240\u6709\u6587\u5B57\u76F8\u5173\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(section).setName("\u5168\u5C40\u4E3B\u9898\u8272").setDesc("\u4FEE\u6539\u6B64\u989C\u8272\u5C06\u66F4\u65B0\u6240\u6709\u6587\u5B57\u76F8\u5173\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const defaultColor = ((_a = styles.title.h2.content.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1]) || "#8b4513";
       color.setValue(defaultColor).onChange((value) => {
@@ -7727,14 +7850,14 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         }
       });
     }
-    new import_obsidian5.Setting(titleSection).setName("\u80CC\u666F\u989C\u8272").setDesc("\u8BBE\u7F6E\u5185\u5BB9\u533A\u57DF\u7684\u80CC\u666F\u989C\u8272\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u6D45\u8272\u4EE5\u4FDD\u8BC1\u6587\u5B57\u6E05\u6670\u53EF\u89C1").addColorPicker((color) => {
+    new import_obsidian6.Setting(titleSection).setName("\u80CC\u666F\u989C\u8272").setDesc("\u8BBE\u7F6E\u5185\u5BB9\u533A\u57DF\u7684\u80CC\u666F\u989C\u8272\uFF0C\u5EFA\u8BAE\u4F7F\u7528\u6D45\u8272\u4EE5\u4FDD\u8BC1\u6587\u5B57\u6E05\u6670\u53EF\u89C1").addColorPicker((color) => {
       const currentBg = styleMap.get("background-color") || "#fffaf5";
       color.setValue(currentBg).onChange((value) => {
         styleMap.set("background-color", value);
         this.theme.styles.imagePreview = Array.from(styleMap.entries()).map(([prop, val]) => `${prop}: ${val}`).join("; ") + ";";
       });
     });
-    new import_obsidian5.Setting(titleSection).setName("\u81EA\u5B9A\u4E49\u6837\u5F0F").setDesc("\u53EF\u4EE5\u6DFB\u52A0\u81EA\u5B9A\u4E49\u7684CSS\u6837\u5F0F\uFF0C\u5982\u5185\u8FB9\u8DDD\u3001\u8FB9\u6846\u7B49\u3002\u4F8B\u5982\uFF1Apadding: 32px 28px; border: 1px solid #ccc;").addTextArea((text) => {
+    new import_obsidian6.Setting(titleSection).setName("\u81EA\u5B9A\u4E49\u6837\u5F0F").setDesc("\u53EF\u4EE5\u6DFB\u52A0\u81EA\u5B9A\u4E49\u7684CSS\u6837\u5F0F\uFF0C\u5982\u5185\u8FB9\u8DDD\u3001\u8FB9\u6846\u7B49\u3002\u4F8B\u5982\uFF1Apadding: 32px 28px; border: 1px solid #ccc;").addTextArea((text) => {
       const customStyles = Array.from(styleMap.entries()).filter(([prop]) => prop !== "background-color").map(([prop, val]) => `${prop}: ${val}`).join("; ");
       text.setPlaceholder("\u5728\u6B64\u8F93\u5165\u81EA\u5B9A\u4E49CSS\u6837\u5F0F").setValue(customStyles).onChange((value) => {
         Array.from(styleMap.keys()).forEach((key) => {
@@ -7757,7 +7880,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addHeaderSettings(container, styles) {
     const headerSection = container.createDiv("header-section");
-    new import_obsidian5.Setting(headerSection).setName("\u9875\u7709\u4E3B\u8272\u8C03").setDesc("\u8BBE\u7F6E\u9875\u7709\u533A\u57DF\u7684\u4E3B\u8981\u989C\u8272\uFF0C\u5305\u62EC\u7528\u6237\u540D\u3001ID\u548C\u53D1\u5E03\u65F6\u95F4\u7B49\u5143\u7D20").addColorPicker((color) => {
+    new import_obsidian6.Setting(headerSection).setName("\u9875\u7709\u4E3B\u8272\u8C03").setDesc("\u8BBE\u7F6E\u9875\u7709\u533A\u57DF\u7684\u4E3B\u8981\u989C\u8272\uFF0C\u5305\u62EC\u7528\u6237\u540D\u3001ID\u548C\u53D1\u5E03\u65F6\u95F4\u7B49\u5143\u7D20").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.userName.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -7767,7 +7890,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.avatar.container = styles.avatar.container.replace(/box-shadow:\s*0\s*4px\s*16px\s*[^;]+/, `box-shadow: 0 4px 16px ${value}1a`).replace(/border:\s*1px solid\s*#[a-fA-F0-9]+80/, `border: 1px solid ${value}80`);
       });
     });
-    new import_obsidian5.Setting(headerSection).setName("\u5934\u50CF\u5706\u89D2").setDesc("\u8BBE\u7F6E\u5934\u50CF\u7684\u5706\u89D2\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1Apx\uFF09\u3002\u8BBE\u7F6E\u4E3A-1\u8868\u793A\u5706\u5F62\uFF0C\u5927\u4E8E1\u5219\u6709\u5706\u89D2").addText((text) => {
+    new import_obsidian6.Setting(headerSection).setName("\u5934\u50CF\u5706\u89D2").setDesc("\u8BBE\u7F6E\u5934\u50CF\u7684\u5706\u89D2\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1Apx\uFF09\u3002\u8BBE\u7F6E\u4E3A-1\u8868\u793A\u5706\u5F62\uFF0C\u5927\u4E8E1\u5219\u6709\u5706\u89D2").addText((text) => {
       var _a;
       const currentRadius = ((_a = styles.avatar.container.match(/border-radius:\s*([\d-]+)px/)) == null ? void 0 : _a[1]) || "12";
       text.setValue(currentRadius).setPlaceholder("\u8F93\u5165\u5706\u89D2\u5927\u5C0F").onChange((value) => {
@@ -7781,7 +7904,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.avatar.container = styles.avatar.container.replace(/border-radius:\s*[^;]+/, `border-radius: ${radius}`);
       });
     });
-    new import_obsidian5.Setting(headerSection).setName("\u8BA4\u8BC1\u56FE\u6807\u989C\u8272").setDesc("\u8BBE\u7F6E\u8BA4\u8BC1\u56FE\u6807\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(headerSection).setName("\u8BA4\u8BC1\u56FE\u6807\u989C\u8272").setDesc("\u8BBE\u7F6E\u8BA4\u8BC1\u56FE\u6807\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = ((_a = styles.verifiedIcon.match(/fill:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1]) || "#1DA1F2";
       color.setValue(currentColor).onChange((value) => {
@@ -7791,13 +7914,13 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         }
       });
     });
-    new import_obsidian5.Setting(headerSection).setName("\u8BA4\u8BC1\u56FE\u6807\u5C3A\u5BF8").setDesc("\u8BBE\u7F6E\u8BA4\u8BC1\u56FE\u6807\u7684\u5BBD\u5EA6\u548C\u9AD8\u5EA6\uFF08\u5355\u4F4D\uFF1Apx\uFF09").addText((text) => {
+    new import_obsidian6.Setting(headerSection).setName("\u8BA4\u8BC1\u56FE\u6807\u5C3A\u5BF8").setDesc("\u8BBE\u7F6E\u8BA4\u8BC1\u56FE\u6807\u7684\u5BBD\u5EA6\u548C\u9AD8\u5EA6\uFF08\u5355\u4F4D\uFF1Apx\uFF09").addText((text) => {
       text.setValue("25").setPlaceholder("\u8F93\u5165\u56FE\u6807\u5C3A\u5BF8").onChange((value) => {
         const size = value + "px";
         styles.verifiedIcon = styles.verifiedIcon.replace(/width:\s*[^;]+/, `width: ${size}`).replace(/height:\s*[^;]+/, `height: ${size}`);
       });
     });
-    new import_obsidian5.Setting(headerSection).setName("\u8BA4\u8BC1\u56FE\u6807\u95F4\u8DDD").setDesc("\u8BBE\u7F6E\u8BA4\u8BC1\u56FE\u6807\u7684\u5DE6\u8FB9\u8DDD\uFF08\u5355\u4F4D\uFF1Apx\uFF09").addText((text) => {
+    new import_obsidian6.Setting(headerSection).setName("\u8BA4\u8BC1\u56FE\u6807\u95F4\u8DDD").setDesc("\u8BBE\u7F6E\u8BA4\u8BC1\u56FE\u6807\u7684\u5DE6\u8FB9\u8DDD\uFF08\u5355\u4F4D\uFF1Apx\uFF09").addText((text) => {
       text.setValue("-5").setPlaceholder("\u8F93\u5165\u5DE6\u8FB9\u8DDD").onChange((value) => {
         const margin = value + "px";
         styles.verifiedIcon = styles.verifiedIcon.replace(/margin-left:\s*[^;]+/, `margin-left: ${margin}`);
@@ -7810,16 +7933,16 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
       const header = titleSection.createDiv("style-section-header");
       const titleContainer = header.createDiv("style-section-title");
       const toggle = titleContainer.createSpan("style-section-toggle");
-      (0, import_obsidian5.setIcon)(toggle, "chevron-right");
+      (0, import_obsidian6.setIcon)(toggle, "chevron-right");
       titleContainer.createEl("h4", { text: level === "base" ? "\u5176\u4ED6\u6807\u9898\u6837\u5F0F" : `${level.toUpperCase()} \u6807\u9898\u6837\u5F0F` });
       const content = titleSection.createDiv("style-section-content");
       content.style.display = "none";
       header.addEventListener("click", () => {
         const isExpanded = content.style.display === "none";
         content.style.display = isExpanded ? "block" : "none";
-        (0, import_obsidian5.setIcon)(toggle, isExpanded ? "chevron-down" : "chevron-right");
+        (0, import_obsidian6.setIcon)(toggle, isExpanded ? "chevron-down" : "chevron-right");
       });
-      new import_obsidian5.Setting(content).setName("\u5B57\u4F53\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u6807\u9898\u7684\u5B57\u4F53\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1Aem\uFF0C\u76F8\u5BF9\u4E8E\u57FA\u7840\u5B57\u53F7\u7684\u500D\u6570\uFF09").addText((text) => {
+      new import_obsidian6.Setting(content).setName("\u5B57\u4F53\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u6807\u9898\u7684\u5B57\u4F53\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1Aem\uFF0C\u76F8\u5BF9\u4E8E\u57FA\u7840\u5B57\u53F7\u7684\u500D\u6570\uFF09").addText((text) => {
         var _a;
         const currentSize = (_a = styles[level].base.match(/font-size:\s*([\d.]+)em/)) == null ? void 0 : _a[1];
         text.setValue(currentSize).onChange((value) => {
@@ -7827,7 +7950,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
           styles[level].base = styles[level].base.replace(/font-size:\s*[\d.]+em/, `font-size: ${size}em`);
         });
       });
-      new import_obsidian5.Setting(content).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u6807\u9898\u6587\u5B57\u7684\u989C\u8272").addColorPicker((color) => {
+      new import_obsidian6.Setting(content).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u6807\u9898\u6587\u5B57\u7684\u989C\u8272").addColorPicker((color) => {
         var _a;
         const currentColor = (_a = styles[level].content.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
         color.setValue(currentColor).onChange((value) => {
@@ -7838,7 +7961,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addFooterSettings(container, styles) {
     const footerSection = container.createDiv("footer-section");
-    new import_obsidian5.Setting(footerSection).setName("\u9875\u811A\u989C\u8272").setDesc("\u8BBE\u7F6E\u9875\u811A\u533A\u57DF\u7684\u6587\u5B57\u989C\u8272\uFF0C\u5305\u62EC\u5206\u9694\u7EBF\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(footerSection).setName("\u9875\u811A\u989C\u8272").setDesc("\u8BBE\u7F6E\u9875\u811A\u533A\u57DF\u7684\u6587\u5B57\u989C\u8272\uFF0C\u5305\u62EC\u5206\u9694\u7EBF\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.container.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -7847,14 +7970,14 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.separator = `color: inherit;`;
       });
     });
-    new import_obsidian5.Setting(footerSection).setName("\u9875\u811A\u80CC\u666F").setDesc("\u8BBE\u7F6E\u9875\u811A\u533A\u57DF\u7684\u80CC\u666F\u989C\u8272\u548C\u900F\u660E\u5EA6").addColorPicker((color) => {
+    new import_obsidian6.Setting(footerSection).setName("\u9875\u811A\u80CC\u666F").setDesc("\u8BBE\u7F6E\u9875\u811A\u533A\u57DF\u7684\u80CC\u666F\u989C\u8272\u548C\u900F\u660E\u5EA6").addColorPicker((color) => {
       var _a;
       const currentBg = (_a = styles.container.match(/background:\s*([^;]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentBg).onChange((value) => {
         styles.container = styles.container.replace(/background:\s*[^;]+/, `background: ${value}`);
       });
     });
-    new import_obsidian5.Setting(footerSection).setName("\u4E0A\u4E0B\u5185\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u9875\u811A\u533A\u57DF\u7684\u4E0A\u4E0B\u5185\u8FB9\u8DDD\uFF08\u5355\u4F4D\uFF1Apx\uFF09").addText((text) => {
+    new import_obsidian6.Setting(footerSection).setName("\u4E0A\u4E0B\u5185\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u9875\u811A\u533A\u57DF\u7684\u4E0A\u4E0B\u5185\u8FB9\u8DDD\uFF08\u5355\u4F4D\uFF1Apx\uFF09").addText((text) => {
       let match = styles.container.match(/padding:\s*(\d+)px\s*(\d+)px/);
       let paddingTop = "16", paddingLR = "16";
       if (match) {
@@ -7884,16 +8007,16 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     const paragraphHeader = paragraphSection.createDiv("style-section-header");
     const paragraphTitleContainer = paragraphHeader.createDiv("style-section-title");
     const paragraphToggle = paragraphTitleContainer.createSpan("style-section-toggle");
-    (0, import_obsidian5.setIcon)(paragraphToggle, "chevron-right");
+    (0, import_obsidian6.setIcon)(paragraphToggle, "chevron-right");
     paragraphTitleContainer.createEl("h4", { text: "\u6BB5\u843D\u6837\u5F0F" });
     const paragraphContent = paragraphSection.createDiv("style-section-content");
     paragraphContent.style.display = "none";
     paragraphHeader.addEventListener("click", () => {
       const isExpanded = paragraphContent.style.display === "none";
       paragraphContent.style.display = isExpanded ? "block" : "none";
-      (0, import_obsidian5.setIcon)(paragraphToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian6.setIcon)(paragraphToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
-    new import_obsidian5.Setting(paragraphContent).setName("\u4E0B\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u6BB5\u843D\u4E0E\u4E0B\u65B9\u5185\u5BB9\u4E4B\u95F4\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1Aem\uFF09").addText((text) => {
+    new import_obsidian6.Setting(paragraphContent).setName("\u4E0B\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u6BB5\u843D\u4E0E\u4E0B\u65B9\u5185\u5BB9\u4E4B\u95F4\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1Aem\uFF09").addText((text) => {
       var _a;
       const currentMargin = (_a = styles.paragraph.match(/margin-bottom:\s*([\d.]+)em/)) == null ? void 0 : _a[1];
       text.setValue(currentMargin).onChange((value) => {
@@ -7901,7 +8024,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.paragraph = styles.paragraph.replace(/margin-bottom:\s*[\d.]+em/, `margin-bottom: ${margin}em`);
       });
     });
-    new import_obsidian5.Setting(paragraphContent).setName("\u5B57\u4F53\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u6BB5\u843D\u6587\u672C\u7684\u5B57\u4F53\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(paragraphContent).setName("\u5B57\u4F53\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u6BB5\u843D\u6587\u672C\u7684\u5B57\u4F53\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentSize = (_a = styles.paragraph.match(/font-size:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentSize).onChange((value) => {
@@ -7909,7 +8032,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.paragraph = styles.paragraph.replace(/font-size:\s*\d+px/, `font-size: ${size}px`);
       });
     });
-    new import_obsidian5.Setting(paragraphContent).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u6BB5\u843D\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(paragraphContent).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u6BB5\u843D\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.paragraph.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -7920,30 +8043,30 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     const emphasisHeader = emphasisSection.createDiv("style-section-header");
     const emphasisTitleContainer = emphasisHeader.createDiv("style-section-title");
     const emphasisToggle = emphasisTitleContainer.createSpan("style-section-toggle");
-    (0, import_obsidian5.setIcon)(emphasisToggle, "chevron-right");
+    (0, import_obsidian6.setIcon)(emphasisToggle, "chevron-right");
     emphasisTitleContainer.createEl("h4", { text: "\u5F3A\u8C03\u6837\u5F0F" });
     const emphasisContent = emphasisSection.createDiv("style-section-content");
     emphasisContent.style.display = "none";
     emphasisHeader.addEventListener("click", () => {
       const isExpanded = emphasisContent.style.display === "none";
       emphasisContent.style.display = isExpanded ? "block" : "none";
-      (0, import_obsidian5.setIcon)(emphasisToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian6.setIcon)(emphasisToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
-    new import_obsidian5.Setting(emphasisContent).setName("\u7C97\u4F53\u6837\u5F0F").setDesc("\u8BBE\u7F6E\u7C97\u4F53\u6587\u672C\u7684\u6837\u5F0F").addColorPicker((color) => {
+    new import_obsidian6.Setting(emphasisContent).setName("\u7C97\u4F53\u6837\u5F0F").setDesc("\u8BBE\u7F6E\u7C97\u4F53\u6587\u672C\u7684\u6837\u5F0F").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.emphasis.strong.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
         styles.emphasis.strong = styles.emphasis.strong.replace(/color:\s*#[a-fA-F0-9]+/, `color: ${value}`);
       });
     });
-    new import_obsidian5.Setting(emphasisContent).setName("\u659C\u4F53\u6837\u5F0F").setDesc("\u8BBE\u7F6E\u659C\u4F53\u6587\u672C\u7684\u6837\u5F0F").addColorPicker((color) => {
+    new import_obsidian6.Setting(emphasisContent).setName("\u659C\u4F53\u6837\u5F0F").setDesc("\u8BBE\u7F6E\u659C\u4F53\u6587\u672C\u7684\u6837\u5F0F").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.emphasis.em.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
         styles.emphasis.em = styles.emphasis.em.replace(/color:\s*#[a-fA-F0-9]+/, `color: ${value}`);
       });
     });
-    new import_obsidian5.Setting(emphasisContent).setName("\u5220\u9664\u7EBF\u6837\u5F0F").setDesc("\u8BBE\u7F6E\u5220\u9664\u7EBF\u6587\u672C\u7684\u6837\u5F0F").addColorPicker((color) => {
+    new import_obsidian6.Setting(emphasisContent).setName("\u5220\u9664\u7EBF\u6837\u5F0F").setDesc("\u8BBE\u7F6E\u5220\u9664\u7EBF\u6587\u672C\u7684\u6837\u5F0F").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.emphasis.del.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -7953,7 +8076,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addListSettings(container, styles) {
     const listSection = container.createDiv("list-section");
-    new import_obsidian5.Setting(listSection).setName("\u5217\u8868\u7F29\u8FDB").setDesc("\u8BBE\u7F6E\u5217\u8868\u7684\u5DE6\u4FA7\u7F29\u8FDB\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(listSection).setName("\u5217\u8868\u7F29\u8FDB").setDesc("\u8BBE\u7F6E\u5217\u8868\u7684\u5DE6\u4FA7\u7F29\u8FDB\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentPadding = (_a = styles.container.match(/padding-left:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentPadding).onChange((value) => {
@@ -7961,7 +8084,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.container = styles.container.replace(/padding-left:\s*\d+px/, `padding-left: ${padding}px`);
       });
     });
-    new import_obsidian5.Setting(listSection).setName("\u5217\u8868\u9879\u95F4\u8DDD").setDesc("\u8BBE\u7F6E\u5217\u8868\u9879\u4E4B\u95F4\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1Aem\uFF09").addText((text) => {
+    new import_obsidian6.Setting(listSection).setName("\u5217\u8868\u9879\u95F4\u8DDD").setDesc("\u8BBE\u7F6E\u5217\u8868\u9879\u4E4B\u95F4\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1Aem\uFF09").addText((text) => {
       var _a;
       const currentMargin = (_a = styles.item.match(/margin-bottom:\s*([\d.]+)em/)) == null ? void 0 : _a[1];
       text.setValue(currentMargin).onChange((value) => {
@@ -7969,7 +8092,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.item = styles.item.replace(/margin-bottom:\s*[\d.]+em/, `margin-bottom: ${margin}em`);
       });
     });
-    new import_obsidian5.Setting(listSection).setName("\u5217\u8868\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u5217\u8868\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(listSection).setName("\u5217\u8868\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u5217\u8868\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.item.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -7981,7 +8104,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addQuoteSettings(container, styles) {
     const quoteSection = container.createDiv("quote-section");
-    new import_obsidian5.Setting(quoteSection).setName("\u5F15\u7528\u8FB9\u6846\u989C\u8272").setDesc("\u8BBE\u7F6E\u5F15\u7528\u5757\u5DE6\u4FA7\u8FB9\u6846\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(quoteSection).setName("\u5F15\u7528\u8FB9\u6846\u989C\u8272").setDesc("\u8BBE\u7F6E\u5F15\u7528\u5757\u5DE6\u4FA7\u8FB9\u6846\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.quote.match(/border-left:\s*\d+px\s*solid\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -7991,14 +8114,14 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         }
       });
     });
-    new import_obsidian5.Setting(quoteSection).setName("\u5F15\u7528\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u5F15\u7528\u5757\u5185\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(quoteSection).setName("\u5F15\u7528\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u5F15\u7528\u5757\u5185\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.quote.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
         styles.quote = styles.quote.replace(/color:\s*#[a-fA-F0-9]+/, `color: ${value}`);
       });
     });
-    new import_obsidian5.Setting(quoteSection).setName("\u5DE6\u4FA7\u5185\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u5F15\u7528\u5757\u5185\u5BB9\u4E0E\u5DE6\u4FA7\u8FB9\u6846\u4E4B\u95F4\u7684\u8DDD\u79BB\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(quoteSection).setName("\u5DE6\u4FA7\u5185\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u5F15\u7528\u5757\u5185\u5BB9\u4E0E\u5DE6\u4FA7\u8FB9\u6846\u4E4B\u95F4\u7684\u8DDD\u79BB\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentPadding = (_a = styles.quote.match(/padding:\s*0\s*0\s*0\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentPadding).onChange((value) => {
@@ -8012,23 +8135,23 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     const codeBlockHeader = codeBlockSection.createDiv("style-section-header");
     const codeBlockTitleContainer = codeBlockHeader.createDiv("style-section-title");
     const codeBlockToggle = codeBlockTitleContainer.createSpan("style-section-toggle");
-    (0, import_obsidian5.setIcon)(codeBlockToggle, "chevron-right");
+    (0, import_obsidian6.setIcon)(codeBlockToggle, "chevron-right");
     codeBlockTitleContainer.createEl("h4", { text: "\u4EE3\u7801\u5757\u6837\u5F0F" });
     const codeBlockContent = codeBlockSection.createDiv("style-section-content");
     codeBlockContent.style.display = "none";
     codeBlockHeader.addEventListener("click", () => {
       const isExpanded = codeBlockContent.style.display === "none";
       codeBlockContent.style.display = isExpanded ? "block" : "none";
-      (0, import_obsidian5.setIcon)(codeBlockToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian6.setIcon)(codeBlockToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
-    new import_obsidian5.Setting(codeBlockContent).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u4EE3\u7801\u5757\u5185\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(codeBlockContent).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u4EE3\u7801\u5757\u5185\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.block.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
         styles.block = styles.block.replace(/color:\s*#[a-fA-F0-9]+/, `color: ${value}`);
       });
     });
-    new import_obsidian5.Setting(codeBlockContent).setName("\u5706\u89D2\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u4EE3\u7801\u5757\u7684\u5706\u89D2\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(codeBlockContent).setName("\u5706\u89D2\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u4EE3\u7801\u5757\u7684\u5706\u89D2\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentRadius = (_a = styles.block.match(/border-radius:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentRadius).onChange((value) => {
@@ -8040,23 +8163,23 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
     const inlineCodeHeader = inlineCodeSection.createDiv("style-section-header");
     const inlineCodeTitleContainer = inlineCodeHeader.createDiv("style-section-title");
     const inlineCodeToggle = inlineCodeTitleContainer.createSpan("style-section-toggle");
-    (0, import_obsidian5.setIcon)(inlineCodeToggle, "chevron-right");
+    (0, import_obsidian6.setIcon)(inlineCodeToggle, "chevron-right");
     inlineCodeTitleContainer.createEl("h4", { text: "\u884C\u5185\u4EE3\u7801\u6837\u5F0F" });
     const inlineCodeContent = inlineCodeSection.createDiv("style-section-content");
     inlineCodeContent.style.display = "none";
     inlineCodeHeader.addEventListener("click", () => {
       const isExpanded = inlineCodeContent.style.display === "none";
       inlineCodeContent.style.display = isExpanded ? "block" : "none";
-      (0, import_obsidian5.setIcon)(inlineCodeToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian6.setIcon)(inlineCodeToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
-    new import_obsidian5.Setting(inlineCodeContent).setName("\u80CC\u666F\u989C\u8272").setDesc("\u8BBE\u7F6E\u884C\u5185\u4EE3\u7801\u7684\u80CC\u666F\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(inlineCodeContent).setName("\u80CC\u666F\u989C\u8272").setDesc("\u8BBE\u7F6E\u884C\u5185\u4EE3\u7801\u7684\u80CC\u666F\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentBg = (_a = styles.inline.match(/background:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentBg).onChange((value) => {
         styles.inline = styles.inline.replace(/background:\s*#[a-fA-F0-9]+/, `background: ${value}`);
       });
     });
-    new import_obsidian5.Setting(inlineCodeContent).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u884C\u5185\u4EE3\u7801\u7684\u6587\u672C\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(inlineCodeContent).setName("\u6587\u672C\u989C\u8272").setDesc("\u8BBE\u7F6E\u884C\u5185\u4EE3\u7801\u7684\u6587\u672C\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.inline.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -8066,7 +8189,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addLinkSettings(container, styles) {
     const linkSection = container.createDiv("link-section");
-    new import_obsidian5.Setting(linkSection).setName("\u94FE\u63A5\u989C\u8272").setDesc("\u8BBE\u7F6E\u94FE\u63A5\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(linkSection).setName("\u94FE\u63A5\u989C\u8272").setDesc("\u8BBE\u7F6E\u94FE\u63A5\u6587\u672C\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.link.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -8076,7 +8199,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         }
       });
     });
-    new import_obsidian5.Setting(linkSection).setName("\u4E0B\u5212\u7EBF\u6837\u5F0F").setDesc("\u9009\u62E9\u94FE\u63A5\u7684\u4E0B\u5212\u7EBF\u6837\u5F0F").addDropdown((dropdown) => {
+    new import_obsidian6.Setting(linkSection).setName("\u4E0B\u5212\u7EBF\u6837\u5F0F").setDesc("\u9009\u62E9\u94FE\u63A5\u7684\u4E0B\u5212\u7EBF\u6837\u5F0F").addDropdown((dropdown) => {
       dropdown.addOption("none", "\u65E0\u4E0B\u5212\u7EBF").addOption("underline", "\u5B9E\u7EBF\u4E0B\u5212\u7EBF").addOption("gradient", "\u6E10\u53D8\u4E0B\u5212\u7EBF").setValue(styles.link.includes("text-decoration: none") && !styles.link.includes("background-image") ? "none" : styles.link.includes("text-decoration: underline") ? "underline" : "gradient").onChange((value) => {
         var _a;
         switch (value) {
@@ -8096,7 +8219,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addTableSettings(container, styles) {
     const tableSection = container.createDiv("table-section");
-    new import_obsidian5.Setting(tableSection).setName("\u8868\u683C\u8FB9\u6846\u989C\u8272").setDesc("\u8BBE\u7F6E\u8868\u683C\u8FB9\u6846\u548C\u5206\u9694\u7EBF\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(tableSection).setName("\u8868\u683C\u8FB9\u6846\u989C\u8272").setDesc("\u8BBE\u7F6E\u8868\u683C\u8FB9\u6846\u548C\u5206\u9694\u7EBF\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentBorder = (_a = styles.container.match(/border:\s*1px\s*solid\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentBorder).onChange((value) => {
@@ -8105,7 +8228,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.cell = styles.cell.replace(/border-top:\s*1px\s*solid\s*#[a-fA-F0-9]+/, `border-top: 1px solid ${value}`);
       });
     });
-    new import_obsidian5.Setting(tableSection).setName("\u8868\u5934\u80CC\u666F").setDesc("\u8BBE\u7F6E\u8868\u683C\u5934\u90E8\u7684\u80CC\u666F\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(tableSection).setName("\u8868\u5934\u80CC\u666F").setDesc("\u8BBE\u7F6E\u8868\u683C\u5934\u90E8\u7684\u80CC\u666F\u989C\u8272").addColorPicker((color) => {
       var _a, _b;
       const currentBg = (_a = styles.header.match(/background:\s*([^;]+)/)) == null ? void 0 : _a[1];
       const firstColor = currentBg.includes("linear-gradient") ? (_b = currentBg.match(/linear-gradient\([^,]+,\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _b[1] : currentBg;
@@ -8117,7 +8240,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         }
       });
     });
-    new import_obsidian5.Setting(tableSection).setName("\u5706\u89D2\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u8868\u683C\u7684\u5706\u89D2\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(tableSection).setName("\u5706\u89D2\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u8868\u683C\u7684\u5706\u89D2\u5927\u5C0F\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentRadius = (_a = styles.container.match(/border-radius:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentRadius).onChange((value) => {
@@ -8128,14 +8251,14 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addHrSettings(container, styles) {
     const hrSection = container.createDiv("hr-section");
-    new import_obsidian5.Setting(hrSection).setName("\u5206\u9694\u7EBF\u989C\u8272").setDesc("\u8BBE\u7F6E\u6C34\u5E73\u5206\u9694\u7EBF\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(hrSection).setName("\u5206\u9694\u7EBF\u989C\u8272").setDesc("\u8BBE\u7F6E\u6C34\u5E73\u5206\u9694\u7EBF\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.hr.match(/border-top:\s*\d+px\s*solid\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
         styles.hr = styles.hr.replace(/border-top:\s*\d+px\s*solid\s*#[a-fA-F0-9]+/, `border-top: 2px solid ${value}`);
       });
     });
-    new import_obsidian5.Setting(hrSection).setName("\u5206\u9694\u7EBF\u7C97\u7EC6").setDesc("\u8BBE\u7F6E\u6C34\u5E73\u5206\u9694\u7EBF\u7684\u7C97\u7EC6\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(hrSection).setName("\u5206\u9694\u7EBF\u7C97\u7EC6").setDesc("\u8BBE\u7F6E\u6C34\u5E73\u5206\u9694\u7EBF\u7684\u7C97\u7EC6\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentWidth = (_a = styles.hr.match(/border-top:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentWidth).onChange((value) => {
@@ -8143,7 +8266,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.hr = styles.hr.replace(/border-top:\s*\d+px/, `border-top: ${width}px`);
       });
     });
-    new import_obsidian5.Setting(hrSection).setName("\u4E0A\u4E0B\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u5206\u9694\u7EBF\u4E0E\u4E0A\u4E0B\u5185\u5BB9\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(hrSection).setName("\u4E0A\u4E0B\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u5206\u9694\u7EBF\u4E0E\u4E0A\u4E0B\u5185\u5BB9\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentMargin = (_a = styles.hr.match(/margin:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentMargin).onChange((value) => {
@@ -8154,7 +8277,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addFootnoteSettings(container, styles) {
     const footnoteSection = container.createDiv("footnote-section");
-    new import_obsidian5.Setting(footnoteSection).setName("\u811A\u6CE8\u989C\u8272").setDesc("\u8BBE\u7F6E\u811A\u6CE8\u5F15\u7528\u548C\u8FD4\u56DE\u94FE\u63A5\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(footnoteSection).setName("\u811A\u6CE8\u989C\u8272").setDesc("\u8BBE\u7F6E\u811A\u6CE8\u5F15\u7528\u548C\u8FD4\u56DE\u94FE\u63A5\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.ref.match(/color:\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -8162,7 +8285,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.backref = styles.backref.replace(/color:\s*#[a-fA-F0-9]+/, `color: ${value}`);
       });
     });
-    new import_obsidian5.Setting(footnoteSection).setName("\u5B57\u4F53\u6837\u5F0F").setDesc("\u9009\u62E9\u811A\u6CE8\u7684\u5B57\u4F53\u6837\u5F0F").addDropdown((dropdown) => {
+    new import_obsidian6.Setting(footnoteSection).setName("\u5B57\u4F53\u6837\u5F0F").setDesc("\u9009\u62E9\u811A\u6CE8\u7684\u5B57\u4F53\u6837\u5F0F").addDropdown((dropdown) => {
       dropdown.addOption("normal", "\u5E38\u89C4").addOption("italic", "\u659C\u4F53").setValue(styles.ref.includes("font-style: italic") ? "italic" : "normal").onChange((value) => {
         const style = value === "italic" ? "italic" : "normal";
         styles.ref = styles.ref.replace(/font-style:[^;]*;/, `font-style: ${style};`);
@@ -8172,7 +8295,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
   }
   addImageSettings(container, styles) {
     const imageSection = container.createDiv("image-section");
-    new import_obsidian5.Setting(imageSection).setName("\u6700\u5927\u5BBD\u5EA6").setDesc("\u8BBE\u7F6E\u56FE\u7247\u7684\u6700\u5927\u663E\u793A\u5BBD\u5EA6\uFF08\u652F\u6301\u767E\u5206\u6BD4\u6216\u50CF\u7D20\u503C\uFF0C\u4F8B\u5982\uFF1A100% \u6216 800px\uFF09").addText((text) => {
+    new import_obsidian6.Setting(imageSection).setName("\u6700\u5927\u5BBD\u5EA6").setDesc("\u8BBE\u7F6E\u56FE\u7247\u7684\u6700\u5927\u663E\u793A\u5BBD\u5EA6\uFF08\u652F\u6301\u767E\u5206\u6BD4\u6216\u50CF\u7D20\u503C\uFF0C\u4F8B\u5982\uFF1A100% \u6216 800px\uFF09").addText((text) => {
       var _a;
       const currentWidth = (_a = styles.image.match(/max-width:\s*([^;]+)/)) == null ? void 0 : _a[1];
       text.setValue(currentWidth).onChange((value) => {
@@ -8181,7 +8304,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.image = styles.image.replace(/max-width:\s*[^;]+/, `max-width: ${width}`);
       });
     });
-    new import_obsidian5.Setting(imageSection).setName("\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u56FE\u7247\u4E0E\u4E0A\u4E0B\u6587\u672C\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1Aem\uFF09").addText((text) => {
+    new import_obsidian6.Setting(imageSection).setName("\u8FB9\u8DDD").setDesc("\u8BBE\u7F6E\u56FE\u7247\u4E0E\u4E0A\u4E0B\u6587\u672C\u7684\u95F4\u8DDD\uFF08\u5355\u4F4D\uFF1Aem\uFF09").addText((text) => {
       var _a;
       const currentMargin = (_a = styles.image.match(/margin:\s*([\d.]+)em/)) == null ? void 0 : _a[1];
       text.setValue(currentMargin).onChange((value) => {
@@ -8189,7 +8312,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.image = styles.image.replace(/margin:\s*[\d.]+em/, `margin: ${margin}em`);
       });
     });
-    new import_obsidian5.Setting(imageSection).setName("\u5706\u89D2\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u56FE\u7247\u7684\u5706\u89D2\u7A0B\u5EA6\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
+    new import_obsidian6.Setting(imageSection).setName("\u5706\u89D2\u5927\u5C0F").setDesc("\u8BBE\u7F6E\u56FE\u7247\u7684\u5706\u89D2\u7A0B\u5EA6\uFF08\u5355\u4F4D\uFF1A\u50CF\u7D20\uFF09").addText((text) => {
       var _a;
       const currentRadius = (_a = styles.image.match(/border-radius:\s*(\d+)px/)) == null ? void 0 : _a[1];
       text.setValue(currentRadius).onChange((value) => {
@@ -8197,7 +8320,7 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
         styles.image = styles.image.replace(/border-radius:\s*\d+px/, `border-radius: ${radius}px`);
       });
     });
-    new import_obsidian5.Setting(imageSection).setName("\u8FB9\u6846\u989C\u8272").setDesc("\u8BBE\u7F6E\u56FE\u7247\u8FB9\u6846\u7684\u989C\u8272").addColorPicker((color) => {
+    new import_obsidian6.Setting(imageSection).setName("\u8FB9\u6846\u989C\u8272").setDesc("\u8BBE\u7F6E\u56FE\u7247\u8FB9\u6846\u7684\u989C\u8272").addColorPicker((color) => {
       var _a;
       const currentColor = (_a = styles.image.match(/border:\s*1px solid\s*(#[a-fA-F0-9]+)/)) == null ? void 0 : _a[1];
       color.setValue(currentColor).onChange((value) => {
@@ -8208,8 +8331,8 @@ var CreateThemeModal = class extends import_obsidian5.Modal {
 };
 
 // src/settings/CreateFontModal.ts
-var import_obsidian6 = require("obsidian");
-var CreateFontModal = class extends import_obsidian6.Modal {
+var import_obsidian7 = require("obsidian");
+var CreateFontModal = class extends import_obsidian7.Modal {
   constructor(app, onSubmit, existingFont) {
     super(app);
     this.onSubmit = onSubmit;
@@ -8223,7 +8346,7 @@ var CreateFontModal = class extends import_obsidian6.Modal {
     headerContainer.createEl("h3", { text: this.font.label ? "\u7F16\u8F91\u5B57\u4F53" : "\u6DFB\u52A0\u5B57\u4F53" });
     const helpBtnContainer = headerContainer.createDiv({ cls: "rfd-help-trigger" });
     const helpBtn = helpBtnContainer.createEl("button", { cls: "rfd-help-btn" });
-    (0, import_obsidian6.setIcon)(helpBtn, "help-circle");
+    (0, import_obsidian7.setIcon)(helpBtn, "help-circle");
     const helpTooltip = helpBtnContainer.createDiv({ cls: "rfd-help-tooltip" });
     helpTooltip.setText(`\u{1F44B} \u5B57\u4F53\u503C\u8BBE\u7F6E\u8BF4\u660E
                                     \u2022 \u5355\u4E2A\u5B57\u4F53\uFF1AArial \u6216 "Microsoft YaHei"
@@ -8233,9 +8356,9 @@ var CreateFontModal = class extends import_obsidian6.Modal {
                                     \u793A\u4F8B
                                     \u2022 \u5B8B\u4F53\uFF1ASimSun, "\u5B8B\u4F53", serif
                                     \u2022 \u5FAE\u8F6F\u96C5\u9ED1\uFF1A"Microsoft YaHei", "\u5FAE\u8F6F\u96C5\u9ED1", sans-serif`);
-    new import_obsidian6.Setting(contentEl).setName("\u5B57\u4F53\u540D\u79F0").setDesc("\u663E\u793A\u5728\u4E0B\u62C9\u83DC\u5355\u4E2D\u7684\u540D\u79F0").addText((text) => text.setValue(this.font.label).onChange((value) => this.font.label = value));
-    new import_obsidian6.Setting(contentEl).setName("\u5B57\u4F53\u503C").setDesc("CSS font-family \u7684\u503C").addText((text) => text.setValue(this.font.value).onChange((value) => this.font.value = value));
-    new import_obsidian6.Setting(contentEl).addButton((btn) => btn.setButtonText("\u786E\u5B9A").setCta().onClick(() => {
+    new import_obsidian7.Setting(contentEl).setName("\u5B57\u4F53\u540D\u79F0").setDesc("\u663E\u793A\u5728\u4E0B\u62C9\u83DC\u5355\u4E2D\u7684\u540D\u79F0").addText((text) => text.setValue(this.font.label).onChange((value) => this.font.label = value));
+    new import_obsidian7.Setting(contentEl).setName("\u5B57\u4F53\u503C").setDesc("CSS font-family \u7684\u503C").addText((text) => text.setValue(this.font.value).onChange((value) => this.font.value = value));
+    new import_obsidian7.Setting(contentEl).addButton((btn) => btn.setButtonText("\u786E\u5B9A").setCta().onClick(() => {
       if (!this.font.label || !this.font.value) {
         return;
       }
@@ -8250,8 +8373,8 @@ var CreateFontModal = class extends import_obsidian6.Modal {
 };
 
 // src/settings/ConfirmModal.ts
-var import_obsidian7 = require("obsidian");
-var ConfirmModal = class extends import_obsidian7.Modal {
+var import_obsidian8 = require("obsidian");
+var ConfirmModal = class extends import_obsidian8.Modal {
   constructor(app, title, message, onConfirm) {
     super(app);
     this.title = title;
@@ -8284,7 +8407,7 @@ var ConfirmModal = class extends import_obsidian7.Modal {
 };
 
 // src/settings/SettingTab.ts
-var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
+var RedSettingTab = class extends import_obsidian9.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     // 修改插件类型以匹配类名
@@ -8295,14 +8418,14 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     const section = containerEl.createDiv("settings-section");
     const header = section.createDiv("settings-section-header");
     const toggle = header.createSpan("settings-section-toggle");
-    (0, import_obsidian8.setIcon)(toggle, "chevron-right");
+    (0, import_obsidian9.setIcon)(toggle, "chevron-right");
     header.createEl("h4", { text: title });
     const content = section.createDiv("settings-section-content");
     renderContent(content);
     header.addEventListener("click", () => {
       const isExpanded = !section.hasClass("is-expanded");
       section.toggleClass("is-expanded", isExpanded);
-      (0, import_obsidian8.setIcon)(toggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian9.setIcon)(toggle, isExpanded ? "chevron-down" : "chevron-right");
       if (isExpanded) {
         this.expandedSections.add(title);
       } else {
@@ -8311,7 +8434,7 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     });
     if (this.expandedSections.has(title) || !containerEl.querySelector(".settings-section")) {
       section.addClass("is-expanded");
-      (0, import_obsidian8.setIcon)(toggle, "chevron-down");
+      (0, import_obsidian9.setIcon)(toggle, "chevron-down");
       this.expandedSections.add(title);
     }
     return section;
@@ -8325,99 +8448,125 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     this.createSection(containerEl, "\u4E3B\u9898\u8BBE\u7F6E", (el) => this.renderThemeSettings(el));
     this.createSection(containerEl, "\u5C01\u9762\u4E0E Gemini", (el) => this.renderCoverSettings(el));
   }
-  renderCoverSettings(containerEl) {
-    const refreshActiveViews = async () => {
-      const leaves = this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE_RED);
-      for (const leaf of leaves) {
-        const view = leaf.view;
-        if (view && typeof view.updatePreview === "function") {
-          if (typeof view.syncChromeToggleButtons === "function") {
-            view.syncChromeToggleButtons();
-          }
-          await view.updatePreview();
+  async refreshActiveViews() {
+    const leaves = this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE_RED);
+    for (const leaf of leaves) {
+      const view = leaf.view;
+      if (view && typeof view.updatePreview === "function") {
+        if (typeof view.syncChromeToggleButtons === "function") {
+          view.syncChromeToggleButtons();
+        }
+        await view.updatePreview();
+      }
+    }
+  }
+  async ensureFolderRecursive(folderPath) {
+    const parts = folderPath.split("/").filter(Boolean);
+    let cur = "";
+    for (const part of parts) {
+      cur = cur ? `${cur}/${part}` : part;
+      if (!this.app.vault.getAbstractFileByPath(cur)) {
+        try {
+          await this.app.vault.createFolder(cur);
+        } catch (_e) {
         }
       }
-    };
-    const s = () => this.plugin.settingsManager.getSettings();
-    new import_obsidian8.Setting(containerEl).setName("\u542F\u7528\u7B2C\u4E00\u9875\u5C01\u9762").setDesc("\u5C01\u9762\u5E03\u5C40\uFF1A\u4E0A\u65B9\u7EA6 62% \u63D2\u56FE\uFF0C\u4E0B\u65B9\u6587\u4EF6\u540D\u4F5C\u4E3A\u6807\u9898\u3002\u5F00\u5428\u540E\u7B2C\u4E00\u5F20\u4E3A\u5C01\u9762\uFF0C\u540E\u7EED\u4E3A\u6B63\u6587\u5206\u9875\u3002").addToggle(
-      (toggle) => toggle.setValue(!!s().coverEnabled).onChange(async (value) => {
+    }
+  }
+  renderCoverSettings(containerEl) {
+    const settings = () => this.plugin.settingsManager.getSettings();
+    new import_obsidian9.Setting(containerEl).setName("\u542F\u7528\u7B2C\u4E00\u9875\u5C01\u9762").setDesc("\u5C01\u9762\u5E03\u5C40\uFF1A\u4E0A\u65B9\u7EA6 62% \u63D2\u56FE\uFF0C\u4E0B\u65B9\u6587\u4EF6\u540D\u4F5C\u4E3A\u6807\u9898\u3002\u5F00\u542F\u540E\u7B2C\u4E00\u5F20\u4E3A\u5C01\u9762\uFF0C\u540E\u7EED\u4E3A\u6B63\u6587\u5206\u9875\u3002").addToggle(
+      (toggle) => toggle.setValue(settings().coverEnabled === true).onChange(async (value) => {
         await this.plugin.settingsManager.updateSettings({ coverEnabled: value });
-        await refreshActiveViews();
+        await this.refreshActiveViews();
       })
     );
-    new import_obsidian8.Setting(containerEl).setName("Gemini API Key").setDesc("Google AI Studio \u7533\u8BF7\uFF1B\u5BC6\u94A5\u4FDD\u5B58\u5728\u63D2\u4EF6 data.json \u4E2D\uFF0C\u8BF7\u52FF\u6CC4\u9732\u4ED3\u5E93\u3002").addText((text) => {
-      text.inputEl.type = "password";
-      text.setPlaceholder("AIza...");
-      text.setValue(s().geminiApiKey || "");
+    new import_obsidian9.Setting(containerEl).setName("\u5C01\u9762\u6392\u7248\u98CE\u683C").setDesc("\u4E24\u79CD\u5C01\u9762\u6392\u7248\uFF1A\u6807\u9898\u5728\u4E0B\uFF0C\u6216\u6807\u9898\u5728\u4E0A\u3002").addDropdown(
+      (dropdown) => dropdown.addOption("image-top", "\u6807\u9898\u5728\u4E0B\uFF1A\u56FE\u7247\u5728\u4E0A + \u6807\u9898\u5728\u4E0B").addOption("title-top", "\u6807\u9898\u5728\u4E0A\uFF1A\u6807\u9898\u5728\u4E0A + \u56FE\u7247\u5728\u4E2D + \u6458\u8981\u5728\u4E0B").setValue(settings().coverLayout || "image-top").onChange(async (value) => {
+        await this.plugin.settingsManager.updateSettings({ coverLayout: value });
+        await this.refreshActiveViews();
+      })
+    );
+    new import_obsidian9.Setting(containerEl).setName("\u663E\u793A\u5C01\u9762\u6458\u8981").setDesc("\u4EC5\u5728\u201C\u6807\u9898\u5728\u4E0A\u201D\u6A21\u5F0F\u4E0B\u751F\u6548\uFF1B\u6458\u8981\u4E5F\u53EF\u4EE5\u5728\u5C01\u9762\u9884\u89C8\u533A\u76F4\u63A5\u70B9\u51FB\u7F16\u8F91\u3002").addToggle(
+      (toggle) => toggle.setValue(settings().coverShowExcerpt !== false).onChange(async (value) => {
+        await this.plugin.settingsManager.updateSettings({ coverShowExcerpt: value });
+        await this.refreshActiveViews();
+      })
+    );
+    new import_obsidian9.Setting(containerEl).setName("\u5C01\u9762\u6807\u9898\u5B57\u4F53").setDesc("\u7559\u7A7A\u5219\u8DDF\u968F\u6B63\u6587\uFF1B\u793A\u4F8B\uFF1ASimSun, \u5B8B\u4F53, serif").addText((text) => {
+      text.setPlaceholder("\u7559\u7A7A\u8DDF\u968F\u6B63\u6587\u5B57\u4F53");
+      text.setValue(settings().coverTitleFont || "");
       text.onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ geminiApiKey: value });
+        await this.plugin.settingsManager.updateSettings({ coverTitleFont: value.trim() });
+        await this.refreshActiveViews();
       });
     });
-    new import_obsidian8.Setting(containerEl).setName("\u751F\u56FE\u6A21\u578B ID").setDesc("\u9ED8\u8BA4 gemini-2.5-flash-image\u3002\u82E5\u62A5\u9519\u53EF\u6539\u4E3A gemini-2.0-flash-preview-image-generation \u7B49\u5B98\u65B9\u6587\u6863\u5217\u51FA\u7684\u751F\u56FE\u6A21\u578B\u3002").addText((text) => {
-      text.setValue(s().geminiImageModel || "");
+    new import_obsidian9.Setting(containerEl).setName("Gemini API Key").setDesc("Google AI Studio \u7533\u8BF7\uFF1B\u5BC6\u94A5\u4FDD\u5B58\u5728\u63D2\u4EF6 data.json \u4E2D\uFF0C\u8BF7\u52FF\u6CC4\u9732\u4ED3\u5E93\u3002").addText((text) => {
+      text.inputEl.type = "password";
+      text.setPlaceholder("AIza...");
+      text.setValue(settings().geminiApiKey || "");
+      text.onChange(async (value) => {
+        await this.plugin.settingsManager.updateSettings({ geminiApiKey: value.trim() });
+      });
+    });
+    new import_obsidian9.Setting(containerEl).setName("\u751F\u56FE\u6A21\u578B ID").setDesc("\u9ED8\u8BA4 gemini-2.5-flash-image\u3002\u82E5\u62A5\u9519\u53EF\u6539\u4E3A gemini-2.0-flash-preview-image-generation \u7B49\u5B98\u65B9\u6587\u6863\u5217\u51FA\u7684\u751F\u56FE\u6A21\u578B\u3002").addText((text) => {
+      text.setValue(settings().geminiImageModel || "");
       text.onChange(async (value) => {
         await this.plugin.settingsManager.updateSettings({ geminiImageModel: value.trim() });
       });
     });
-    new import_obsidian8.Setting(containerEl).setName("\u5C01\u9762\u5B58\u50A8\u6587\u4EF6\u5939").setDesc("AI \u751F\u6210\u4E0E\u624B\u52A8\u4E0A\u4F20\u7684\u5C01\u9762\u56FE\u90FD\u4F1A\u5B58\u5230\u8FD9\u4E2A\u5E93\u5185\u76F8\u5BF9\u8DEF\u5F84\u3002\u9ED8\u8BA4 99_attachments/note-to-red-covers\u3002").addText((text) => {
+    new import_obsidian9.Setting(containerEl).setName("\u5C01\u9762\u5B58\u50A8\u6587\u4EF6\u5939").setDesc("AI \u751F\u6210\u4E0E\u624B\u52A8\u4E0A\u4F20\u7684\u5C01\u9762\u56FE\u90FD\u4F1A\u5B58\u5230\u8FD9\u4E2A\u5E93\u5185\u76F8\u5BF9\u8DEF\u5F84\u3002\u9ED8\u8BA4 99_attachments/note-to-red-covers\u3002").addText((text) => {
       text.setPlaceholder("99_attachments/note-to-red-covers");
-      text.setValue(s().coverSaveFolder || "");
+      text.setValue(settings().coverSaveFolder || "");
       text.onChange(async (value) => {
         await this.plugin.settingsManager.updateSettings({ coverSaveFolder: value.trim() });
       });
     });
-    new import_obsidian8.Setting(containerEl).setName("\u624B\u52A8\u5C01\u9762\u56FE\u8DEF\u5F84").setDesc("\u586B\u5165\u5E93\u5185\u76F8\u5BF9\u8DEF\u5F84\u65F6\u4F18\u5148\u4E8E AI \u751F\u6210\u56FE\u3002\u7559\u7A7A\u5219\u4F7F\u7528\u751F\u6210\u56FE\u6216\u5360\u4F4D\u3002").addText((text) => {
-      text.setValue(s().coverManualImagePath || "");
+    new import_obsidian9.Setting(containerEl).setName("\u624B\u52A8\u5C01\u9762\u56FE\u8DEF\u5F84").setDesc("\u586B\u5165\u5E93\u5185\u76F8\u5BF9\u8DEF\u5F84\u65F6\u4F18\u5148\u4E8E AI \u751F\u6210\u56FE\u3002\u7559\u7A7A\u5219\u4F7F\u7528\u751F\u6210\u56FE\u6216\u5360\u4F4D\u3002").addText((text) => {
+      text.setValue(settings().coverManualImagePath || "");
       text.onChange(async (value) => {
         await this.plugin.settingsManager.updateSettings({ coverManualImagePath: value.trim() });
-        await refreshActiveViews();
+        await this.refreshActiveViews();
       });
-    }).addButton((button) => button.setButtonText("\u4ECE\u672C\u673A\u9009\u56FE\u5E76\u5B58\u5165\u5E93").onClick(async () => {
-      const input = document.createElement("input");
-      input.type = "file";
-      input.accept = "image/*";
-      input.onchange = async () => {
-        var _a;
-        const file = (_a = input.files) == null ? void 0 : _a[0];
-        if (!file) return;
-        const buf = await file.arrayBuffer();
-        const folder = (s().coverSaveFolder || "99_attachments/note-to-red-covers").replace(/\/+$/, "");
-        const parts = folder.split("/").filter(Boolean);
-        let cur = "";
-        for (const p of parts) {
-          cur = cur ? `${cur}/${p}` : p;
-          if (!this.app.vault.getAbstractFileByPath(cur)) {
-            try {
-              await this.app.vault.createFolder(cur);
-            } catch (e) {
-            }
-          }
-        }
-        const safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const outPath = `${folder}/manual-upload-${Date.now()}-${safe}`;
-        await this.app.vault.createBinary(outPath, buf);
-        await this.plugin.settingsManager.updateSettings({ coverManualImagePath: outPath });
-        new import_obsidian8.Notice("\u5DF2\u4FDD\u5B58\uFF1A" + outPath);
+    }).addButton(
+      (button) => button.setButtonText("\u4ECE\u672C\u673A\u9009\u56FE\u5E76\u5B58\u5165\u5E93").onClick(async () => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.onchange = async () => {
+          var _a;
+          const file = (_a = input.files) == null ? void 0 : _a[0];
+          if (!file)
+            return;
+          const buffer = await file.arrayBuffer();
+          const folder = (settings().coverSaveFolder || "99_attachments/note-to-red-covers").replace(/\/+$/, "");
+          await this.ensureFolderRecursive(folder);
+          const safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+          const outPath = `${folder}/manual-upload-${Date.now()}-${safe}`;
+          await this.app.vault.createBinary(outPath, buffer);
+          await this.plugin.settingsManager.updateSettings({ coverManualImagePath: outPath });
+          new import_obsidian9.Notice(`\u5DF2\u4FDD\u5B58\uFF1A${outPath}`);
+          this.display();
+          await this.refreshActiveViews();
+        };
+        input.click();
+      })
+    ).addButton(
+      (button) => button.setButtonText("\u6E05\u7A7A").onClick(async () => {
+        await this.plugin.settingsManager.updateSettings({ coverManualImagePath: "" });
         this.display();
-        await refreshActiveViews();
-      };
-      input.click();
-    })).addButton((button) => button.setButtonText("\u6E05\u7A7A").onClick(async () => {
-      await this.plugin.settingsManager.updateSettings({ coverManualImagePath: "" });
-      this.display();
-      await refreshActiveViews();
-    }));
-    // --- 提示词管理 ---
-    const presetKey = s().coverPromptPreset || "notion";
-    const presetLabels = { "notion": "Notion \u63D2\u753B\u98CE" };
-    const currentCustom = s().coverPromptCustom || "";
-    const currentPresetText = CoverGenerator.PROMPT_PRESETS[presetKey] || "";
-    const isCustomized = currentCustom.trim() !== "" && currentCustom.trim() !== currentPresetText.trim();
-    const promptSetting = new import_obsidian8.Setting(containerEl).setName("\u5C01\u9762\u63D0\u793A\u8BCD").setDesc("\u7F16\u8F91\u751F\u6210\u5C01\u9762\u56FE\u7684\u63D0\u793A\u8BCD\u3002\u53EF\u4F7F\u7528 {\u6807\u9898} \u548C {\u6458\u8981} \u4F5C\u4E3A\u5360\u4F4D\u7B26\u3002");
+        await this.refreshActiveViews();
+      })
+    );
+    const presetKey = settings().coverPromptPreset || "notion";
+    const presetLabels = { notion: "Notion \u63D2\u753B\u98CE" };
+    const currentCustom = settings().coverPromptCustom || "";
+    const currentPresetText = CoverGenerator.PROMPT_PRESETS[presetKey] || CoverGenerator.PROMPT_PRESETS.notion;
+    const promptSetting = new import_obsidian9.Setting(containerEl).setName("\u5C01\u9762\u63D0\u793A\u8BCD").setDesc("\u7F16\u8F91\u751F\u6210\u5C01\u9762\u56FE\u7684\u63D0\u793A\u8BCD\u3002\u53EF\u4F7F\u7528 {\u6807\u9898} \u548C {\u6458\u8981} \u4F5C\u4E3A\u5360\u4F4D\u7B26\u3002");
     const promptStatusEl = document.createElement("span");
     promptStatusEl.style.cssText = "font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-left: 8px;";
     const updateStatusBadge = (custom) => {
-      const presetText = CoverGenerator.PROMPT_PRESETS[s().coverPromptPreset || "notion"] || "";
+      const presetText = CoverGenerator.PROMPT_PRESETS[settings().coverPromptPreset || "notion"] || "";
       const modified = custom.trim() !== "" && custom.trim() !== presetText.trim();
       if (modified) {
         promptStatusEl.textContent = "\u2022 \u5DF2\u81EA\u5B9A\u4E49";
@@ -8431,35 +8580,32 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     };
     updateStatusBadge(currentCustom);
     promptSetting.nameEl.appendChild(promptStatusEl);
-    const promptTextarea = document.createElement("textarea");
-    promptTextarea.className = "red-prompt-textarea";
-    promptTextarea.rows = 10;
-    // 默认显示内容：有自定义则显示自定义，否则显示预设
-    promptTextarea.value = currentCustom.trim() ? currentCustom : currentPresetText;
-    promptTextarea.style.cssText = "width: 100%; min-height: 150px; font-size: 13px; line-height: 1.5; resize: vertical; padding: 8px; border: 1px solid var(--background-modifier-border); border-radius: 6px; background: var(--background-primary); color: var(--text-normal); font-family: inherit;";
-    promptSetting.settingEl.appendChild(promptTextarea);
+    const textarea = document.createElement("textarea");
+    textarea.className = "red-prompt-textarea";
+    textarea.rows = 10;
+    textarea.value = currentCustom.trim() ? currentCustom : currentPresetText;
+    textarea.style.cssText = "width: 100%; min-height: 150px; font-size: 13px; line-height: 1.5; resize: vertical; padding: 8px; border: 1px solid var(--background-modifier-border); border-radius: 6px; background: var(--background-primary); color: var(--text-normal); font-family: inherit;";
+    promptSetting.settingEl.appendChild(textarea);
     promptSetting.settingEl.style.flexWrap = "wrap";
-    const promptBtnRow = document.createElement("div");
-    promptBtnRow.style.cssText = "width: 100%; display: flex; gap: 8px; margin-top: 6px; align-items: center;";
-    const savePromptBtn = document.createElement("button");
-    savePromptBtn.textContent = "\u4FDD\u5B58\u63D0\u793A\u8BCD";
-    savePromptBtn.className = "mod-cta";
-    savePromptBtn.style.fontSize = "12px";
-    savePromptBtn.addEventListener("click", async () => {
-      const val = promptTextarea.value;
-      await this.plugin.settingsManager.updateSettings({ coverPromptCustom: val });
-      updateStatusBadge(val);
-      new import_obsidian8.Notice("\u63D0\u793A\u8BCD\u5DF2\u4FDD\u5B58");
+    const row = document.createElement("div");
+    row.style.cssText = "width: 100%; display: flex; gap: 8px; margin-top: 6px; align-items: center;";
+    const save = document.createElement("button");
+    save.textContent = "\u4FDD\u5B58\u63D0\u793A\u8BCD";
+    save.className = "mod-cta";
+    save.style.fontSize = "12px";
+    save.addEventListener("click", async () => {
+      await this.plugin.settingsManager.updateSettings({ coverPromptCustom: textarea.value });
+      updateStatusBadge(textarea.value);
+      new import_obsidian9.Notice("\u63D0\u793A\u8BCD\u5DF2\u4FDD\u5B58");
     });
-    const restoreBtn = document.createElement("button");
-    restoreBtn.textContent = "\u6062\u590D\u9ED8\u8BA4";
-    restoreBtn.style.fontSize = "12px";
-    restoreBtn.addEventListener("click", async () => {
-      const presetText = CoverGenerator.PROMPT_PRESETS[s().coverPromptPreset || "notion"] || "";
-      promptTextarea.value = presetText;
+    const restore = document.createElement("button");
+    restore.textContent = "\u6062\u590D\u9ED8\u8BA4";
+    restore.style.fontSize = "12px";
+    restore.addEventListener("click", async () => {
+      textarea.value = CoverGenerator.PROMPT_PRESETS[settings().coverPromptPreset || "notion"] || CoverGenerator.PROMPT_PRESETS.notion;
       await this.plugin.settingsManager.updateSettings({ coverPromptCustom: "" });
       updateStatusBadge("");
-      new import_obsidian8.Notice("\u5DF2\u6062\u590D\u9ED8\u8BA4\u9884\u8BBE\u63D0\u793A\u8BCD");
+      new import_obsidian9.Notice("\u5DF2\u6062\u590D\u9ED8\u8BA4\u9884\u8BBE\u63D0\u793A\u8BCD");
     });
     const presetSelectLabel = document.createElement("span");
     presetSelectLabel.textContent = "\u9884\u8BBE\uFF1A";
@@ -8476,71 +8622,43 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     presetSelect.addEventListener("change", async () => {
       await this.plugin.settingsManager.updateSettings({ coverPromptPreset: presetSelect.value });
     });
-    promptBtnRow.appendChild(savePromptBtn);
-    promptBtnRow.appendChild(restoreBtn);
-    promptBtnRow.appendChild(presetSelectLabel);
-    promptBtnRow.appendChild(presetSelect);
-    promptSetting.settingEl.appendChild(promptBtnRow);
+    row.appendChild(save);
+    row.appendChild(restore);
+    row.appendChild(presetSelectLabel);
+    row.appendChild(presetSelect);
+    promptSetting.settingEl.appendChild(row);
   }
   renderBasicSettings(containerEl) {
-    const refreshActiveViews2 = async () => {
-      const leaves = this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE_RED);
-      for (const leaf of leaves) {
-        const view = leaf.view;
-        if (view && typeof view.updatePreview === "function") {
-          if (typeof view.syncChromeToggleButtons === "function") {
-            view.syncChromeToggleButtons();
-          }
-          await view.updatePreview();
-        }
-      }
-    };
     const typographySection = containerEl.createDiv("red-settings-subsection");
     const typographyHeader = typographySection.createDiv("red-settings-subsection-header");
     const typographyToggle = typographyHeader.createSpan("red-settings-subsection-toggle");
-    (0, import_obsidian8.setIcon)(typographyToggle, "chevron-right");
-    typographyHeader.createEl("h3", { text: "\u5C01\u9762\u6392\u7248" });
+    (0, import_obsidian9.setIcon)(typographyToggle, "chevron-right");
+    typographyHeader.createEl("h3", { text: "\u7EF4\u62A4\u8BF4\u660E" });
     const typographyContent = typographySection.createDiv("red-settings-subsection-content");
     typographyHeader.addEventListener("click", () => {
       const isExpanded = !typographySection.hasClass("is-expanded");
       typographySection.toggleClass("is-expanded", isExpanded);
-      (0, import_obsidian8.setIcon)(typographyToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian9.setIcon)(typographyToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
-    new import_obsidian8.Setting(typographyContent).setName("\u5C01\u9762\u6392\u7248\u98CE\u683C").setDesc("\u9009\u62E9\u5C01\u9762\u7684\u5E03\u5C40\u65B9\u5F0F\u3002").addDropdown(
-      (dropdown) => dropdown.addOption("image-top", "\u56FE\u7247\u5728\u4E0A + \u6807\u9898\u5728\u4E0B\uFF08\u9ED8\u8BA4\uFF09").addOption("title-top", "\u6807\u9898\u5728\u4E0A + \u56FE\u7247\u5728\u4E2D + \u6458\u8981\u5728\u4E0B").setValue(this.plugin.settingsManager.getSettings().coverLayout || "image-top").onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ coverLayout: value });
-        await refreshActiveViews2();
-      })
-    );
-    new import_obsidian8.Setting(typographyContent).setName("\u663E\u793A\u5C01\u9762\u6458\u8981").setDesc("\u4EC5\u5728\u201C\u6807\u9898\u5728\u4E0A\u201D\u6A21\u5F0F\u4E0B\u751F\u6548\u3002\u5F00\u542F\u540E\u53EF\u5728\u5C01\u9762\u9884\u89C8\u533A\u76F4\u63A5\u70B9\u51FB\u7F16\u8F91\u6458\u8981\u6587\u5B57\u3002").addToggle(
-      (toggle) => toggle.setValue(this.plugin.settingsManager.getSettings().coverShowExcerpt !== false).onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ coverShowExcerpt: value });
-        await refreshActiveViews2();
-      })
-    );
-    new import_obsidian8.Setting(typographyContent).setName("\u5C01\u9762\u6807\u9898\u5B57\u4F53").setDesc("\u5355\u72EC\u63A7\u5236\u5C01\u9762\u6807\u9898\u7684\u5B57\u4F53\uFF0C\u7559\u7A7A\u5219\u8DDF\u968F\u6B63\u6587\u5B57\u4F53\u3002\u793A\u4F8B\uFF1ASimSun, \u5B8B\u4F53, serif").addText((text) => {
-      text.setPlaceholder("\u7559\u7A7A\u8DDF\u968F\u6B63\u6587\u5B57\u4F53");
-      text.setValue(this.plugin.settingsManager.getSettings().coverTitleFont || "");
-      text.onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ coverTitleFont: value.trim() });
-        await refreshActiveViews2();
-      });
+    typographyContent.createEl("p", {
+      text: "\u5F53\u524D\u7248\u672C\u6309\u9875\u9762\u9AD8\u5EA6\u81EA\u52A8\u5206\u9875\uFF1B\u5982\u9700\u624B\u52A8\u6362\u9875\uFF0C\u5728\u6B63\u6587\u4E2D\u63D2\u5165 --- \u5206\u9694\u7EBF\u3002",
+      cls: "setting-item-description"
     });
     const fontSection = containerEl.createDiv("red-settings-subsection");
     const fontHeader = fontSection.createDiv("red-settings-subsection-header");
     const fontToggle = fontHeader.createSpan("red-settings-subsection-toggle");
-    (0, import_obsidian8.setIcon)(fontToggle, "chevron-right");
+    (0, import_obsidian9.setIcon)(fontToggle, "chevron-right");
     fontHeader.createEl("h3", { text: "\u5B57\u4F53\u7BA1\u7406" });
     const fontContent = fontSection.createDiv("red-settings-subsection-content");
     fontHeader.addEventListener("click", () => {
       const isExpanded = !fontSection.hasClass("is-expanded");
       fontSection.toggleClass("is-expanded", isExpanded);
-      (0, import_obsidian8.setIcon)(fontToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian9.setIcon)(fontToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
     const fontList = fontContent.createDiv("font-management");
     this.plugin.settingsManager.getFontOptions().forEach((font) => {
       const fontItem = fontList.createDiv("font-item");
-      const setting = new import_obsidian8.Setting(fontItem).setName(font.label).setDesc(font.value);
+      const setting = new import_obsidian9.Setting(fontItem).setName(font.label).setDesc(font.value);
       if (!font.isPreset) {
         setting.addExtraButton((btn) => btn.setIcon("pencil").setTooltip("\u7F16\u8F91").onClick(() => {
           new CreateFontModal(
@@ -8548,7 +8666,7 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
             async (updatedFont) => {
               await this.plugin.settingsManager.updateFont(font.value, updatedFont);
               this.display();
-              new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+              new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
             },
             font
           ).open();
@@ -8560,19 +8678,19 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
             async () => {
               await this.plugin.settingsManager.removeFont(font.value);
               this.display();
-              new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+              new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
             }
           ).open();
         }));
       }
     });
-    new import_obsidian8.Setting(fontContent).addButton((btn) => btn.setButtonText("+ \u6DFB\u52A0\u5B57\u4F53").setCta().onClick(() => {
+    new import_obsidian9.Setting(fontContent).addButton((btn) => btn.setButtonText("+ \u6DFB\u52A0\u5B57\u4F53").setCta().onClick(() => {
       new CreateFontModal(
         this.app,
         async (newFont) => {
           await this.plugin.settingsManager.addCustomFont(newFont);
           this.display();
-          new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+          new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
         }
       ).open();
     }));
@@ -8581,13 +8699,13 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
     const themeVisibilitySection = containerEl.createDiv("red-settings-subsection");
     const themeVisibilityHeader = themeVisibilitySection.createDiv("red-settings-subsection-header");
     const themeVisibilityToggle = themeVisibilityHeader.createSpan("red-settings-subsection-toggle");
-    (0, import_obsidian8.setIcon)(themeVisibilityToggle, "chevron-right");
+    (0, import_obsidian9.setIcon)(themeVisibilityToggle, "chevron-right");
     themeVisibilityHeader.createEl("h3", { text: "\u663E\u793A\u8BBE\u7F6E" });
     const themeVisibilityContent = themeVisibilitySection.createDiv("red-settings-subsection-content");
     themeVisibilityHeader.addEventListener("click", () => {
       const isExpanded = !themeVisibilitySection.hasClass("is-expanded");
       themeVisibilitySection.toggleClass("is-expanded", isExpanded);
-      (0, import_obsidian8.setIcon)(themeVisibilityToggle, isExpanded ? "chevron-down" : "chevron-right");
+      (0, import_obsidian9.setIcon)(themeVisibilityToggle, isExpanded ? "chevron-down" : "chevron-right");
     });
     const refreshActiveViews = async () => {
       const leaves = this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE_RED);
@@ -8601,36 +8719,44 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
         }
       }
     };
-    new import_obsidian8.Setting(themeVisibilityContent).setName("\u662F\u5426\u663E\u793A\u9875\u7709\uFF08\u5934\u50CF\u548C\u7528\u6237\u4FE1\u606F\uFF09").setDesc("\u5173\u95ED\u540E\u6587\u5B57\u533A\u57DF\u4F1A\u81EA\u52A8\u6269\u5927\uFF0C\u6BCF\u9875\u5BB9\u7EB3\u66F4\u591A\u5185\u5BB9").addToggle(
+    new import_obsidian9.Setting(themeVisibilityContent).setName("\u662F\u5426\u663E\u793A\u9875\u7709\uFF08\u5934\u50CF\u548C\u7528\u6237\u4FE1\u606F\uFF09").setDesc("\u5173\u95ED\u540E\u6587\u5B57\u533A\u57DF\u4F1A\u81EA\u52A8\u6269\u5927\uFF0C\u6BCF\u9875\u5BB9\u7EB3\u66F4\u591A\u5185\u5BB9").addToggle(
       (toggle) => toggle.setValue(this.plugin.settingsManager.getSettings().showHeader === true).onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ showHeader: value });
+        await this.plugin.settingsManager.updateSettings({
+          showHeader: value
+        });
         await refreshActiveViews();
       })
     );
-    new import_obsidian8.Setting(themeVisibilityContent).setName("\u662F\u5426\u663E\u793A\u65F6\u95F4").setDesc("\u9700\u5148\u5F00\u542F\u9875\u7709\uFF1B\u6253\u5F00\u540E\u65F6\u95F4\u663E\u793A\u5728\u7528\u6237\u4FE1\u606F\u53F3\u4FA7").addToggle(
+    new import_obsidian9.Setting(themeVisibilityContent).setName("\u662F\u5426\u663E\u793A\u65F6\u95F4").setDesc("\u9700\u5148\u5F00\u542F\u9875\u7709\uFF1B\u6253\u5F00\u540E\u65F6\u95F4\u663E\u793A\u5728\u7528\u6237\u4FE1\u606F\u53F3\u4FA7").addToggle(
       (toggle) => toggle.setValue(this.plugin.settingsManager.getSettings().showTime !== false).onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ showTime: value });
+        await this.plugin.settingsManager.updateSettings({
+          showTime: value
+        });
         await refreshActiveViews();
       })
     );
-    new import_obsidian8.Setting(themeVisibilityContent).setName("\u662F\u5426\u663E\u793A\u9875\u811A").setDesc("\u63A7\u5236\u662F\u5426\u5728\u4E3B\u9898\u4E2D\u663E\u793A\u9875\u811A\u90E8\u5206\uFF0C\u5173\u95ED\u540E\u6587\u5B57\u533A\u57DF\u4F1A\u81EA\u52A8\u6269\u5927").addToggle(
+    new import_obsidian9.Setting(themeVisibilityContent).setName("\u662F\u5426\u663E\u793A\u9875\u811A").setDesc("\u63A7\u5236\u662F\u5426\u5728\u4E3B\u9898\u4E2D\u663E\u793A\u9875\u811A\u90E8\u5206").addToggle(
       (toggle) => toggle.setValue(this.plugin.settingsManager.getSettings().showFooter !== false).onChange(async (value) => {
-        await this.plugin.settingsManager.updateSettings({ showFooter: value });
+        await this.plugin.settingsManager.updateSettings({
+          showFooter: value
+        });
         await refreshActiveViews();
       })
     );
-    new import_obsidian8.Setting(themeVisibilityContent).setName("\u5168\u5C40\u6587\u5B57\u989C\u8272").setDesc("\u7559\u7A7A\u5219\u8DDF\u968F\u4E3B\u9898\u9ED8\u8BA4\u8272\u3002\u586B\u5199\u540E\u5BF9\u6B63\u6587\u3001\u5217\u8868\u3001\u5F15\u7528\u3001\u6807\u9898\u3001\u8868\u683C\u7B49\u751F\u6548\uFF08\u94FE\u63A5\u8272\u4ECD\u7531\u4E3B\u9898\u63A7\u5236\uFF09\u3002").addText((text) => {
+    new import_obsidian9.Setting(themeVisibilityContent).setName("\u5168\u5C40\u6587\u5B57\u989C\u8272").setDesc("\u7559\u7A7A\u5219\u8DDF\u968F\u4E3B\u9898\u9ED8\u8BA4\u8272\u3002\u586B\u5199\u540E\u5BF9\u6B63\u6587\u3001\u5217\u8868\u3001\u5F15\u7528\u3001\u6807\u9898\u3001\u8868\u683C\u7B49\u751F\u6548\u3002").addText((text) => {
       text.setPlaceholder("#333333");
       text.setValue(this.plugin.settingsManager.getSettings().textColor || "");
       text.onChange(async (value) => {
         await this.plugin.settingsManager.updateSettings({ textColor: value.trim() });
         await refreshActiveViews();
       });
-    }).addExtraButton((btn) => btn.setIcon("cross").setTooltip("\u6E05\u7A7A\u989C\u8272").onClick(async () => {
-      await this.plugin.settingsManager.updateSettings({ textColor: "" });
-      this.display();
-      await refreshActiveViews();
-    }));
+    }).addButton(
+      (button) => button.setButtonText("\u6E05\u7A7A").onClick(async () => {
+        await this.plugin.settingsManager.updateSettings({ textColor: "" });
+        await refreshActiveViews();
+        this.display();
+      })
+    );
     themeVisibilityContent.createEl("hr", { cls: "red-settings-divider" });
     const themeSelectionContainer = themeVisibilityContent.createDiv("theme-selection-container");
     const allThemesContainer = themeSelectionContainer.createDiv("all-themes-container");
@@ -8679,7 +8805,7 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
         }
       }
       renderThemeLists();
-      new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+      new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
     });
     removeButton.addEventListener("click", async () => {
       const selectedItems = Array.from(visibleThemesList.querySelectorAll(".theme-list-item.selected"));
@@ -8696,13 +8822,13 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
         }
       }
       renderThemeLists();
-      new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+      new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
     });
     const themeList = containerEl.createDiv("theme-management");
     themeList.createEl("h4", { text: "\u81EA\u5B9A\u4E49\u4E3B\u9898", cls: "theme-custom-header" });
     this.plugin.settingsManager.getAllThemes().filter((theme) => !theme.isPreset).forEach((theme) => {
       const themeItem = themeList.createDiv("theme-item");
-      new import_obsidian8.Setting(themeItem).setName(theme.name).setDesc(theme.description).addExtraButton((btn) => btn.setIcon("eye").setTooltip("\u9884\u89C8").onClick(() => {
+      new import_obsidian9.Setting(themeItem).setName(theme.name).setDesc(theme.description).addExtraButton((btn) => btn.setIcon("eye").setTooltip("\u9884\u89C8").onClick(() => {
         new ThemePreviewModal(this.app, this.plugin.settingsManager, theme, this.plugin.themeManager).open();
       })).addExtraButton((btn) => btn.setIcon("pencil").setTooltip("\u7F16\u8F91").onClick(() => {
         new CreateThemeModal(
@@ -8711,7 +8837,7 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
           (updatedTheme) => {
             this.plugin.settingsManager.updateTheme(theme.id, updatedTheme);
             this.display();
-            new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+            new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
           },
           theme
         ).open();
@@ -8723,19 +8849,19 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
           async () => {
             await this.plugin.settingsManager.removeTheme(theme.id);
             this.display();
-            new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+            new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
           }
         ).open();
       }));
     });
-    new import_obsidian8.Setting(containerEl).addButton((btn) => btn.setButtonText("+ \u65B0\u5EFA\u4E3B\u9898").setCta().onClick(() => {
+    new import_obsidian9.Setting(containerEl).addButton((btn) => btn.setButtonText("+ \u65B0\u5EFA\u4E3B\u9898").setCta().onClick(() => {
       new CreateThemeModal(
         this.app,
         this.plugin,
         async (newTheme) => {
           await this.plugin.settingsManager.addCustomTheme(newTheme);
           this.display();
-          new import_obsidian8.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
+          new import_obsidian9.Notice("\u8BF7\u91CD\u542F Obsidian \u6216\u91CD\u65B0\u52A0\u8F7D\u4EE5\u4F7F\u66F4\u6539\u751F\u6548");
         }
       ).open();
     }));
@@ -8743,7 +8869,7 @@ var RedSettingTab = class extends import_obsidian8.PluginSettingTab {
 };
 
 // src/main.ts
-var RedPlugin = class extends import_obsidian9.Plugin {
+var RedPlugin = class extends import_obsidian10.Plugin {
   async onload() {
     this.settingsManager = new SettingsManager(this);
     await this.settingsManager.loadSettings();
@@ -8779,7 +8905,7 @@ var RedPlugin = class extends import_obsidian9.Plugin {
         active: true
       });
     } else {
-      new import_obsidian9.Notice("\u65E0\u6CD5\u521B\u5EFA\u89C6\u56FE\u9762\u677F");
+      new import_obsidian10.Notice("\u65E0\u6CD5\u521B\u5EFA\u89C6\u56FE\u9762\u677F");
     }
   }
 };
@@ -8798,5 +8924,3 @@ jszip/dist/jszip.min.js:
   https://github.com/nodeca/pako/blob/main/LICENSE
   *)
 */
-
-/* nosourcemap */
