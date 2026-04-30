@@ -102,10 +102,10 @@ export class RedSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('封面排版风格')
-            .setDesc('控制封面页标题、图片和摘要的位置。')
+            .setDesc('两种封面排版：标题在下，或标题在上。')
             .addDropdown(dropdown => dropdown
-                .addOption('image-top', '图片在上 + 标题在下')
-                .addOption('title-top', '标题在上 + 图片在中 + 摘要在下')
+                .addOption('image-top', '标题在下：图片在上 + 标题在下')
+                .addOption('title-top', '标题在上：标题在上 + 图片在中 + 摘要在下')
                 .setValue(settings().coverLayout || 'image-top')
                 .onChange(async (value: 'image-top' | 'title-top') => {
                     await this.plugin.settingsManager.updateSettings({ coverLayout: value });

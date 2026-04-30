@@ -44,6 +44,34 @@ interface RedSettings {
     };
 }
 
+const PRESET_FONTS = [
+    {
+        value: 'Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
+        label: '默认字体',
+        isPreset: true
+    },
+    {
+        value: 'SimSun, "宋体", serif',
+        label: '宋体',
+        isPreset: true
+    },
+    {
+        value: 'SimHei, "黑体", sans-serif',
+        label: '黑体',
+        isPreset: true
+    },
+    {
+        value: '"KaiTi_GB2312", "Kaiti SC", STKaiti, KaiTi, "楷体", serif',
+        label: '楷体',
+        isPreset: true
+    },
+    {
+        value: '"Microsoft YaHei", "微软雅黑", sans-serif',
+        label: '雅黑',
+        isPreset: true
+    }
+];
+
 export const DEFAULT_SETTINGS: RedSettings = {
     templateId: 'default',
     themeId: 'default',
@@ -76,33 +104,7 @@ export const DEFAULT_SETTINGS: RedSettings = {
     headingLevel: 'h2', // 默认使用二级标题
     footerLeftText: '夜半过后，光明便启程',
     footerRightText: '欢迎关注公众号：夜半',
-    customFonts: [
-        {
-            value: 'Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif',
-            label: '默认字体',
-            isPreset: true
-        },
-        {
-            value: 'SimSun, "宋体", serif',
-            label: '宋体',
-            isPreset: true
-        },
-        {
-            value: 'SimHei, "黑体", sans-serif',
-            label: '黑体',
-            isPreset: true
-        },
-        {
-            value: 'KaiTi, "楷体", serif',
-            label: '楷体',
-            isPreset: true
-        },
-        {
-            value: '"Microsoft YaHei", "微软雅黑", sans-serif',
-            label: '雅黑',
-            isPreset: true
-        }
-    ],
+    customFonts: PRESET_FONTS,
     backgroundSettings: {
         imageUrl: '',
         scale: 1,
@@ -140,6 +142,13 @@ export class SettingsManager extends EventEmitter {
         // 确保 customThemes 存在
         if (!savedData.customThemes) {
             savedData.customThemes = [];
+        }
+
+        if (!savedData.customFonts || savedData.customFonts.length === 0) {
+            savedData.customFonts = PRESET_FONTS;
+        } else {
+            const customOnly = savedData.customFonts.filter((font: { isPreset?: boolean }) => !font.isPreset);
+            savedData.customFonts = [...PRESET_FONTS, ...customOnly];
         }
     
         this.settings = Object.assign({}, DEFAULT_SETTINGS, savedData);

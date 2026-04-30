@@ -722,9 +722,18 @@ export class RedView extends ItemView {
         wrap.className = `red-cover-page${layout === 'title-top' ? ' red-cover-page--title-top' : ''}`;
         const coverFont = settings.coverTitleFont || '';
 
-        const createImageWrap = (small: boolean) => {
+        if (layout === 'title-top') {
+            const tWrap = document.createElement('div');
+            tWrap.className = 'red-cover-title-wrap red-cover-title-wrap--top';
+            const h = document.createElement('h2');
+            h.className = 'red-cover-title red-cover-title--top';
+            h.textContent = title;
+            if (coverFont) h.style.fontFamily = coverFont;
+            tWrap.appendChild(h);
+            wrap.appendChild(tWrap);
+
             const imgWrap = document.createElement('div');
-            imgWrap.className = small ? 'red-cover-image-wrap red-cover-image-wrap--small' : 'red-cover-image-wrap';
+            imgWrap.className = 'red-cover-image-wrap red-cover-image-wrap--small';
             if (imgUrl) {
                 const img = document.createElement('img');
                 img.className = 'red-cover-image';
@@ -737,23 +746,8 @@ export class RedView extends ItemView {
                 ph.textContent = '暂无封面图 - 设置中可上传图片或点本按钮生成';
                 imgWrap.appendChild(ph);
             }
-            return imgWrap;
-        };
+            wrap.appendChild(imgWrap);
 
-        const createTitle = (top: boolean) => {
-            const tWrap = document.createElement('div');
-            tWrap.className = top ? 'red-cover-title-wrap red-cover-title-wrap--top' : 'red-cover-title-wrap';
-            const h = document.createElement('h2');
-            h.className = top ? 'red-cover-title red-cover-title--top' : 'red-cover-title';
-            h.textContent = title;
-            if (coverFont) h.style.fontFamily = coverFont;
-            tWrap.appendChild(h);
-            return tWrap;
-        };
-
-        if (layout === 'title-top') {
-            wrap.appendChild(createTitle(true));
-            wrap.appendChild(createImageWrap(true));
             if (settings.coverShowExcerpt !== false) {
                 const eWrap = document.createElement('div');
                 eWrap.className = 'red-cover-excerpt-wrap';
@@ -761,14 +755,16 @@ export class RedView extends ItemView {
                 eText.className = 'red-cover-excerpt';
                 eText.contentEditable = 'true';
                 eText.setAttribute('data-placeholder', '点击输入封面摘要...');
-                const excerptText = (settings.coverExcerptText || excerpt || '').trim();
+                const excerptText = (settings.coverExcerptText || '').trim();
                 if (excerptText) eText.textContent = excerptText;
+                const sm = this.settingsManager;
                 eText.addEventListener('blur', async () => {
-                    await this.settingsManager.updateSettings({ coverExcerptText: (eText.textContent || '').trim() });
+                    const val = (eText.textContent || '').trim();
+                    await sm.updateSettings({ coverExcerptText: val });
                 });
-                eText.addEventListener('keydown', (event) => {
-                    if (event.key === 'Enter' && !event.shiftKey) {
-                        event.preventDefault();
+                eText.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
                         eText.blur();
                     }
                 });
@@ -776,8 +772,31 @@ export class RedView extends ItemView {
                 wrap.appendChild(eWrap);
             }
         } else {
-            wrap.appendChild(createImageWrap(false));
-            wrap.appendChild(createTitle(false));
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'red-cover-image-wrap';
+            if (imgUrl) {
+                const img = document.createElement('img');
+                img.className = 'red-cover-image';
+                img.src = imgUrl;
+                img.alt = '';
+                imgWrap.appendChild(img);
+            } else {
+                const ph = document.createElement('div');
+                ph.className = 'red-cover-placeholder';
+                ph.textContent = '暂无封面图 - 设置中可上传图片或点本按钮生成';
+                imgWrap.appendChild(ph);
+            }
+
+            const tWrap = document.createElement('div');
+            tWrap.className = 'red-cover-title-wrap';
+            const h = document.createElement('h2');
+            h.className = 'red-cover-title';
+            h.textContent = title;
+            if (coverFont) h.style.fontFamily = coverFont;
+            tWrap.appendChild(h);
+
+            wrap.appendChild(imgWrap);
+            wrap.appendChild(tWrap);
         }
 
         return wrap;
