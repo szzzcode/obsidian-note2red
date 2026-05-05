@@ -15,15 +15,18 @@
 /* 弹框主体 */
 .red-about-modal {
     background: var(--background-primary);
-    border-radius: 12px;
-    padding: 20px 20px;
-    width: 520px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 10px;
+    padding: 28px 30px 24px;
+    width: 480px;
+    max-width: calc(100vw - 32px);
     max-height: 90vh;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     overflow-y: auto;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
 }
 
 /* 自定义滚动条样式 */
@@ -48,14 +51,14 @@
 /* 关闭按钮 */
 .red-about-close {
     position: absolute;
-    top: 7px;
-    right: 7px;
+    top: 10px;
+    right: 10px;
     width: 28px;
     height: 28px;
     background: transparent;
     border: none;
     border-radius: 6px;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--text-muted);
     cursor: pointer;
     display: flex;
@@ -67,8 +70,8 @@
 /* macOS 系统下的样式 */
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-color-index:0) {
     .red-about-close {
-        right: auto;
-        left: 7px;
+        right: 10px;
+        left: auto;
     }
 }
 
@@ -78,25 +81,15 @@
 }
 
 /* 内容区块 */
+.red-about-header {
+    padding: 6px 4px 16px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    text-align: center;
+}
+
 .red-about-section {
-    padding: 10px;
-    margin: 8px 20px 0 20px;
-    border-radius: 8px;
-}
-
-.red-about-intro-section {
-    background: #fafafa;
-    border: 1px solid #f0f0f0;
-}
-
-.red-about-donate-section {
-    background: #fff9f5;
-    border: 1px solid #ffe4d9;
-}
-
-.red-about-mp-section {
-    background: #f5fff7;
-    border: 1px solid #e6f7e9;
+    padding: 0;
+    margin: 0;
 }
 
 /* 文字样式 */
@@ -111,17 +104,27 @@
 
 .red-about-name {
     color: var(--text-accent);
-    font-weight: 600;
-    font-size: 16px;
-    padding: 0 2px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.3;
+    padding: 0;
 }
 
 .red-about-identity {
-    color: var(--text-normal);
+    display: inline-block;
+    color: var(--text-muted);
     font-weight: 500;
-    background: var(--background-primary-alt);
-    padding: 0 4px;
-    border-radius: 3px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 6px;
+}
+
+.red-about-tagline {
+    color: var(--text-normal);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-top: 8px;
 }
 
 .red-about-highlight {
@@ -135,10 +138,10 @@
 }
 
 .red-about-subtitle {
-    font-size: 18px;
-    color: var(--text-accent);
-    margin: 8px 0 12px;
-    letter-spacing: 0.3px;
+    font-size: 14px;
+    color: var(--text-normal);
+    margin: 0 0 6px;
+    letter-spacing: 0;
     font-weight: 600;
 }
 
@@ -152,11 +155,11 @@
 
 .red-about-role, 
 .red-about-desc {
-    font-size: 14.5px;
+    font-size: 14px;
     color: var(--text-muted);
-    margin: 6px 0;
-    line-height: 1.8;
-    letter-spacing: 0.2px;
+    margin: 0;
+    line-height: 1.75;
+    letter-spacing: 0;
 }
 
 .red-about-emphasis {
@@ -164,39 +167,26 @@
     color: var(--text-error);
 }
 
-.red-about-footer {
-    font-size: 15px;
-    color: var(--text-normal);
-    text-align: center;
-    margin: 1px 0 0;
-    padding: 1px 1px;
-    background: var(--background-primary-alt);
-    border-radius: 8px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    line-height: 1.6;
+.red-about-contact-section {
+    padding-top: 4px;
 }
 
-.red-about-footer strong {
-    color: var(--text-accent);
-    font-weight: 600;
-}
-
-/* 二维码容器 */
-.red-about-qr {
-    width: 100%;
-    height: 150px;
-    margin: 5px 0;
-    padding: 5px;
-    background: var(--background-primary);
-    border-radius: 8px;
+.red-about-contact-row {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid var(--background-modifier-border);
 }
 
-.red-about-qr img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.red-about-contact-label {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.red-about-contact-value {
+    color: var(--text-accent);
+    font-size: 14px;
+    font-weight: 600;
 }

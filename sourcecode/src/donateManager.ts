@@ -1,7 +1,5 @@
 
 import { App, Plugin } from 'obsidian';
-import { DONATE_QR_BASE64 } from './assets/donateQR';
-import { MP_QR_BASE64 } from './assets/mpQR';
 
 export class DonateManager {
     private static overlay: HTMLElement;
@@ -16,134 +14,74 @@ export class DonateManager {
 
     public static showDonateModal(container: HTMLElement) {
         this.overlay = container.createEl('div', {
-            cls: 'mp-donate-overlay'
+            cls: 'red-about-overlay'
         });
 
         this.modal = this.overlay.createEl('div', {
-            cls: 'mp-about-modal'
+            cls: 'red-about-modal'
         });
 
         // 添加关闭按钮
         const closeButton = this.modal.createEl('button', {
-            cls: 'mp-donate-close',
+            cls: 'red-about-close',
             text: '×'
         });
 
-        // 添加作者信息区域
-        const authorSection = this.modal.createEl('div', {
-            cls: 'mp-about-section mp-about-intro-section'
+        const headerSection = this.modal.createEl('div', {
+            cls: 'red-about-header'
+        });
+        headerSection.createEl('div', {
+            cls: 'red-about-name',
+            text: '八股仙人'
+        });
+        headerSection.createEl('div', {
+            cls: 'red-about-identity',
+            text: '上海执业律师'
+        });
+        headerSection.createEl('div', {
+            cls: 'red-about-tagline',
+            text: '法律 + AI 的思考者和实践者'
         });
 
-        authorSection.createEl('h4', {
-            text: '关于作者',
-            cls: 'mp-about-title'
+        const bioSection = this.modal.createEl('div', {
+            cls: 'red-about-section'
         });
+        bioSection.createEl('h4', {
+            text: '我在做什么',
+            cls: 'red-about-subtitle'
+        });
+        const bioEl = bioSection.createEl('p', {
+            cls: 'red-about-desc'
+        });
+        bioEl.appendText('我关注法律、AI、写作效率与自动化工具，');
+        bioEl.createEl('br');
+        bioEl.appendText('致力于让文字工作者从重复劳动中解放出来，');
+        bioEl.createEl('br');
+        bioEl.appendText('把更多精力留给判断、表达和创造。');
 
-        const introEl = authorSection.createEl('p', {
-            cls: 'mp-about-intro'
+        const pluginSection = this.modal.createEl('div', {
+            cls: 'red-about-section'
         });
-        
-        introEl.appendText('你好，我是');
-        introEl.createEl('span', {
-            cls: 'mp-about-name',
-            text: '【夜半】'
+        pluginSection.createEl('h4', {
+            text: '这个插件',
+            cls: 'red-about-subtitle'
         });
-        introEl.appendText('，一名');
-        introEl.createEl('span', {
-            cls: 'mp-about-identity',
-            text: '全职写作与独立开发者'
+        const pluginDescEl = pluginSection.createEl('p', {
+            cls: 'red-about-desc'
         });
-        introEl.appendText('。');
-        
-        const roleList = authorSection.createEl('div', {
-            cls: 'mp-about-roles'
-        });
+        pluginDescEl.appendText('它服务于高频写作和内容分发场景，');
+        pluginDescEl.createEl('br');
+        pluginDescEl.appendText('尽量减少排版、导出、适配平台格式这些机械步骤。');
 
-        const roleEl = roleList.createEl('p', {
-            cls: 'mp-about-role'
+        const contactSection = this.modal.createEl('div', {
+            cls: 'red-about-section red-about-contact-section'
         });
-        
-        roleEl.appendText('这款插件是我为了在 Obsidian 写作后，');
-        roleEl.createEl('br');
-        roleEl.appendText('无需繁琐排版一键即可发布到小红书而开发的工具，');
-        roleEl.createEl('br');
-        roleEl.appendText('希望能让你的');
-        roleEl.createEl('span', {
-            cls: 'mp-about-highlight',
-            text: '排版更轻松'
+        contactSection.createEl('h4', {
+            text: '关注方式',
+            cls: 'red-about-subtitle'
         });
-        roleEl.appendText('，让你的');
-        roleEl.createEl('span', {
-            cls: 'mp-about-value',
-            text: '创作更高效'
-        });
-        roleEl.appendText('。');
-
-        // 添加插件介绍
-        const descEl = authorSection.createEl('p', {
-            cls: 'mp-about-desc'
-        });
-        descEl.appendText('如果这款插件对你有帮助，');
-        descEl.createEl('br');
-        descEl.appendText('或者你愿意支持我的独立开发与写作，欢迎请我喝咖啡☕️。');
-        descEl.createEl('br');
-        descEl.appendText('你的支持对我来说意义重大，它能让我更专注地开发、写作。');
-
-        // 添加打赏区域
-        const donateSection = this.modal.createEl('div', {
-            cls: 'mp-about-section mp-about-donate-section'
-        });
-
-        donateSection.createEl('h4', {
-            text: '请我喝咖啡',
-            cls: 'mp-about-subtitle'
-        });
-
-        const donateQR = donateSection.createEl('div', {
-            cls: 'mp-about-qr'
-        });
-        donateQR.createEl('img', {
-            attr: {
-                src: DONATE_QR_BASE64,
-                alt: '打赏二维码'
-            }
-        });
-
-        // 添加公众号区域
-        const mpSection = this.modal.createEl('div', {
-            cls: 'mp-about-section mp-about-mp-section'
-        });
-
-        const mpDescEl = mpSection.createEl('p', {
-            cls: 'mp-about-desc'
-        });
-        mpDescEl.appendText('如果你想了解更多关于创作、效率工具的小技巧，');
-        mpDescEl.createEl('br');
-        mpDescEl.appendText('或者关注我未来的写作动态，欢迎关注我的微信公众号。');
-
-        mpSection.createEl('h4', {
-            text: '微信公众号',
-            cls: 'mp-about-subtitle'
-        });
-
-        const mpQR = mpSection.createEl('div', {
-            cls: 'mp-about-qr'
-        });
-        mpQR.createEl('img', {
-            attr: {
-                src: MP_QR_BASE64,
-                alt: '公众号二维码'
-            }
-        });
-
-        const footerEl = mpSection.createEl('p', {
-            cls: 'mp-about-footer'
-        });
-        footerEl.appendText('期待与你一起，在创作的世界里');
-        footerEl.createEl('strong', {
-            text: '找到属于自己的意义'
-        });
-        footerEl.appendText('。');
+        this.createContactRow(contactSection, '微信公众号', '八股仙人');
+        this.createContactRow(contactSection, '微博', '八股仙人AI');
 
         // 添加关闭事件
         closeButton.addEventListener('click', () => this.closeDonateModal());
@@ -158,5 +96,19 @@ export class DonateManager {
         if (this.overlay) {
             this.overlay.remove();
         }
+    }
+
+    private static createContactRow(parent: HTMLElement, label: string, value: string) {
+        const row = parent.createEl('div', {
+            cls: 'red-about-contact-row'
+        });
+        row.createEl('span', {
+            cls: 'red-about-contact-label',
+            text: label
+        });
+        row.createEl('span', {
+            cls: 'red-about-contact-value',
+            text: value
+        });
     }
 }

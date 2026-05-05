@@ -210,7 +210,7 @@ export class ThemeManager {
         // 应用段落样式
         element.querySelectorAll('p').forEach(el => {
             if (!el.parentElement?.closest('p') && !el.parentElement?.closest('blockquote')) {
-                el.setAttribute('style', `${styles.paragraph}; font-family: ${this.currentFont}; font-size: ${this.currentFontSize}px;`);
+                el.setAttribute('style', `${styles.paragraph}; font-family: ${this.currentFont}; font-size: ${this.currentFontSize}px; text-align: justify; text-justify: inter-ideograph;`);
             }
         });
 
@@ -256,13 +256,15 @@ export class ThemeManager {
 
         // 应用表格样式（内容表格，非包裹表格）
         element.querySelectorAll('table').forEach(el => {
-            el.setAttribute('style', styles.table.container);
+            el.setAttribute('style', `${styles.table.container}; margin-left: auto; margin-right: auto; box-sizing: border-box;`);
         });
+        const tableFontSize = Math.max(12, Math.round(this.currentFontSize * 0.86));
+        const tableCellCompactStyle = `font-family: ${this.currentFont}; font-size: ${tableFontSize}px; line-height: 1.55; padding: 6px 7px;`;
         element.querySelectorAll('th').forEach(el => {
-            el.setAttribute('style', `${styles.table.header}; font-family: ${this.currentFont}; font-size: ${this.currentFontSize}px;`);
+            el.setAttribute('style', `${styles.table.header}; ${tableCellCompactStyle}`);
         });
         element.querySelectorAll('td').forEach(el => {
-            el.setAttribute('style', `${styles.table.cell}; font-family: ${this.currentFont}; font-size: ${this.currentFontSize}px;`);
+            el.setAttribute('style', `${styles.table.cell}; ${tableCellCompactStyle}`);
         });
 
         // 应用分割线样式

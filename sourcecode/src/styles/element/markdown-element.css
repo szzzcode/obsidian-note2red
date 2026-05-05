@@ -23,15 +23,18 @@
 
 /* 表格样式 */
 .red-table {
+    box-sizing: border-box;
     border-collapse: collapse;
-    margin: 1em 0;
+    font-size: 0.9em;
+    line-height: 1.55;
+    margin: 1em auto;
     width: 100%;
 }
 
 .red-table th,
 .red-table td {
     border: 1px solid var(--background-modifier-border);
-    padding: 8px;
+    padding: 6px 7px;
 }
 
 /* 分割线样式 */

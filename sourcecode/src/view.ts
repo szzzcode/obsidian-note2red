@@ -384,18 +384,17 @@ export class RedView extends ItemView {
             attr: { 'aria-label': '使用指南' }
         });
         setIcon(helpButton, 'help');
-        const headingLevel = this.settingsManager.getSettings().headingLevel || 'h1';
         parent.createEl('div', {
             cls: 'red-help-tooltip',
             text: `使用指南：
-                1. 核心用法：用${headingLevel === 'h1' ? '一级标题(#)' : '二级标题(##)'}来分割内容，每个标题生成一张小红书配图
-                2. 内容分页：在${headingLevel === 'h1' ? '一级标题(#)' : '二级标题(##)'}下使用 --- 可将内容分割为多页，每页都会带上标题
-                3. 首图制作：单独调整首节字号至20-24px，使用【下载当前页】导出
-                4. 长文优化：内容较多的章节可调小字号至14-16px后单独导出
-                5. 批量操作：保持统一字号时，用【导出全部页】批量生成
-                6. 模板切换：顶部选择器可切换不同视觉风格
-                7. 实时编辑：解锁状态(🔓)下编辑文档即时预览效果
-                8. 支持创作：点击❤️关于作者可进行打赏支持`
+                1. 打开一篇 Markdown 笔记后，插件会按图片高度自动分页，不再要求用标题拆分。
+                2. 想在指定位置换页时，在正文中单独插入 --- 分隔线。
+                3. 顶部可切换主题、字体、字号，以及表格/代码块溢出策略：切分、缩放、换页。
+                4. “眉 / 脚”按钮可快速显示或隐藏页眉、页脚，让正文区域更大。
+                5. 需要首图时，可开启封面页；也可以手动上传封面图或用 Gemini 生成封面。
+                6. 导出当前页用于单张调整，导出全部页用于批量生成，导出长图用于连续阅读。
+                7. 锁按钮用于暂停或恢复实时预览；解锁时编辑笔记会自动刷新预览。
+                8. 关于作者中可以查看作者信息与后续关注方式。`
         });
     }
 
@@ -703,7 +702,7 @@ export class RedView extends ItemView {
 
         this.updateControlsState(hasValidContent);
         if (!hasValidContent) {
-            this.copyButton.setAttribute('title', '请先添加一级标题内容');
+            this.copyButton.setAttribute('title', '请先添加正文内容');
         } else {
             this.copyButton.removeAttribute('title');
         }

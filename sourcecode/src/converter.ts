@@ -333,6 +333,28 @@ export class RedConverter {
                     fit.removeChild(probe);
                     rest.appendChild(child.cloneNode(true));
                 }
+            } else if (tag === 'BLOCKQUOTE' && child.nodeType === Node.ELEMENT_NODE) {
+                const childEl = child as HTMLElement;
+                const childTag = childEl.tagName;
+                const splitChild = childTag === 'TABLE'
+                    ? RedConverter.splitTable(childEl, measurer, maxHeight)
+                    : childTag === 'PRE'
+                        ? RedConverter.splitPre(childEl, measurer, maxHeight)
+                        : null;
+
+                if (splitChild) {
+                    fit.appendChild(splitChild.fit);
+                    rest.appendChild(splitChild.rest);
+                } else {
+                    const hasIntro = fit.childNodes.length > 0 ||
+                        ((fit.textContent || '').trim() !== '');
+                    const hasPageContentBeforeFit = Array.from(measurer.children).some(node => node !== fit);
+                    if (hasIntro && hasPageContentBeforeFit && (childTag === 'TABLE' || childTag === 'PRE')) {
+                        measurer.removeChild(fit);
+                        return null;
+                    }
+                    rest.appendChild(child.cloneNode(true));
+                }
             } else {
                 rest.appendChild(child.cloneNode(true));
             }
