@@ -192,7 +192,7 @@ export class DefaultTemplate implements ImgTemplate {
         const handleBlur = async () => {
             const newName = input.value.trim();
             await this.settingsManager.updateSettings({
-                userName: newName || '夜半'
+                userName: newName || '八股仙人'
             });
             await this.onSettingsUpdate();
             input.replaceWith(element);
@@ -217,7 +217,7 @@ export class DefaultTemplate implements ImgTemplate {
         const handleBlur = async () => {
             const newId = input.value.trim();
             await this.settingsManager.updateSettings({
-                userId: newId || '@Yeban'
+                userId: newId || '@szzzcode'
             });
             await this.onSettingsUpdate();
             input.replaceWith(element);
@@ -242,8 +242,8 @@ export class DefaultTemplate implements ImgTemplate {
         const handleBlur = async () => {
             const newText = input.value.trim();
             const settings = position === 'left' 
-                ? { footerLeftText: newText || '夜半过后，光明便启程' }
-                : { footerRightText: newText || '欢迎关注公众号：夜半' };
+                ? { footerLeftText: newText || '让AI减少重复劳动' }
+                : { footerRightText: newText || '微信公众号：八股仙人' };
             
             await this.settingsManager.updateSettings(settings);
             await this.onSettingsUpdate();

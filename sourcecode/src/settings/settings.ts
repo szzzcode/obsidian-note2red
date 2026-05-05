@@ -95,15 +95,15 @@ export const DEFAULT_SETTINGS: RedSettings = {
     customThemes: [],
     // 修改默认用户信息
     userAvatar: '',  // 默认为空，提示用户上传
-    userName: '夜半',
+    userName: '八股仙人',
     notesTitle: '备忘录',
-    userId: '@Yeban',
+    userId: '@szzzcode',
     showHeader: false,
     showTime: true,
     timeFormat: 'zh-CN',
     headingLevel: 'h2', // 默认使用二级标题
-    footerLeftText: '夜半过后，光明便启程',
-    footerRightText: '欢迎关注公众号：夜半',
+    footerLeftText: '让AI减少重复劳动',
+    footerRightText: '微信公众号：八股仙人',
     customFonts: PRESET_FONTS,
     backgroundSettings: {
         imageUrl: '',
