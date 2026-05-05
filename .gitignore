@@ -5,6 +5,8 @@ sourcecode/dist/
 .DS_Store
 *.log
 *.zip
+/main.js
+/styles.css
 CHANGELOG.md
 ROADMAP.md
 NOTES.md
