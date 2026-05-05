@@ -5,3 +5,6 @@ sourcecode/dist/
 .DS_Store
 *.log
 *.zip
+CHANGELOG.md
+ROADMAP.md
+NOTES.md
